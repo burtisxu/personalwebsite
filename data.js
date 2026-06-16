@@ -25,10 +25,10 @@
       { id: 2, title: "Global intercountry croplands' greenhouse gas emissions differences and their potential drivers from economic levels perspective", authors: "Gao, M.; Xu, H.; Ma, M.; Gao, G.; Chen, X.; Chen, J.; Liu, X.; Qi, L.", journal: "Ecological Indicators", year: "2024", link: "https://doi.org/10.1016/j.ecolind.2024.112635", abstract: "", ssrn: "", fullText: "" }
     ],
     workingPapers: [
-      { id: 1, title: "Firm Productivity", authors: "H.X. & C.C", year: "2025", abstract: "", ssrn: "", fullText: "", link: "" },
-      { id: 2, title: "Entrepreneurship", authors: "H.X. & C. C.", year: "2025", abstract: "", ssrn: "", fullText: "", link: "" },
-      { id: 3, title: "Crime", authors: "S. S. & H. X.", year: "2026", abstract: "", ssrn: "", fullText: "", link: "" },
-      { id: 4, title: "Intergenerational Educational Mobility", authors: "W. F., G. L., M. L., Y. S., Y. X., H. X., J. W.", year: "2025", abstract: "", ssrn: "", fullText: "", link: "" }
+      { id: 1, title: "Firm Productivity", authors: "H.X. & C.C.", year: "2025", abstract: "", ssrn: "", fullText: "", link: "" },
+      { id: 2, title: "Entrepreneurship", authors: "C.C. & H.X. ", year: "2025", abstract: "", ssrn: "", fullText: "", link: "" },
+      { id: 3, title: "Crime", authors: "S.S. & H.X.", year: "2026", abstract: "", ssrn: "", fullText: "", link: "" },
+      { id: 4, title: "Intergenerational Educational Mobility", authors: "W.F., G.L., M.L., Y.S., Y.X., H.X., J.W.", year: "2025", abstract: "", ssrn: "", fullText: "", link: "" }
     ],
     workInProgress: [
       { id: 1, title: "Innovation Characteristics of Enterprises", description: "", status: "In Progress" },
