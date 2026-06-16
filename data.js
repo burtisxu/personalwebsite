@@ -10,42 +10,42 @@
   /* ── Default content ─────────────── */
   var DEFAULTS = {
     personal: {
-      name: "Hao Xu",
-      title: "AI for Science & Computational Mechanics",
-      bio:   "Researcher focused on the intersection of artificial intelligence and scientific computing.",
+      name: "Haolun Xu",
+      title: "Examining how economic development is shaped.",
+      bio: "My research focuses on the short-term and long-term factors that determine a region's capacity for economic development. Recently, I have been investigating how migration and culture shape regional economic performance over both the short and long term.",
       avatar: ""
     },
     research: [
-      { id: 1, title: "AI for Science",        description: "Leveraging deep learning and foundation models to accelerate scientific discovery, from molecular dynamics to PDE solving." },
-      { id: 2, title: "Computational Mechanics", description: "Developing high-performance numerical methods for multiphysics simulations, with a focus on finite element and meshfree methods." },
-      { id: 3, title: "Scientific Machine Learning", description: "Bridging physics-based models with data-driven approaches to build robust, interpretable, and generalizable surrogates." }
+      { id: 1, title: "How Culture Shapes Regional Economic Performance", description: "" },
+      { id: 2, title: "The Long-Term Mechanisms of Migration's Impact on Economic Performance", description: "" },
+      { id: 3, title: "Historical Factors Shaping Criminal Behavior", description: "" }
     ],
     publications: [
-      { id: 1, title: "A Deep Learning Framework for Multiscale PDE Solving", authors: "Xu H., Li J., Zhang W.", journal: "Journal of Computational Physics", year: "2024", link: "https://doi.org/10.xxxx/example", abstract: "", ssrn: "", fullText: "" },
-      { id: 2, title: "Physics-Informed Neural Operators for Solid Mechanics", authors: "Xu H., Wang Y.", journal: "Computer Methods in Applied Mechanics", year: "2023", link: "https://doi.org/10.xxxx/example", abstract: "We propose a physics-informed neural operator framework for modeling complex solid mechanics problems.", ssrn: "", fullText: "" }
+      { id: 1, title: "How do health shocks affect household energy poverty?", authors: "Fan, W.; Xu, H.; Cheng, S.; Yang, F.", journal: "Energy Economics", year: "2025", link: "https://doi.org/10.1016/j.eneco.2025.108884", abstract: "", ssrn: "", fullText: "" },
+      { id: 2, title: "Global intercountry croplands' greenhouse gas emissions differences and their potential drivers from economic levels perspective", authors: "Gao, M.; Xu, H.; Ma, M.; Gao, G.; Chen, X.; Chen, J.; Liu, X.; Qi, L.", journal: "Ecological Indicators", year: "2024", link: "https://doi.org/10.1016/j.ecolind.2024.112635", abstract: "", ssrn: "", fullText: "" }
     ],
     workingPapers: [
-      { id: 1, title: "Causal Inference with Deep Instrumental Variables", authors: "Xu H., Chen L.", year: "2024", abstract: "We develop a novel framework combining deep learning with instrumental variable methods for causal inference in high-dimensional settings.", ssrn: "https://papers.ssrn.com/abstract=xxxx", fullText: "" },
-      { id: 2, title: "Robust Policy Learning under Unobserved Confounding", authors: "Xu H.", year: "2025", abstract: "", ssrn: "", fullText: "" }
+      { id: 1, title: "Firm Productivity", authors: "H.X. & C.C", year: "2025", abstract: "", ssrn: "", fullText: "", link: "" },
+      { id: 2, title: "Entrepreneurship", authors: "H.X. & C. C.", year: "2025", abstract: "", ssrn: "", fullText: "", link: "" },
+      { id: 3, title: "Crime", authors: "S. S. & H. X.", year: "2026", abstract: "", ssrn: "", fullText: "", link: "" },
+      { id: 4, title: "Intergenerational Educational Mobility", authors: "W. F., G. L., M. L., Y. S., Y. X., H. X., J. W.", year: "2025", abstract: "", ssrn: "", fullText: "", link: "" }
     ],
     workInProgress: [
-      { id: 1, title: "Foundation Models for Multiphysics Discovery", description: "Building large-scale pretrained models for coupled physics systems across scales.", status: "In Progress" },
-      { id: 2, title: "Uncertainty Quantification in Scientific ML", description: "Developing rigorous uncertainty bounds for neural operator predictions.", status: "Writing" }
+      { id: 1, title: "Innovation Characteristics of Enterprises", description: "", status: "In Progress" },
+      { id: 2, title: "Migration & Crime", description: "", status: "In Progress" }
     ],
     conferences: [
-      { id: 1, title: "Deep Learning for Multiscale PDE Solving", conference: "NeurIPS", location: "Vancouver, Canada", date: "2024", type: "Presentation" },
-      { id: 2, title: "Physics-Informed Neural Operators", conference: "WCCM", location: "Paris, France", date: "2024", type: "Presentation" },
-      { id: 3, title: "Machine Learning for Computational Science", conference: "ICML Workshop", location: "Honolulu, USA", date: "2023", type: "Poster" }
+      { id: 1, title: "Firm Productivity", conference: "The 25th China Economics Annual Conference", location: "Shanghai, China", date: "2025", type: "Presentation" },
+      { id: 2, title: "Firm Productivity", conference: "The 12th International Workshop on Regional, Urban, and Spatial Economics in China (RUSE)", location: "Wuhan, China", date: "2024", type: "Presentation" }
     ],
     education: [
-      { id: 1, degree: "Ph.D. in Engineering Mechanics", school: "Tsinghua University",     year: "2020 – 2024" },
-      { id: 2, degree: "M.S. in Computational Science",  school: "Peking University",        year: "2017 – 2020" },
-      { id: 3, degree: "B.S. in Engineering",            school: "Zhejiang University",      year: "2013 – 2017" }
+      { id: 1, degree: "Ph.D. in Economic History", school: "Renmin University of China", year: "2025 –" },
+      { id: 2, degree: "B.S. in Economics", school: "Southwestern University of Finance and Economics", year: "2021 – 2025" }
     ],
     contact: {
-      email:   "haoxu@example.edu",
-      github:  "https://github.com/haoxu",
-      scholar: "https://scholar.google.com/citations?user=USER_ID"
+      email:   "haolun_xu@ruc.edu.cn",
+      github:  "",
+      scholar: ""
     }
   };
 
