@@ -13,7 +13,7 @@
       name: "Haolun Xu",
       title: "Examining how economic development is shaped.",
       bio: "My research focuses on the short-term and long-term factors that determine a region's capacity for economic development. Recently, I have been investigating how migration and culture shape regional economic performance over both the short and long term.",
-      avatar: ""
+      avatar: "photo.jpg"
     },
     research: [
       { id: 1, title: "How Culture Shapes Regional Economic Performance", description: "" },
