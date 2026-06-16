@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Site Admin</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d1d1f'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Inter,sans-serif' font-size='16' font-weight='600' fill='white'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+      color: #1d1d1f; background: #ffffff; font-size: 15px; font-weight: 400; line-height: 1.47; letter-spacing: -0.016em;
+    }
+
+    /* Auth */
+    #authOverlay { position: fixed; inset: 0; z-index: 9999; background: #ffffff; display: flex; align-items: center; justify-content: center; }
+    .auth-card { text-align: center; max-width: 360px; width: 100%; padding: 40px 32px; }
+    .auth-card h1 { font-size: 32px; font-weight: 600; letter-spacing: -0.025em; margin-bottom: 8px; }
+    .auth-card p.sub { font-size: 15px; color: #86868b; margin-bottom: 28px; }
+    .auth-card input {
+      width: 100%; padding: 14px 16px; font-size: 17px; font-family: inherit;
+      border: 1px solid #d2d2d7; border-radius: 12px; outline: none;
+      transition: border-color 0.2s ease; margin-bottom: 12px; letter-spacing: -0.01em;
+    }
+    .auth-card input:focus { border-color: #007AFF; box-shadow: 0 0 0 3px rgba(0,122,255,0.12); }
+    .auth-card button {
+      width: 100%; padding: 14px; font-size: 17px; font-weight: 500; font-family: inherit;
+      background: #007AFF; color: #fff; border: none; border-radius: 12px; cursor: pointer;
+      letter-spacing: -0.01em; transition: background 0.2s ease;
+    }
+    .auth-card button:hover { background: #0066d6; }
+    .auth-error { color: #ff3b30; font-size: 13px; margin-top: 8px; min-height: 18px; }
+
+    /* Dashboard Layout */
+    #dashboard { display: none; }
+    #dashboard.active { display: flex; height: 100vh; overflow: hidden; }
+
+    /* Top bar */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; height: 52px; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 0.5px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+    }
+    .topbar-title { font-size: 15px; font-weight: 600; letter-spacing: -0.02em; }
+    .topbar-actions { display: flex; gap: 10px; align-items: center; }
+    .btn {
+      font-family: inherit; font-size: 14px; font-weight: 500; letter-spacing: -0.01em;
+      padding: 7px 18px; border-radius: 20px; border: none; cursor: pointer; transition: all 0.2s ease; text-decoration: none; display: inline-block;
+    }
+    .btn-primary { background: #007AFF; color: #fff; }
+    .btn-primary:hover { background: #0066d6; }
+    .btn-ghost { background: #f5f5f7; color: #1d1d1f; }
+    .btn-ghost:hover { background: #e8e8ed; }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed; top: 52px; left: 0; bottom: 0; width: 240px;
+      background: #f5f5f7; border-right: 0.5px solid rgba(0,0,0,0.06);
+      padding: 20px 12px; overflow-y: auto;
+    }
+    .sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+    .sidebar-nav li a {
+      display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+      font-size: 15px; font-weight: 400; color: #1d1d1f; text-decoration: none;
+      border-radius: 10px; letter-spacing: -0.016em; transition: all 0.15s ease; cursor: pointer;
+    }
+    .sidebar-nav li a:hover { background: rgba(0,0,0,0.04); }
+    .sidebar-nav li a.active { background: #ffffff; font-weight: 500; color: #007AFF; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    .sidebar-icon { font-size: 16px; width: 22px; text-align: center; flex-shrink: 0; }
+
+    /* Content */
+    .content { position: fixed; top: 52px; left: 240px; right: 0; bottom: 64px; overflow-y: auto; padding: 40px; }
+    .panel { display: none; max-width: 680px; }
+    .panel.active { display: block; }
+    .panel h2 { font-size: 28px; font-weight: 600; letter-spacing: -0.025em; margin-bottom: 4px; }
+    .panel .panel-desc { font-size: 14px; color: #86868b; margin-bottom: 32px; }
+
+    /* Forms */
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block; font-size: 13px; font-weight: 500; color: #6e6e73;
+      letter-spacing: -0.01em; margin-bottom: 6px;
+    }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 11px 14px; font-size: 15px; font-family: inherit;
+      border: 1px solid #d2d2d7; border-radius: 10px; outline: none;
+      letter-spacing: -0.016em; transition: border-color 0.2s ease; background: #fff;
+    }
+    .form-group textarea { min-height: 80px; line-height: 1.5; resize: vertical; }
+    .form-group select { cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M6 8L1 3h10z' fill='%2386868b'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: #007AFF; box-shadow: 0 0 0 3px rgba(0,122,255,0.12);
+    }
+
+    /* Avatar */
+    .avatar-row { display: flex; align-items: center; gap: 16px; }
+    .avatar-preview { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; background: #f5f5f7; border: 1px solid #e8e8ed; }
+    .avatar-actions { display: flex; flex-direction: column; gap: 6px; }
+    .avatar-actions .btn { font-size: 13px; padding: 5px 14px; }
+    .avatar-hint { font-size: 12px; color: #86868b; }
+
+    /* List item cards */
+    .item-card { background: #f5f5f7; border-radius: 14px; padding: 20px 20px 12px; margin-bottom: 14px; position: relative; }
+    .item-card .form-group { margin-bottom: 14px; }
+    .item-card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .item-card-row.three { grid-template-columns: 1fr 1fr 1fr; }
+    .btn-remove {
+      position: absolute; top: 10px; right: 14px;
+      background: none; border: none; color: #86868b; cursor: pointer;
+      font-size: 20px; line-height: 1; padding: 2px 6px; border-radius: 50%;
+      transition: all 0.15s ease;
+    }
+    .btn-remove:hover { color: #ff3b30; background: rgba(255,59,48,0.08); }
+    .btn-add {
+      font-family: inherit; font-size: 14px; font-weight: 500; letter-spacing: -0.01em;
+      padding: 10px 0; width: 100%; border: 1.5px dashed #d2d2d7; border-radius: 12px;
+      background: transparent; color: #6e6e73; cursor: pointer; transition: all 0.2s ease;
+    }
+    .btn-add:hover { border-color: #007AFF; color: #007AFF; background: rgba(0,122,255,0.04); }
+
+    /* Save bar */
+    .save-bar {
+      position: fixed; bottom: 0; left: 240px; right: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-top: 0.5px solid rgba(0,0,0,0.08);
+      padding: 14px 40px; display: flex; align-items: center; justify-content: flex-end; gap: 12px;
+    }
+    .save-status { font-size: 13px; color: #86868b; margin-right: auto; transition: opacity 0.3s; }
+    .save-status.success { color: #34c759; }
+
+    /* Toast */
+    .toast {
+      position: fixed; top: 68px; left: 50%; transform: translateX(-50%); z-index: 999;
+      background: #1d1d1f; color: #fff; font-size: 14px; padding: 10px 24px;
+      border-radius: 20px; opacity: 0; transition: opacity 0.3s ease;
+      pointer-events: none; letter-spacing: -0.01em;
+    }
+    .toast.show { opacity: 1; }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .content { left: 0; padding: 24px 16px; bottom: 60px; }
+      .save-bar { left: 0; padding: 12px 16px; }
+      .topbar { padding: 0 16px; }
+      .item-card-row, .item-card-row.three { grid-template-columns: 1fr; }
+      #dashboard.active { flex-direction: column; }
+      .mobile-tabs {
+        display: flex; gap: 0; overflow-x: auto;
+        background: #f5f5f7; border-bottom: 0.5px solid rgba(0,0,0,0.06);
+        position: fixed; top: 52px; left: 0; right: 0; z-index: 50;
+        padding: 0 8px;
+      }
+      .mobile-tab {
+        flex-shrink: 0; padding: 10px 12px; font-size: 12px; font-weight: 500;
+        color: #6e6e73; border: none; background: none; cursor: pointer;
+        font-family: inherit; border-bottom: 2px solid transparent;
+        transition: all 0.15s ease; letter-spacing: -0.01em; white-space: nowrap;
+      }
+      .mobile-tab.active { color: #007AFF; border-bottom-color: #007AFF; }
+      .content { top: 94px; }
+    }
+    @media (max-width: 480px) {
+      .topbar-title { font-size: 14px; }
+      .btn { font-size: 13px; padding: 5px 14px; }
+      .auth-card { padding: 32px 20px; }
+      .auth-card h1 { font-size: 26px; }
+      .panel h2 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Auth Gate -->
+  <div id="authOverlay">
+    <div class="auth-card">
+      <h1>Dashboard</h1>
+      <p class="sub">Enter password to manage your site</p>
+      <input type="password" id="authPassword" placeholder="Password" autofocus>
+      <button id="authSubmit">Unlock</button>
+      <p class="auth-error" id="authError"></p>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboard">
+
+    <!-- Top bar -->
+    <header class="topbar">
+      <span class="topbar-title">Site Admin</span>
+      <div class="topbar-actions">
+        <a href="index.html" target="_blank" class="btn btn-ghost">View Site</a>
+        <button class="btn btn-primary" id="btnSaveTop">Save Changes</button>
+      </div>
+    </header>
+
+    <!-- Sidebar (desktop) -->
+    <aside class="sidebar" id="sidebar">
+      <ul class="sidebar-nav">
+        <li><a data-panel="personal" class="active"><span class="sidebar-icon">&#9679;</span> Personal</a></li>
+        <li><a data-panel="research"><span class="sidebar-icon">&#9671;</span> Research</a></li>
+        <li><a data-panel="publications"><span class="sidebar-icon">&#9684;</span> Publications</a></li>
+        <li><a data-panel="workingPapers"><span class="sidebar-icon">&#9998;</span> Working Papers</a></li>
+        <li><a data-panel="workInProgress"><span class="sidebar-icon">&#9881;</span> Work in Progress</a></li>
+        <li><a data-panel="conferences"><span class="sidebar-icon">&#9733;</span> Conferences</a></li>
+        <li><a data-panel="education"><span class="sidebar-icon">&#9702;</span> Education</a></li>
+        <li><a data-panel="contact"><span class="sidebar-icon">&#9993;</span> Contact</a></li>
+      </ul>
+    </aside>
+
+    <!-- Mobile tabs -->
+    <div class="mobile-tabs" id="mobileTabs" style="display:none">
+      <button class="mobile-tab active" data-panel="personal">Personal</button>
+      <button class="mobile-tab" data-panel="research">Research</button>
+      <button class="mobile-tab" data-panel="publications">Pubs</button>
+      <button class="mobile-tab" data-panel="workingPapers">Working</button>
+      <button class="mobile-tab" data-panel="workInProgress">WIP</button>
+      <button class="mobile-tab" data-panel="conferences">Confs</button>
+      <button class="mobile-tab" data-panel="education">Education</button>
+      <button class="mobile-tab" data-panel="contact">Contact</button>
+    </div>
+
+    <!-- Content area -->
+    <main class="content" id="contentArea">
+
+      <!-- Personal panel -->
+      <div class="panel active" id="panel-personal">
+        <h2>Personal Info</h2>
+        <p class="panel-desc">Your name, title, bio, and profile photo.</p>
+        <div class="form-group">
+          <label>Profile Photo</label>
+          <div class="avatar-row">
+            <img class="avatar-preview" id="avatarPreview" src="" alt="Avatar preview">
+            <div class="avatar-actions">
+              <input type="file" id="avatarInput" accept="image/*" style="display:none">
+              <button class="btn btn-ghost" id="btnUpload">Choose Image</button>
+              <button class="btn btn-ghost" id="btnRemoveAvatar" style="color:#ff3b30">Remove</button>
+              <span class="avatar-hint">JPEG or PNG, stored locally</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group"><label>Full Name</label><input type="text" id="editName" placeholder="Your name"></div>
+        <div class="form-group"><label>Title / Research Direction</label><input type="text" id="editTitle" placeholder="e.g. AI for Science & Computational Mechanics"></div>
+        <div class="form-group"><label>Short Bio</label><textarea id="editBio" placeholder="A brief introduction..."></textarea></div>
+      </div>
+
+      <!-- Research panel -->
+      <div class="panel" id="panel-research">
+        <h2>Research Interests</h2>
+        <p class="panel-desc">Manage your research areas. These appear as cards on the public page.</p>
+        <div id="researchItems"></div>
+        <button class="btn-add" id="btnAddResearch">+ Add Research Area</button>
+      </div>
+
+      <!-- Publications panel -->
+      <div class="panel" id="panel-publications">
+        <h2>Publications</h2>
+        <p class="panel-desc">Your published papers. Add DOI, SSRN, or full-text links.</p>
+        <div id="pubItems"></div>
+        <button class="btn-add" id="btnAddPub">+ Add Publication</button>
+      </div>
+
+      <!-- Working Papers panel -->
+      <div class="panel" id="panel-workingPapers">
+        <h2>Working Papers</h2>
+        <p class="panel-desc">Unpublished manuscripts. Leave empty to hide this section.</p>
+        <div id="wpItems"></div>
+        <button class="btn-add" id="btnAddWP">+ Add Working Paper</button>
+      </div>
+
+      <!-- Work in Progress panel -->
+      <div class="panel" id="panel-workInProgress">
+        <h2>Work in Progress</h2>
+        <p class="panel-desc">Ongoing research projects. Leave empty to hide this section.</p>
+        <div id="wipItems"></div>
+        <button class="btn-add" id="btnAddWIP">+ Add Project</button>
+      </div>
+
+      <!-- Conferences panel -->
+      <div class="panel" id="panel-conferences">
+        <h2>Conferences & Talks</h2>
+        <p class="panel-desc">Presentations and attendance. Leave empty to hide this section.</p>
+        <div id="confItems"></div>
+        <button class="btn-add" id="btnAddConf">+ Add Conference</button>
+      </div>
+
+      <!-- Education panel -->
+      <div class="panel" id="panel-education">
+        <h2>Education</h2>
+        <p class="panel-desc">Your academic background.</p>
+        <div id="eduItems"></div>
+        <button class="btn-add" id="btnAddEdu">+ Add Education</button>
+      </div>
+
+      <!-- Contact panel -->
+      <div class="panel" id="panel-contact">
+        <h2>Contact</h2>
+        <p class="panel-desc">How visitors can reach you. Leave a field empty to hide the link.</p>
+        <div class="form-group"><label>Email</label><input type="email" id="editEmail" placeholder="you@example.edu"></div>
+        <div class="form-group"><label>GitHub URL</label><input type="url" id="editGithub" placeholder="https://github.com/yourusername"></div>
+        <div class="form-group"><label>Google Scholar URL</label><input type="url" id="editScholar" placeholder="https://scholar.google.com/citations?user=..."></div>
+      </div>
+
+    </main>
+
+    <!-- Save bar -->
+    <div class="save-bar">
+      <span class="save-status" id="saveStatus">Unsaved changes</span>
+      <a href="index.html" target="_blank" class="btn btn-ghost">View Site</a>
+      <button class="btn btn-primary" id="btnSaveBottom">Save Changes</button>
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script>
+  (function () {
+    var PASSWORD = 'admin';
+    var data = window.loadSiteData();
+    var activePanel = 'personal';
+
+    /* ── Auth ────────────────────────── */
+    var authOverlay = document.getElementById('authOverlay');
+    var dashboard   = document.getElementById('dashboard');
+    var authPw      = document.getElementById('authPassword');
+    var authError   = document.getElementById('authError');
+
+    if (sessionStorage.getItem('adminAuth') === 'true') unlock();
+
+    document.getElementById('authSubmit').addEventListener('click', function () {
+      if (authPw.value === PASSWORD) { sessionStorage.setItem('adminAuth', 'true'); unlock(); }
+      else { authError.textContent = 'Incorrect password.'; authPw.value = ''; authPw.focus(); }
+    });
+    authPw.addEventListener('keydown', function (e) { if (e.key === 'Enter') document.getElementById('authSubmit').click(); });
+
+    function unlock() {
+      authOverlay.style.display = 'none';
+      dashboard.classList.add('active');
+      initMobileTabs();
+      refreshAllPanels();
+    }
+
+    /* ── Mobile ──────────────────────── */
+    function initMobileTabs() {
+      var tabs = document.getElementById('mobileTabs');
+      if (window.innerWidth <= 768) tabs.style.display = 'flex';
+      window.addEventListener('resize', function () { tabs.style.display = window.innerWidth <= 768 ? 'flex' : 'none'; });
+    }
+
+    /* ── Navigation ──────────────────── */
+    document.querySelectorAll('.sidebar-nav a, .mobile-tab').forEach(function (el) {
+      el.addEventListener('click', function (e) { e.preventDefault(); switchPanel(this.dataset.panel); });
+    });
+
+    function collectCurrentPanel() {
+      var ap = activePanel;
+      if (ap === 'personal') {
+        data.personal.name = valById('editName'); data.personal.title = valById('editTitle'); data.personal.bio = valById('editBio');
+      } else if (ap === 'contact') {
+        data.contact.email = valById('editEmail'); data.contact.github = valById('editGithub'); data.contact.scholar = valById('editScholar');
+      } else if (ap === 'research') {
+        collectList('research', '#researchItems .item-card', [{ sel: '.r-title', key: 'title' }, { sel: '.r-desc', key: 'description' }]);
+      } else if (ap === 'publications') {
+        collectList('publications', '#pubItems .item-card', [
+          { sel: '.p-title', key: 'title' }, { sel: '.p-authors', key: 'authors' }, { sel: '.p-journal', key: 'journal' },
+          { sel: '.p-year', key: 'year' }, { sel: '.p-link', key: 'link' }, { sel: '.p-abstract', key: 'abstract' },
+          { sel: '.p-ssrn', key: 'ssrn' }, { sel: '.p-fulltext', key: 'fullText' }
+        ]);
+      } else if (ap === 'workingPapers') {
+        collectList('workingPapers', '#wpItems .item-card', [
+          { sel: '.w-title', key: 'title' }, { sel: '.w-authors', key: 'authors' }, { sel: '.w-year', key: 'year' },
+          { sel: '.w-abstract', key: 'abstract' }, { sel: '.w-ssrn', key: 'ssrn' }, { sel: '.w-fulltext', key: 'fullText' }, { sel: '.w-link', key: 'link' }
+        ]);
+      } else if (ap === 'workInProgress') {
+        collectList('workInProgress', '#wipItems .item-card', [
+          { sel: '.wip-title', key: 'title' }, { sel: '.wip-desc', key: 'description' }, { sel: '.wip-status', key: 'status' }
+        ]);
+      } else if (ap === 'conferences') {
+        collectList('conferences', '#confItems .item-card', [
+          { sel: '.c-title', key: 'title' }, { sel: '.c-conference', key: 'conference' }, { sel: '.c-location', key: 'location' },
+          { sel: '.c-date', key: 'date' }, { sel: '.c-type', key: 'type' }
+        ]);
+      } else if (ap === 'education') {
+        collectList('education', '#eduItems .item-card', [
+          { sel: '.e-degree', key: 'degree' }, { sel: '.e-school', key: 'school' }, { sel: '.e-year', key: 'year' }
+        ]);
+      }
+    }
+
+    function collectList(section, sel, fields) {
+      var cards = document.querySelectorAll(sel);
+      if (cards.length === 0) return;
+      var oldArr = data[section]; data[section] = [];
+      cards.forEach(function (card, i) {
+        var obj = { id: (oldArr[i] && oldArr[i].id) ? oldArr[i].id : Date.now() + i };
+        fields.forEach(function (f) { var el = card.querySelector(f.sel); obj[f.key] = el ? el.value.trim() : ''; });
+        data[section].push(obj);
+      });
+    }
+
+    function valById(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+
+    function switchPanel(name) {
+      collectCurrentPanel();
+      activePanel = name;
+      document.querySelectorAll('.panel').forEach(function (p) { p.classList.remove('active'); });
+      var panel = document.getElementById('panel-' + name); if (panel) panel.classList.add('active');
+      document.querySelectorAll('.sidebar-nav a, .mobile-tab').forEach(function (a) { a.classList.remove('active'); });
+      var sl = document.querySelector('.sidebar-nav a[data-panel="' + name + '"]'); if (sl) sl.classList.add('active');
+      var mt = document.querySelector('.mobile-tab[data-panel="' + name + '"]'); if (mt) mt.classList.add('active');
+      if (name === 'personal') refreshAvatarPreview();
+      if (name === 'research') renderResearchEditor();
+      if (name === 'publications') renderPublicationsEditor();
+      if (name === 'workingPapers') renderWPEditor();
+      if (name === 'workInProgress') renderWIPEditor();
+      if (name === 'conferences') renderConfEditor();
+      if (name === 'education') renderEducationEditor();
+    }
+
+    /* ── Refresh All ─────────────────── */
+    function refreshAllPanels() {
+      document.getElementById('editName').value = data.personal.name;
+      document.getElementById('editTitle').value = data.personal.title;
+      document.getElementById('editBio').value = data.personal.bio;
+      refreshAvatarPreview();
+      document.getElementById('editEmail').value = data.contact.email;
+      document.getElementById('editGithub').value = data.contact.github;
+      document.getElementById('editScholar').value = data.contact.scholar;
+      switchPanel(activePanel);
+    }
+
+    /* ── Avatar ──────────────────────── */
+    function refreshAvatarPreview() {
+      var p = document.getElementById('avatarPreview');
+      p.src = data.personal.avatar || 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 72 72\'%3E%3Crect width=\'72\' height=\'72\' rx=\'36\' fill=\'%23e8e8ed\'/%3E%3Ctext x=\'36\' y=\'42\' text-anchor=\'middle\' font-family=\'Inter,sans-serif\' font-size=\'28\' fill=\'%2386868b\'%3E?%3C/text%3E%3C/svg%3E';
+    }
+    document.getElementById('btnUpload').addEventListener('click', function () { document.getElementById('avatarInput').click(); });
+    document.getElementById('avatarInput').addEventListener('change', function () {
+      var f = this.files[0]; if (!f) return;
+      if (f.size > 500 * 1024) { showToast('Image too large — use an image under 500 KB'); return; }
+      var r = new FileReader();
+      r.onload = function () { data.personal.avatar = r.result; refreshAvatarPreview(); markDirty(); };
+      r.readAsDataURL(f);
+    });
+    document.getElementById('btnRemoveAvatar').addEventListener('click', function () { data.personal.avatar = ''; refreshAvatarPreview(); markDirty(); });
+
+    /* ── Research Editor ─────────────── */
+    function renderResearchEditor() {
+      var c = document.getElementById('researchItems'); c.innerHTML = '';
+      data.research.forEach(function (item, idx) {
+        var card = createCard(c, idx,
+          '<div class="form-group"><label>Title</label><input type="text" class="r-title" value="' + escAttr(item.title) + '"></div>' +
+          '<div class="form-group"><label>Description</label><textarea class="r-desc">' + escHTML(item.description) + '</textarea></div>');
+      });
+      bindRemove(c, data.research, renderResearchEditor);
+    }
+    document.getElementById('btnAddResearch').addEventListener('click', function () { data.research.push({ id: Date.now(), title: '', description: '' }); renderResearchEditor(); markDirty(); });
+
+    /* ── Publications Editor ─────────── */
+    function renderPublicationsEditor() {
+      var c = document.getElementById('pubItems'); c.innerHTML = '';
+      data.publications.forEach(function (item, idx) {
+        var card = createCard(c, idx,
+          '<div class="form-group"><label>Title</label><input type="text" class="p-title" value="' + escAttr(item.title) + '"></div>' +
+          '<div class="item-card-row"><div class="form-group"><label>Authors</label><input type="text" class="p-authors" value="' + escAttr(item.authors || '') + '"></div><div class="form-group"><label>Journal</label><input type="text" class="p-journal" value="' + escAttr(item.journal || '') + '"></div></div>' +
+          '<div class="item-card-row"><div class="form-group"><label>Year</label><input type="text" class="p-year" value="' + escAttr(item.year || '') + '"></div><div class="form-group"><label>DOI Link</label><input type="url" class="p-link" value="' + escAttr(item.link || '') + '"></div></div>' +
+          '<div class="item-card-row"><div class="form-group"><label>SSRN Link</label><input type="url" class="p-ssrn" value="' + escAttr(item.ssrn || '') + '"></div><div class="form-group"><label>Full Text Link</label><input type="url" class="p-fulltext" value="' + escAttr(item.fullText || '') + '"></div></div>' +
+          '<div class="form-group"><label>Abstract (optional)</label><textarea class="p-abstract" style="min-height:60px">' + escHTML(item.abstract || '') + '</textarea></div>');
+      });
+      bindRemove(c, data.publications, renderPublicationsEditor);
+    }
+    document.getElementById('btnAddPub').addEventListener('click', function () { data.publications.push({ id: Date.now(), title: '', authors: '', journal: '', year: '', link: '', abstract: '', ssrn: '', fullText: '' }); renderPublicationsEditor(); markDirty(); });
+
+    /* ── Working Papers Editor ───────── */
+    function renderWPEditor() {
+      var c = document.getElementById('wpItems'); c.innerHTML = '';
+      data.workingPapers.forEach(function (item, idx) {
+        var card = createCard(c, idx,
+          '<div class="form-group"><label>Title</label><input type="text" class="w-title" value="' + escAttr(item.title) + '"></div>' +
+          '<div class="item-card-row"><div class="form-group"><label>Authors</label><input type="text" class="w-authors" value="' + escAttr(item.authors || '') + '"></div><div class="form-group"><label>Year</label><input type="text" class="w-year" value="' + escAttr(item.year || '') + '"></div></div>' +
+          '<div class="item-card-row"><div class="form-group"><label>SSRN Link</label><input type="url" class="w-ssrn" value="' + escAttr(item.ssrn || '') + '"></div><div class="form-group"><label>Full Text Link</label><input type="url" class="w-fulltext" value="' + escAttr(item.fullText || '') + '"></div></div>' +
+          '<div class="form-group"><label>DOI Link</label><input type="url" class="w-link" value="' + escAttr(item.link || '') + '"></div>' +
+          '<div class="form-group"><label>Abstract (optional)</label><textarea class="w-abstract" style="min-height:60px">' + escHTML(item.abstract || '') + '</textarea></div>');
+      });
+      bindRemove(c, data.workingPapers, renderWPEditor);
+    }
+    document.getElementById('btnAddWP').addEventListener('click', function () { data.workingPapers.push({ id: Date.now(), title: '', authors: '', year: '', abstract: '', ssrn: '', fullText: '', link: '' }); renderWPEditor(); markDirty(); });
+
+    /* ── Work in Progress Editor ─────── */
+    function renderWIPEditor() {
+      var c = document.getElementById('wipItems'); c.innerHTML = '';
+      data.workInProgress.forEach(function (item, idx) {
+        var card = createCard(c, idx,
+          '<div class="form-group"><label>Title</label><input type="text" class="wip-title" value="' + escAttr(item.title) + '"></div>' +
+          '<div class="form-group"><label>Description</label><textarea class="wip-desc">' + escHTML(item.description || '') + '</textarea></div>' +
+          '<div class="form-group"><label>Status</label><select class="wip-status"><option value="In Progress"' + (item.status === 'In Progress' ? ' selected' : '') + '>In Progress</option><option value="Writing"' + (item.status === 'Writing' ? ' selected' : '') + '>Writing</option><option value="Submitted"' + (item.status === 'Submitted' ? ' selected' : '') + '>Submitted</option></select></div>');
+      });
+      bindRemove(c, data.workInProgress, renderWIPEditor);
+    }
+    document.getElementById('btnAddWIP').addEventListener('click', function () { data.workInProgress.push({ id: Date.now(), title: '', description: '', status: 'In Progress' }); renderWIPEditor(); markDirty(); });
+
+    /* ── Conferences Editor ──────────── */
+    function renderConfEditor() {
+      var c = document.getElementById('confItems'); c.innerHTML = '';
+      data.conferences.forEach(function (item, idx) {
+        var card = createCard(c, idx,
+          '<div class="form-group"><label>Presentation Title</label><input type="text" class="c-title" value="' + escAttr(item.title) + '"></div>' +
+          '<div class="item-card-row"><div class="form-group"><label>Conference</label><input type="text" class="c-conference" value="' + escAttr(item.conference || '') + '"></div><div class="form-group"><label>Location</label><input type="text" class="c-location" value="' + escAttr(item.location || '') + '"></div></div>' +
+          '<div class="item-card-row"><div class="form-group"><label>Date</label><input type="text" class="c-date" value="' + escAttr(item.date || '') + '"></div><div class="form-group"><label>Type</label><select class="c-type"><option value="Presentation"' + (item.type === 'Presentation' ? ' selected' : '') + '>Presentation</option><option value="Poster"' + (item.type === 'Poster' ? ' selected' : '') + '>Poster</option><option value="Attendee"' + (item.type === 'Attendee' ? ' selected' : '') + '>Attendee</option></select></div></div>');
+      });
+      bindRemove(c, data.conferences, renderConfEditor);
+    }
+    document.getElementById('btnAddConf').addEventListener('click', function () { data.conferences.push({ id: Date.now(), title: '', conference: '', location: '', date: '', type: 'Presentation' }); renderConfEditor(); markDirty(); });
+
+    /* ── Education Editor ────────────── */
+    function renderEducationEditor() {
+      var c = document.getElementById('eduItems'); c.innerHTML = '';
+      data.education.forEach(function (item, idx) {
+        var card = createCard(c, idx,
+          '<div class="form-group"><label>Degree</label><input type="text" class="e-degree" value="' + escAttr(item.degree) + '"></div>' +
+          '<div class="item-card-row"><div class="form-group"><label>School</label><input type="text" class="e-school" value="' + escAttr(item.school) + '"></div><div class="form-group"><label>Year</label><input type="text" class="e-year" value="' + escAttr(item.year) + '"></div></div>');
+      });
+      bindRemove(c, data.education, renderEducationEditor);
+    }
+    document.getElementById('btnAddEdu').addEventListener('click', function () { data.education.push({ id: Date.now(), degree: '', school: '', year: '' }); renderEducationEditor(); markDirty(); });
+
+    /* ── Helpers ─────────────────────── */
+    function createCard(container, idx, innerHTML) {
+      var card = document.createElement('div'); card.className = 'item-card';
+      card.innerHTML = '<button class="btn-remove" data-idx="' + idx + '">&times;</button>' + innerHTML;
+      container.appendChild(card); return card;
+    }
+    function bindRemove(container, arr, renderFn) {
+      container.querySelectorAll('.btn-remove').forEach(function (btn) {
+        btn.addEventListener('click', function () { arr.splice(parseInt(this.dataset.idx), 1); renderFn(); markDirty(); });
+      });
+    }
+
+    /* ── Save ────────────────────────── */
+    function doSave() {
+      collectCurrentPanel();
+      var ok = window.saveSiteData(data);
+      var st = document.getElementById('saveStatus');
+      if (ok) { st.textContent = 'All changes saved'; st.classList.add('success'); showToast('Saved! Your public page is updated.'); setTimeout(function () { st.classList.remove('success'); }, 2000); }
+      else { showToast('Save failed — storage may be full.'); }
+    }
+    document.getElementById('btnSaveTop').addEventListener('click', doSave);
+    document.getElementById('btnSaveBottom').addEventListener('click', doSave);
+
+    function markDirty() { var el = document.getElementById('saveStatus'); el.textContent = 'Unsaved changes'; el.classList.remove('success'); }
+    document.addEventListener('input', function (e) { if (e.target.closest('#dashboard')) markDirty(); });
+
+    function showToast(msg) {
+      var t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
+      clearTimeout(t._timeout); t._timeout = setTimeout(function () { t.classList.remove('show'); }, 2200);
+    }
+    document.addEventListener('keydown', function (e) { if ((e.metaKey || e.ctrlKey) && e.key === 's') { e.preventDefault(); if (dashboard.classList.contains('active')) doSave(); } });
+
+    function escHTML(str) { var div = document.createElement('div'); div.textContent = str; return div.innerHTML; }
+    function escAttr(str) { return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  })();
+  </script>
+</body>
+</html>

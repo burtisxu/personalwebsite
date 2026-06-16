@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal academic page of Hao Xu — AI for Science, Computational Mechanics">
+  <meta name="theme-color" content="#f5f5f7">
+  <title>Hao Xu</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d1d1f'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Inter,sans-serif' font-size='18' font-weight='600' fill='white'%3EH%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+      color: #1d1d1f; background: #ffffff; line-height: 1.47059; font-weight: 400; font-size: 17px; letter-spacing: -0.022em;
+    }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 0.5px solid rgba(0,0,0,0.08);
+    }
+    .nav-inner { max-width: 1024px; margin: 0 auto; padding: 0 24px; height: 48px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-name { font-size: 17px; font-weight: 500; color: #1d1d1f; text-decoration: none; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 400; color: #424245; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover { color: #007AFF; }
+
+    /* Hero */
+    #hero { padding: 160px 24px 120px; text-align: center; max-width: 680px; margin: 0 auto; }
+    .hero-avatar { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin-bottom: 24px; background: #f5f5f7; }
+    .hero-name { font-size: clamp(48px, 8vw, 72px); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em; color: #1d1d1f; margin-bottom: 16px; }
+    .hero-title { font-size: clamp(21px, 3vw, 28px); font-weight: 400; line-height: 1.3; color: #86868b; letter-spacing: -0.01em; margin-bottom: 12px; }
+    .hero-bio { font-size: 17px; font-weight: 400; line-height: 1.5; color: #6e6e73; letter-spacing: -0.01em; max-width: 540px; margin: 0 auto; }
+
+    /* Sections */
+    section { padding: 100px 24px; }
+    .section-inner { max-width: 980px; margin: 0 auto; }
+    .section-label { font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: #86868b; margin-bottom: 12px; }
+    .section-title { font-size: clamp(32px, 5vw, 48px); font-weight: 600; line-height: 1.1; letter-spacing: -0.025em; color: #1d1d1f; margin-bottom: 48px; }
+
+    /* Research cards */
+    .research-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .research-card {
+      background: #f5f5f7; border-radius: 18px; padding: 36px 32px;
+      transition: box-shadow 0.35s ease, transform 0.35s ease; cursor: default;
+    }
+    .research-card:hover { box-shadow: 0 6px 32px rgba(0,0,0,0.07); transform: translateY(-3px); }
+    .research-card-icon { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; background: #ffffff; margin-bottom: 20px; font-size: 20px; }
+    .research-card h3 { font-size: 21px; font-weight: 600; line-height: 1.25; letter-spacing: -0.022em; color: #1d1d1f; margin-bottom: 8px; }
+    .research-card p { font-size: 15px; font-weight: 400; line-height: 1.55; color: #6e6e73; letter-spacing: -0.016em; }
+
+    /* Publications & Working Papers (shared) */
+    .pub-list { display: flex; flex-direction: column; gap: 28px; }
+    .pub-item { padding-bottom: 28px; border-bottom: 0.5px solid rgba(0,0,0,0.08); }
+    .pub-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .pub-title { font-size: 19px; font-weight: 600; letter-spacing: -0.022em; color: #1d1d1f; margin-bottom: 4px; }
+    .pub-title a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+    .pub-title a:hover { color: #007AFF; }
+    .pub-meta { font-size: 15px; font-weight: 400; color: #86868b; letter-spacing: -0.016em; }
+    .pub-year { font-size: 14px; font-weight: 500; color: #6e6e73; margin-top: 4px; }
+
+    /* Pub links row */
+    .pub-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .link-pill {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 12px; font-weight: 500; letter-spacing: -0.01em;
+      padding: 4px 12px; border-radius: 14px;
+      background: #ffffff; color: #1d1d1f; text-decoration: none;
+      border: 0.5px solid #d2d2d7; transition: all 0.2s ease;
+    }
+    .link-pill:hover { border-color: #007AFF; color: #007AFF; background: rgba(0,122,255,0.04); }
+    .pub-abstract {
+      font-size: 14px; line-height: 1.55; color: #6e6e73; letter-spacing: -0.012em;
+      margin-top: 10px; padding-top: 10px; border-top: 0.5px solid rgba(0,0,0,0.04);
+    }
+
+    /* Work in Progress */
+    .wip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .wip-card {
+      background: #f5f5f7; border-radius: 16px; padding: 28px 26px;
+      transition: box-shadow 0.35s ease, transform 0.35s ease;
+    }
+    .wip-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); transform: translateY(-2px); }
+    .wip-card h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.022em; color: #1d1d1f; margin-bottom: 8px; }
+    .wip-card p { font-size: 14px; font-weight: 400; line-height: 1.5; color: #6e6e73; letter-spacing: -0.014em; margin-bottom: 12px; }
+    .status-badge {
+      display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 10px;
+    }
+    .status-in-progress { background: rgba(0,122,255,0.1); color: #007AFF; }
+    .status-writing     { background: rgba(255,149,0,0.1); color: #ff9500; }
+    .status-submitted   { background: rgba(52,199,89,0.1); color: #34c759; }
+
+    /* Conferences */
+    .conf-list { display: flex; flex-direction: column; gap: 0; }
+    .conf-item {
+      display: grid; grid-template-columns: 1fr auto; gap: 4px 24px;
+      padding: 18px 0; border-bottom: 0.5px solid rgba(0,0,0,0.06); align-items: baseline;
+    }
+    .conf-item:last-child { border-bottom: none; }
+    .conf-title { font-size: 17px; font-weight: 500; letter-spacing: -0.022em; color: #1d1d1f; }
+    .conf-detail { font-size: 14px; font-weight: 400; color: #86868b; letter-spacing: -0.014em; }
+    .conf-type {
+      grid-row: 1 / 3; align-self: center;
+      font-size: 11px; font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 8px;
+      background: #f5f5f7; color: #6e6e73;
+    }
+    .conf-type.type-presentation { background: rgba(0,122,255,0.08); color: #007AFF; }
+    .conf-type.type-poster       { background: rgba(175,82,222,0.08); color: #af52de; }
+    .conf-type.type-attendee     { background: rgba(142,142,147,0.1); color: #6e6e73; }
+
+    /* Education */
+    .edu-list { display: flex; flex-direction: column; border-left: 1px solid #d2d2d7; }
+    .edu-item { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto; gap: 0 24px; padding: 20px 0 20px 28px; position: relative; }
+    .edu-item::before { content: ""; position: absolute; left: -5px; top: 28px; width: 9px; height: 9px; border-radius: 50%; background: #d2d2d7; }
+    .edu-item:first-child::before { background: #1d1d1f; }
+    .edu-degree { font-size: 19px; font-weight: 600; letter-spacing: -0.022em; color: #1d1d1f; }
+    .edu-school { font-size: 15px; font-weight: 400; color: #6e6e73; letter-spacing: -0.016em; margin-top: 2px; }
+    .edu-year { font-size: 15px; font-weight: 400; color: #86868b; letter-spacing: -0.016em; text-align: right; grid-row: 1 / 3; align-self: center; }
+
+    /* Contact */
+    #contact .contact-links { display: flex; gap: 32px; flex-wrap: wrap; }
+    .contact-link { display: inline-flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 400; color: #1d1d1f; text-decoration: none; letter-spacing: -0.022em; padding: 8px 0; transition: color 0.2s ease; }
+    .contact-link:hover { color: #007AFF; }
+    .contact-link svg { width: 22px; height: 22px; flex-shrink: 0; fill: currentColor; }
+
+    /* Footer */
+    footer { padding: 32px 24px; border-top: 0.5px solid rgba(0,0,0,0.08); text-align: center; }
+    .footer-inner { max-width: 980px; margin: 0 auto; font-size: 13px; color: #86868b; letter-spacing: -0.01em; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links { gap: 14px; }
+      #hero { padding: 120px 24px 80px; }
+      section { padding: 72px 20px; }
+      .section-title { margin-bottom: 32px; }
+      .research-grid { grid-template-columns: 1fr; }
+      .research-card { padding: 28px 24px; }
+      .wip-grid { grid-template-columns: 1fr; }
+      .conf-item { grid-template-columns: 1fr auto; }
+      .edu-item { grid-template-columns: 1fr auto; padding-left: 20px; }
+      .edu-year { font-size: 14px; }
+      #contact .contact-links { gap: 20px; }
+      .pub-title { font-size: 17px; }
+      .pub-links { gap: 6px; }
+    }
+    @media (max-width: 480px) {
+      .nav-links { gap: 10px; }
+      .nav-links a { font-size: 12px; }
+      .hero-name { font-size: 40px; }
+      .hero-title { font-size: 18px; }
+      .conf-item { grid-template-columns: 1fr; }
+      .conf-type { grid-row: auto; justify-self: start; margin-top: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#hero" class="nav-name" id="navName">Hao Xu</a>
+      <ul class="nav-links">
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#workingPapers">Working Papers</a></li>
+        <li><a href="#conferences">Conferences</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- Hero -->
+    <section id="hero">
+      <img class="hero-avatar" id="heroAvatar" src="" alt="" style="display:none">
+      <h1 class="hero-name" id="heroName"></h1>
+      <p class="hero-title" id="heroTitle"></p>
+      <p class="hero-bio" id="heroBio"></p>
+    </section>
+
+    <!-- Research -->
+    <section id="research">
+      <div class="section-inner">
+        <p class="section-label">Research</p>
+        <h2 class="section-title">Research Interests</h2>
+        <div class="research-grid" id="researchGrid"></div>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications">
+      <div class="section-inner">
+        <p class="section-label">Publications</p>
+        <h2 class="section-title">Selected Publications</h2>
+        <div class="pub-list" id="pubList"></div>
+      </div>
+    </section>
+
+    <!-- Working Papers -->
+    <section id="workingPapers">
+      <div class="section-inner">
+        <p class="section-label">Working Papers</p>
+        <h2 class="section-title">Working Papers</h2>
+        <div class="pub-list" id="wpList"></div>
+      </div>
+    </section>
+
+    <!-- Work in Progress -->
+    <section id="workInProgress">
+      <div class="section-inner">
+        <p class="section-label">Work in Progress</p>
+        <h2 class="section-title">Work in Progress</h2>
+        <div class="wip-grid" id="wipGrid"></div>
+      </div>
+    </section>
+
+    <!-- Conferences -->
+    <section id="conferences">
+      <div class="section-inner">
+        <p class="section-label">Conferences</p>
+        <h2 class="section-title">Conferences & Talks</h2>
+        <div class="conf-list" id="confList"></div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <div class="section-inner">
+        <p class="section-label">Education</p>
+        <h2 class="section-title">Academic Background</h2>
+        <div class="edu-list" id="eduList"></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="section-inner">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="contact-links" id="contactLinks"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">&copy; <span id="footerYear"></span> Hao Xu. All rights reserved.</div>
+  </footer>
+
+  <!-- Data layer -->
+  <script src="data.js"></script>
+
+  <!-- Render engine -->
+  <script>
+  (function () {
+    var ICONS = ['&#9881;', '&#9650;', '&#9670;', '&#9830;', '&#9733;', '&#9679;'];
+
+    var data = window.loadSiteData();
+
+    /* ── Nav ─────────────────────────── */
+    document.getElementById('navName').textContent = data.personal.name;
+    document.title = data.personal.name;
+
+    /* ── Hero ────────────────────────── */
+    document.getElementById('heroName').textContent  = data.personal.name;
+    document.getElementById('heroTitle').textContent = data.personal.title;
+    document.getElementById('heroBio').textContent   = data.personal.bio;
+
+    var av = document.getElementById('heroAvatar');
+    if (data.personal.avatar) {
+      av.src = data.personal.avatar;
+      av.style.display = 'block';
+      av.style.margin = '0 auto 24px';
+    }
+
+    /* ── Research ────────────────────── */
+    var grid = document.getElementById('researchGrid');
+    data.research.forEach(function (r, i) {
+      var card = document.createElement('div');
+      card.className = 'research-card';
+      card.innerHTML =
+        '<div class="research-card-icon">' + ICONS[i % ICONS.length] + '</div>' +
+        '<h3>' + escHTML(r.title) + '</h3>' +
+        '<p>' + escHTML(r.description) + '</p>';
+      grid.appendChild(card);
+    });
+
+    /* ── Publications (enhanced) ─────── */
+    renderPubList('publications', 'pubList', data.publications);
+
+    /* ── Working Papers ──────────────── */
+    renderPubList('workingPapers', 'wpList', data.workingPapers);
+
+    /* ── Work in Progress ────────────── */
+    var wipSection = document.getElementById('workInProgress');
+    var wipGrid = document.getElementById('wipGrid');
+    if (data.workInProgress.length === 0) {
+      wipSection.style.display = 'none';
+    } else {
+      data.workInProgress.forEach(function (w) {
+        var card = document.createElement('div');
+        card.className = 'wip-card';
+        var statusClass = 'status-' + w.status.toLowerCase().replace(/\s+/g, '-');
+        if (!w.status) statusClass = 'status-in-progress';
+        card.innerHTML =
+          '<h3>' + escHTML(w.title) + '</h3>' +
+          '<p>' + escHTML(w.description) + '</p>' +
+          '<span class="status-badge ' + statusClass + '">' + escHTML(w.status || 'In Progress') + '</span>';
+        wipGrid.appendChild(card);
+      });
+    }
+
+    /* ── Conferences ─────────────────── */
+    var confSection = document.getElementById('conferences');
+    var confList = document.getElementById('confList');
+    if (data.conferences.length === 0) {
+      confSection.style.display = 'none';
+    } else {
+      data.conferences.forEach(function (c) {
+        var div = document.createElement('div');
+        div.className = 'conf-item';
+        var typeClass = 'type-' + (c.type || 'Presentation').toLowerCase();
+        div.innerHTML =
+          '<span class="conf-title">' + escHTML(c.title) + '</span>' +
+          '<span class="conf-detail">' + escHTML(c.conference) + ', ' + escHTML(c.location) + ' &middot; ' + escHTML(c.date) + '</span>' +
+          '<span class="conf-type ' + typeClass + '">' + escHTML(c.type || 'Presentation') + '</span>';
+        confList.appendChild(div);
+      });
+    }
+
+    /* ── Education ───────────────────── */
+    var eduList = document.getElementById('eduList');
+    data.education.forEach(function (e) {
+      var div = document.createElement('div');
+      div.className = 'edu-item';
+      div.innerHTML =
+        '<span class="edu-degree">' + escHTML(e.degree) + '</span>' +
+        '<span class="edu-school">' + escHTML(e.school) + '</span>' +
+        '<span class="edu-year">'  + escHTML(e.year)  + '</span>';
+      eduList.appendChild(div);
+    });
+
+    /* ── Contact ─────────────────────── */
+    var c = data.contact;
+    var links = document.getElementById('contactLinks');
+    var linkHTML = '';
+    if (c.email) {
+      linkHTML +=
+        '<a href="mailto:' + escAttr(c.email) + '" class="contact-link">' +
+        '<svg viewBox="0 0 24 24"><path d="M1.5 4.75A1.75 1.75 0 013.25 3h17.5c.966 0 1.75.784 1.75 1.75v14.5A1.75 1.75 0 0120.75 21H3.25a1.75 1.75 0 01-1.75-1.75V4.75zm1.75-.25a.25.25 0 00-.25.25v.616l8.356 7.115a1 1 0 001.288 0L21 5.366V4.75a.25.25 0 00-.25-.25H3.25zM21 6.973l-7.544 6.425a2.5 2.5 0 01-2.912 0L3 6.973v12.277c0 .138.112.25.25.25h17.5a.25.25 0 00.25-.25V6.973z"/></svg>' +
+        escHTML(c.email) + '</a>';
+    }
+    if (c.github) {
+      linkHTML +=
+        '<a href="' + escAttr(c.github) + '" target="_blank" rel="noopener" class="contact-link">' +
+        '<svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>' +
+        'GitHub</a>';
+    }
+    if (c.scholar) {
+      linkHTML +=
+        '<a href="' + escAttr(c.scholar) + '" target="_blank" rel="noopener" class="contact-link">' +
+        '<svg viewBox="0 0 24 24"><path d="M12 2L1 7l11 5 9-4.1V16h2V7l-2.5-1.1L12 2zm0 2.18l7.42 3.37L12 10.4l-7.42-3.37L12 4.18zM4 11v4.45c0 .55.28 1.05.75 1.35L12 21l7.25-4.2c.47-.3.75-.8.75-1.35V11l-2 1v3.45L12 19l-6-3.55V12l-2-1z"/></svg>' +
+        'Google Scholar</a>';
+    }
+    links.innerHTML = linkHTML;
+
+    /* ── Footer ──────────────────────── */
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+    /* ── Shared: pub list renderer ────── */
+    function renderPubList(sectionId, listId, items) {
+      var section = document.getElementById(sectionId);
+      var list = document.getElementById(listId);
+      if (items.length === 0) {
+        section.style.display = 'none';
+        return;
+      }
+      items.forEach(function (p) {
+        var div = document.createElement('div');
+        div.className = 'pub-item';
+
+        var titleHTML = p.link
+          ? '<a href="' + escAttr(p.link) + '" target="_blank" rel="noopener">' + escHTML(p.title) + '</a>'
+          : escHTML(p.title);
+
+        var html =
+          '<div class="pub-title">' + titleHTML + '</div>' +
+          '<div class="pub-meta">' + escHTML(p.authors || '') + '</div>' +
+          '<div class="pub-year">' + escHTML(p.year || '') + '</div>';
+
+        // Link pills: DOI / SSRN / Full Text
+        var pills = '';
+        if (p.link)    pills += '<a href="' + escAttr(p.link) + '" target="_blank" rel="noopener" class="link-pill">DOI</a>';
+        if (p.ssrn)    pills += '<a href="' + escAttr(p.ssrn) + '" target="_blank" rel="noopener" class="link-pill">SSRN</a>';
+        if (p.fullText) pills += '<a href="' + escAttr(p.fullText) + '" target="_blank" rel="noopener" class="link-pill">Full Text</a>';
+        if (pills) html += '<div class="pub-links">' + pills + '</div>';
+
+        // Abstract
+        if (p.abstract) {
+          html += '<div class="pub-abstract">' + escHTML(p.abstract) + '</div>';
+        }
+
+        div.innerHTML = html;
+        list.appendChild(div);
+      });
+    }
+
+    /* ── Helpers ─────────────────────── */
+    function escHTML(str) {
+      var div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+    function escAttr(str) {
+      return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+  })();
+  </script>
+</body>
+</html>
