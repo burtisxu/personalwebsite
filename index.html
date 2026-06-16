@@ -254,7 +254,7 @@
   </main>
 
   <footer>
-    <div class="footer-inner">&copy; <span id="footerYear"></span> Hao Xu. All rights reserved.</div>
+    <div class="footer-inner">&copy; <span id="footerYear"></span> <span id="footerName"></span>. All rights reserved.</div>
   </footer>
 
   <!-- Data layer -->
@@ -376,6 +376,7 @@
 
     /* ── Footer ──────────────────────── */
     document.getElementById('footerYear').textContent = new Date().getFullYear();
+    document.getElementById('footerName').textContent = data.personal.name;
 
     /* ── Shared: pub list renderer ────── */
     function renderPubList(sectionId, listId, items) {
