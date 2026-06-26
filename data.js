@@ -34,7 +34,9 @@
       { id: 1, title: "Innovation Characteristics of Enterprises", description: "", status: "In Progress" },
       { id: 2, title: "Crime", description: "", status: "In Progress" },
       { id: 3, title: "	
-manufacturing firm productivity", description: "", status: "In Progress" }
+Manufacturing Firm Productivity", description: "", status: "In Progress" },
+      { id: 4, title: "	
+Knowledge", description: "", status: "In Progress" }
     ],
     conferences: [
       { id: 1, title: "Firm Productivity", conference: "The 25th China Economics Annual Conference", location: "Shanghai, China", date: "2025", type: "Presentation" },
