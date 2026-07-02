@@ -31,33 +31,40 @@
     .nav-links a { font-size: 14px; font-weight: 400; color: #424245; text-decoration: none; transition: color 0.2s ease; }
     .nav-links a:hover { color: #007AFF; }
 
-    /* Hero */
-    #hero { padding: 160px 24px 120px; text-align: center; max-width: 680px; margin: 0 auto; }
-    .hero-avatar { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin-bottom: 24px; background: #f5f5f7; }
-    .hero-name { font-size: clamp(48px, 8vw, 72px); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em; color: #1d1d1f; margin-bottom: 16px; }
-    .hero-title { font-size: clamp(21px, 3vw, 28px); font-weight: 400; line-height: 1.3; color: #86868b; letter-spacing: -0.01em; margin-bottom: 12px; }
-    .hero-bio { font-size: 17px; font-weight: 400; line-height: 1.5; color: #6e6e73; letter-spacing: -0.01em; max-width: 540px; margin: 0 auto; }
+    /* Hero — two-column layout */
+    #hero { padding: 100px 24px 40px; max-width: 980px; margin: 0 auto; display: flex; gap: 48px; align-items: flex-start; }
+    .hero-left { flex-shrink: 0; }
+    .hero-avatar { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; background: #f5f5f7; }
+    .hero-right { flex: 1; min-width: 0; }
+    .hero-name { font-size: clamp(36px, 5.5vw, 48px); font-weight: 600; line-height: 1.08; letter-spacing: -0.03em; color: #1d1d1f; margin-bottom: 8px; }
+    .hero-title { font-size: clamp(16px, 2vw, 20px); font-weight: 400; line-height: 1.35; color: #86868b; letter-spacing: -0.01em; margin-bottom: 8px; }
+    .hero-bio { font-size: 15px; font-weight: 400; line-height: 1.5; color: #6e6e73; letter-spacing: -0.01em; }
 
     /* Sections */
-    section { padding: 100px 24px; }
+    section { padding: 80px 24px; }
     .section-inner { max-width: 980px; margin: 0 auto; }
-    .section-label { font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: #86868b; margin-bottom: 12px; }
-    .section-title { font-size: clamp(32px, 5vw, 48px); font-weight: 600; line-height: 1.1; letter-spacing: -0.025em; color: #1d1d1f; margin-bottom: 48px; }
+    .section-label { font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: #86868b; margin-bottom: 8px; }
+    .section-title { font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.1; letter-spacing: -0.025em; color: #1d1d1f; margin-bottom: 32px; }
+    #research { padding-top: 32px; }
 
     /* Research cards */
-    .research-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .research-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 18px; }
     .research-card {
-      background: #f5f5f7; border-radius: 18px; padding: 36px 32px;
-      transition: box-shadow 0.35s ease, transform 0.35s ease; cursor: default;
+      background: #f5f5f7; border-radius: 16px; padding: 28px 26px;
+      transition: all 0.35s ease; cursor: default;
+      border: 1px solid transparent;
     }
-    .research-card:hover { box-shadow: 0 6px 32px rgba(0,0,0,0.07); transform: translateY(-3px); }
-    .research-card-icon { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; background: #ffffff; margin-bottom: 20px; font-size: 20px; }
-    .research-card h3 { font-size: 21px; font-weight: 600; line-height: 1.25; letter-spacing: -0.022em; color: #1d1d1f; margin-bottom: 8px; }
-    .research-card p { font-size: 15px; font-weight: 400; line-height: 1.55; color: #6e6e73; letter-spacing: -0.016em; }
+    .research-card:hover {
+      box-shadow: 0 8px 28px rgba(0,0,0,0.06); transform: translateY(-2px);
+      border-color: rgba(0,122,255,0.15); background: #fff;
+    }
+    .research-card-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; background: #ffffff; margin-bottom: 16px; font-size: 18px; }
+    .research-card h3 { font-size: 19px; font-weight: 600; line-height: 1.25; letter-spacing: -0.022em; color: #1d1d1f; margin-bottom: 6px; }
+    .research-card p { font-size: 14px; font-weight: 400; line-height: 1.5; color: #6e6e73; letter-spacing: -0.014em; }
 
     /* Publications & Working Papers (shared) */
-    .pub-list { display: flex; flex-direction: column; gap: 28px; }
-    .pub-item { padding-bottom: 28px; border-bottom: 0.5px solid rgba(0,0,0,0.08); }
+    .pub-list { display: flex; flex-direction: column; gap: 20px; }
+    .pub-item { padding-bottom: 20px; border-bottom: 0.5px solid rgba(0,0,0,0.08); }
     .pub-item:last-child { border-bottom: none; padding-bottom: 0; }
     .pub-title { font-size: 19px; font-weight: 600; letter-spacing: -0.022em; color: #1d1d1f; margin-bottom: 4px; }
     .pub-title a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
@@ -81,14 +88,14 @@
     }
 
     /* Work in Progress */
-    .wip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .wip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
     .wip-card {
-      background: #f5f5f7; border-radius: 16px; padding: 28px 26px;
+      background: #f5f5f7; border-radius: 14px; padding: 22px 22px;
       transition: box-shadow 0.35s ease, transform 0.35s ease;
     }
     .wip-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); transform: translateY(-2px); }
-    .wip-card h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.022em; color: #1d1d1f; margin-bottom: 8px; }
-    .wip-card p { font-size: 14px; font-weight: 400; line-height: 1.5; color: #6e6e73; letter-spacing: -0.014em; margin-bottom: 12px; }
+    .wip-card h3 { font-size: 17px; font-weight: 600; letter-spacing: -0.022em; color: #1d1d1f; margin-bottom: 6px; }
+    .wip-card p { font-size: 13px; font-weight: 400; line-height: 1.5; color: #6e6e73; letter-spacing: -0.014em; margin-bottom: 10px; }
     .status-badge {
       display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase;
       padding: 3px 10px; border-radius: 10px;
@@ -135,14 +142,22 @@
     footer { padding: 32px 24px; border-top: 0.5px solid rgba(0,0,0,0.08); text-align: center; }
     .footer-inner { max-width: 980px; margin: 0 auto; font-size: 13px; color: #86868b; letter-spacing: -0.01em; }
 
+    /* Page tabs */
+    .page { display: none; }
+    .page.active { display: block; animation: fadeIn 0.35s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .nav-links a.active-tab { color: #007AFF; font-weight: 500; }
+
     /* Responsive */
     @media (max-width: 768px) {
       .nav-links { gap: 14px; }
-      #hero { padding: 120px 24px 80px; }
-      section { padding: 72px 20px; }
-      .section-title { margin-bottom: 32px; }
+      #hero { flex-direction: column; align-items: center; text-align: center; padding: 72px 20px 28px; }
+      .hero-left { margin-bottom: 20px; }
+      .hero-avatar { width: 100px; height: 100px; }
+      section { padding: 48px 20px; }
+      .section-title { margin-bottom: 24px; }
       .research-grid { grid-template-columns: 1fr; }
-      .research-card { padding: 28px 24px; }
+      .research-card { padding: 22px 20px; }
       .wip-grid { grid-template-columns: 1fr; }
       .conf-item { grid-template-columns: 1fr auto; }
       .edu-item { grid-template-columns: 1fr auto; padding-left: 20px; }
@@ -154,8 +169,8 @@
     @media (max-width: 480px) {
       .nav-links { gap: 10px; }
       .nav-links a { font-size: 12px; }
-      .hero-name { font-size: 40px; }
-      .hero-title { font-size: 18px; }
+      .hero-name { font-size: 34px; }
+      .hero-title { font-size: 16px; }
       .conf-item { grid-template-columns: 1fr; }
       .conf-type { grid-row: auto; justify-self: start; margin-top: 4px; }
     }
@@ -168,24 +183,28 @@
     <div class="nav-inner">
       <a href="#hero" class="nav-name" id="navName">Hao Xu</a>
       <ul class="nav-links">
-        <li><a href="#research">Research</a></li>
-        <li><a href="#publications">Publications</a></li>
-        <li><a href="#workingPapers">Working Papers</a></li>
-        <li><a href="#conferences">Conferences</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#" data-page="home" class="active-tab">Home</a></li>
+        <li><a href="#" data-page="research">Research</a></li>
+        <li><a href="#" data-page="talks">Talks</a></li>
+        <li><a href="#" data-page="education">Education</a></li>
+        <li><a href="#" data-page="contact">Contact</a></li>
       </ul>
     </div>
   </nav>
 
   <main>
 
+    <!-- ═══ Page: Home ═══ -->
+    <div class="page active" id="page-home">
+
     <!-- Hero -->
     <section id="hero">
-      <img class="hero-avatar" id="heroAvatar" src="" alt="" style="display:none">
-      <h1 class="hero-name" id="heroName"></h1>
-      <p class="hero-title" id="heroTitle"></p>
-      <p class="hero-bio" id="heroBio"></p>
+      <div class="hero-left" id="heroPhotoArea"></div>
+      <div class="hero-right">
+        <h1 class="hero-name" id="heroName"></h1>
+        <p class="hero-title" id="heroTitle"></p>
+        <p class="hero-bio" id="heroBio"></p>
+      </div>
     </section>
 
     <!-- Research -->
@@ -196,6 +215,10 @@
         <div class="research-grid" id="researchGrid"></div>
       </div>
     </section>
+    </div><!-- /page-home -->
+
+    <!-- ═══ Page: Research ═══ -->
+    <div class="page" id="page-research">
 
     <!-- Publications -->
     <section id="publications">
@@ -224,6 +247,10 @@
       </div>
     </section>
 
+    </div><!-- /page-research -->
+
+    <!-- ═══ Page: Talks ═══ -->
+    <div class="page" id="page-talks">
     <!-- Conferences -->
     <section id="conferences">
       <div class="section-inner">
@@ -233,6 +260,10 @@
       </div>
     </section>
 
+    </div><!-- /page-talks -->
+
+    <!-- ═══ Page: Education ═══ -->
+    <div class="page" id="page-education">
     <!-- Education -->
     <section id="education">
       <div class="section-inner">
@@ -242,6 +273,10 @@
       </div>
     </section>
 
+    </div><!-- /page-education -->
+
+    <!-- ═══ Page: Contact ═══ -->
+    <div class="page" id="page-contact">
     <!-- Contact -->
     <section id="contact">
       <div class="section-inner">
@@ -250,6 +285,7 @@
         <div class="contact-links" id="contactLinks"></div>
       </div>
     </section>
+    </div><!-- /page-contact -->
 
   </main>
 
@@ -276,11 +312,13 @@
     document.getElementById('heroTitle').textContent = data.personal.title;
     document.getElementById('heroBio').textContent   = data.personal.bio;
 
-    var av = document.getElementById('heroAvatar');
+    var pa = document.getElementById('heroPhotoArea');
     if (data.personal.avatar) {
-      av.src = data.personal.avatar;
-      av.style.display = 'block';
-      av.style.margin = '0 auto 24px';
+      var img = document.createElement('img');
+      img.className = 'hero-avatar';
+      img.src = data.personal.avatar;
+      img.alt = data.personal.name;
+      pa.appendChild(img);
     }
 
     /* ── Research ────────────────────── */
@@ -312,8 +350,10 @@
         card.className = 'wip-card';
         var statusClass = 'status-' + w.status.toLowerCase().replace(/\s+/g, '-');
         if (!w.status) statusClass = 'status-in-progress';
+        var co = w.coauthors ? '<p style="font-size:14px;color:#86868b;margin-top:-4px;margin-bottom:10px;">with ' + escHTML(w.coauthors) + '</p>' : '';
         card.innerHTML =
           '<h3>' + escHTML(w.title) + '</h3>' +
+          co +
           '<p>' + escHTML(w.description) + '</p>' +
           '<span class="status-badge ' + statusClass + '">' + escHTML(w.status || 'In Progress') + '</span>';
         wipGrid.appendChild(card);
@@ -373,6 +413,20 @@
         'Google Scholar</a>';
     }
     links.innerHTML = linkHTML;
+
+    /* ── Page Switching ─────────────── */
+    // Home page is default (set via class="active" in HTML)
+    document.querySelectorAll('.nav-links a').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var page = this.dataset.page;
+        document.querySelectorAll('.nav-links a').forEach(function (x) { x.classList.remove('active-tab'); });
+        this.classList.add('active-tab');
+        document.querySelectorAll('.page').forEach(function (p) { p.classList.remove('active'); });
+        var el = document.getElementById('page-' + page);
+        if (el) el.classList.add('active');
+      });
+    });
 
     /* ── Footer ──────────────────────── */
     document.getElementById('footerYear').textContent = new Date().getFullYear();
