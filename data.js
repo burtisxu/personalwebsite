@@ -12,7 +12,7 @@
     personal: {
       name: "Haolun Xu",
       title: "Examining how economic development is shaped.",
-      bio: "My research focuses on the short-term and long-term factors that determine a region's capacity for economic development. Recently, I have been investigating how migration and culture shape regional economic performance over both the short and long term.",
+      bio: "I am a direct-entry PhD student in Economic History at the School of Economics, Renmin University of China. My research focuses on the short-term and long-term factors that determine a region's capacity for economic development. Recently, I have been investigating how migration and culture shape regional economic performance over both the short and long term.",
       avatar: "photo.jpg"
     },
     research: [
@@ -31,11 +31,11 @@
       { id: 4, title: "Intergenerational Educational Mobility", authors: "W.F., G.L., M.L., Y.S., Y.X., H.X., J.W.", year: "2025", abstract: "", ssrn: "", fullText: "", link: "" }
     ],
     workInProgress: [
-      { id: 1, title: "Innovation Characteristics of Enterprises", description: "", status: "In Progress" },
-      { id: 2, title: "Crime", description: "", status: "In Progress" },
-      { id: 3, title: "	Manufacturing Firm Productivity", description: "", status: "In Progress" },
-      { id: 4, title: "	Knowledge", description: "", status: "In Progress" },
-      { id: 5, title: "	Unintended Outcome of Public Policy", description: "", status: "In Progress" }
+      { id: 1, title: "Innovation Characteristics of Enterprises", description: "", status: "In Progress", coauthors: "" },
+      { id: 2, title: "Crime", description: "", status: "In Progress", coauthors: "C.Y." },
+      { id: 3, title: "Manufacturing Firm Productivity", description: "", status: "In Progress", coauthors: "" },
+      { id: 4, title: "Knowledge", description: "", status: "In Progress", coauthors: "" },
+      { id: 5, title: "Unintended Outcome of Public Policy", description: "", status: "In Progress", coauthors: "C.C. & S.F." }
     ],
     conferences: [
       { id: 1, title: "Firm Productivity", conference: "The 25th China Economics Annual Conference", location: "Shanghai, China", date: "2025", type: "Presentation" },
