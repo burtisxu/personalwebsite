@@ -31,8 +31,8 @@
       { id: 4, title: "Intergenerational Educational Mobility", authors: "W.F., G.L., M.L., Y.S., Y.X., H.X., J.W.", year: "2025", abstract: "", ssrn: "", fullText: "", link: "" }
     ],
     workInProgress: [
-      { id: 1, title: "Innovation Characteristics of Enterprises", description: "", status: "In Progress", coauthors: "" },
-      { id: 2, title: "Crime", description: "", status: "In Progress", coauthors: "C.Y." },
+      { id: 1, title: "Innovation Characteristics of Enterprises", description: "", status: "In Progress", coauthors: "S.S." },
+      { id: 2, title: "Crime", description: "", status: "In Progress", coauthors: "S.S. & C.Y." },
       { id: 3, title: "Manufacturing Firm Productivity", description: "", status: "In Progress", coauthors: "" },
       { id: 4, title: "Knowledge", description: "", status: "In Progress", coauthors: "" },
       { id: 5, title: "Unintended Outcome of Public Policy", description: "", status: "In Progress", coauthors: "C.C. & S.F." }
