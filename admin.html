@@ -384,7 +384,7 @@
         ]);
       } else if (ap === 'workInProgress') {
         collectList('workInProgress', '#wipItems .item-card', [
-          { sel: '.wip-title', key: 'title' }, { sel: '.wip-desc', key: 'description' }, { sel: '.wip-status', key: 'status' }
+          { sel: '.wip-title', key: 'title' }, { sel: '.wip-desc', key: 'description' }, { sel: '.wip-status', key: 'status' }, { sel: '.wip-coauthors', key: 'coauthors' }
         ]);
       } else if (ap === 'conferences') {
         collectList('conferences', '#confItems .item-card', [
@@ -503,12 +503,13 @@
       data.workInProgress.forEach(function (item, idx) {
         var card = createCard(c, idx,
           '<div class="form-group"><label>Title</label><input type="text" class="wip-title" value="' + escAttr(item.title) + '"></div>' +
+          '<div class="form-group"><label>Coauthors (optional, e.g. "John Doe & Jane Smith")</label><input type="text" class="wip-coauthors" value="' + escAttr(item.coauthors || '') + '"></div>' +
           '<div class="form-group"><label>Description</label><textarea class="wip-desc">' + escHTML(item.description || '') + '</textarea></div>' +
           '<div class="form-group"><label>Status</label><select class="wip-status"><option value="In Progress"' + (item.status === 'In Progress' ? ' selected' : '') + '>In Progress</option><option value="Writing"' + (item.status === 'Writing' ? ' selected' : '') + '>Writing</option><option value="Submitted"' + (item.status === 'Submitted' ? ' selected' : '') + '>Submitted</option></select></div>');
       });
       bindRemove(c, data.workInProgress, renderWIPEditor);
     }
-    document.getElementById('btnAddWIP').addEventListener('click', function () { data.workInProgress.push({ id: Date.now(), title: '', description: '', status: 'In Progress' }); renderWIPEditor(); markDirty(); });
+    document.getElementById('btnAddWIP').addEventListener('click', function () { data.workInProgress.push({ id: Date.now(), title: '', description: '', status: 'In Progress', coauthors: '' }); renderWIPEditor(); markDirty(); });
 
     /* ── Conferences Editor ──────────── */
     function renderConfEditor() {
