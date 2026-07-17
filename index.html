@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Hao Xu's academic website: research in economic history, regional development, migration, culture, and publications in Energy Economics and Ecological Indicators.">
   <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta name="baidu-site-verification" content="codeva-lpOkKUtorW" />
+  <meta name="baidu-site-verification" content="codeva-lpOkKUtorW">
   <link rel="canonical" href="https://haolunxu.xyz/">
   <link rel="sitemap" type="application/xml" title="Sitemap" href="https://haolunxu.xyz/sitemap.xml">
   <meta property="og:type" content="profile">
@@ -291,7 +291,6 @@
       <ul class="nav-links">
         <li><a href="#" data-page="home" class="active-tab" aria-current="page">Home</a></li>
         <li><a href="#" data-page="research">Research</a></li>
-        <li><a href="publications.html">Publications</a></li>
         <li><a href="#" data-page="talks">Talks</a></li>
         <li><a href="#" data-page="education">Education</a></li>
         <li><a href="#" data-page="contact">Contact</a></li>
@@ -334,6 +333,15 @@
           <span class="journal-cover-subtitle">Integrating, monitoring, assessment and management</span>
         </div>
       </div>
+
+    <!-- Publications -->
+    <section id="publications">
+      <div class="section-inner">
+        <p class="section-label">Publications</p>
+        <h2 class="section-title">Selected Publications</h2>
+        <div class="pub-list" id="pubList"></div>
+      </div>
+    </section>
 
     <!-- Working Papers -->
     <section id="workingPapers">
@@ -396,7 +404,7 @@
   </main>
 
   <footer>
-    <div class="footer-inner">&copy; <span id="footerYear"></span> <span id="footerName"></span>. <a href="https://www.haolunxu.xyz/publications.html">Publications</a>. All rights reserved.</div>
+    <div class="footer-inner">&copy; <span id="footerYear"></span> <span id="footerName"></span>. All rights reserved.</div>
   </footer>
 
   <noscript>
@@ -404,6 +412,15 @@
       <section>
         <h1>Hao Xu — Economic History Researcher</h1>
         <p>Hao Xu is a PhD student in Economic History at Renmin University of China. His research examines regional economic development, migration, culture, and long-term economic performance.</p>
+        <h2>Selected Publications</h2>
+        <article>
+          <h3>How do health shocks affect household energy poverty?</h3>
+          <p>Fan, W.; Xu, H.; Cheng, S.; Yang, F. Energy Economics, 2025. <a href="https://doi.org/10.1016/j.eneco.2025.108884">https://doi.org/10.1016/j.eneco.2025.108884</a></p>
+        </article>
+        <article>
+          <h3>Global intercountry croplands' greenhouse gas emissions differences and their potential drivers from economic levels perspective</h3>
+          <p>Gao, M.; Xu, H.; Ma, M.; Gao, G.; Chen, X.; Chen, J.; Liu, X.; Qi, L. Ecological Indicators, 2024. <a href="https://doi.org/10.1016/j.ecolind.2024.112635">https://doi.org/10.1016/j.ecolind.2024.112635</a></p>
+        </article>
       </section>
     </main>
   </noscript>
@@ -447,6 +464,9 @@
         '<p>' + escHTML(r.description) + '</p>';
       grid.appendChild(card);
     });
+
+    /* ── Publications ────────────────── */
+    renderPubList('publications', 'pubList', data.publications);
 
     /* ── Working Papers ──────────────── */
     renderPubList('workingPapers', 'wpList', data.workingPapers);
