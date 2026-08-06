@@ -34,7 +34,8 @@
       { id: 2, title: "Crime", description: "", status: "In Progress", coauthors: "S.S. & C.Y." },
       { id: 3, title: "Manufacturing Firm Productivity", description: "", status: "In Progress", coauthors: "" },
       { id: 4, title: "Knowledge", description: "", status: "In Progress", coauthors: "" },
-      { id: 5, title: "Unintended Outcome of Public Policy", description: "", status: "In Progress", coauthors: "C.C. & S.F." }
+      { id: 5, title: "Unintended Outcome of Public Policy", description: "", status: "In Progress", coauthors: "C.C. & S.F." },
+        { id: 5, title: "Law Economics", description: "", status: "In Progress", coauthors: "" }
     ],
     conferences: [
       { id: 1, title: "Firm Productivity", conference: "The 25th China Economics Annual Conference", location: "Shanghai, China", date: "2025", type: "Presentation" },
