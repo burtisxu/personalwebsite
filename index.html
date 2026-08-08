@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://haolunxu.xyz/">
   <meta property="og:image" content="https://haolunxu.xyz/photo.jpg">
   <meta name="twitter:card" content="summary">
-  <meta name="theme-color" content="#fafafa">
+  <meta name="theme-color" content="#ffffff">
   <title>Hao Xu | Economic History Research & Publications</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d1d1f'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Inter,sans-serif' font-size='18' font-weight='600' fill='white'%3EH%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,248 +37,501 @@
   }
   </script>
   <style>
-    :root { --ink: #1d1d1f; --muted: #6e6e73; --line: rgba(0,0,0,.11); --paper: rgba(255,255,255,.83); --blue: #1d1d1f; --lavender: #1d1d1f; }
+    /* ── Variables ───────────────────── */
+    :root {
+      --bg:       #ffffff;
+      --text:     #1d1f21;
+      --muted:    #666666;
+      --border:   #e5e7eb;
+      --accent:   #2563eb;
+      --max-w:    940px;
+    }
+
+    /* ── Reset ───────────────────────── */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
     body {
-      min-width: 320px; min-height: 100vh; overflow-x: hidden; position: relative; display: flex; flex-direction: column;
-      font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
-      color: var(--ink); background: radial-gradient(circle at 12% 10%, #e4e4e4 0, transparent 28%), radial-gradient(circle at 86% 39%, #e9e9e9 0, transparent 25%), #fafafa; line-height: 1.48; font-weight: 400; font-size: 16px; letter-spacing: -.022em;
+      padding: 0;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      min-width: 320px;
     }
-    body::before, body::after { content: ""; position: fixed; z-index: -2; border-radius: 50%; filter: blur(1px); pointer-events: none; }
-    body::before { display: block; width: min(74vw, 900px); height: min(74vw, 900px); top: -430px; left: -260px; background: radial-gradient(circle at 68% 70%, rgba(205,205,205,.7), rgba(238,238,238,.38) 43%, transparent 70%); filter: none; }
-    body::after { display: block; width: min(60vw, 720px); height: min(60vw, 720px); right: -250px; top: 230px; background: radial-gradient(circle at 30% 40%, rgba(222,222,222,.6), rgba(248,248,248,.22) 45%, transparent 70%); filter: none; }
-    main { flex: 1; }
 
-    /* Glass is deliberately kept to navigation and controls. */
-    nav { position: sticky; top: 16px; z-index: 100; margin: 0 auto; padding: 0 20px; }
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Nav ─────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.97);
+      border-bottom: 1px solid var(--border);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+    }
     .nav-inner {
-      max-width: 1024px; min-height: 58px; margin: 0 auto; padding: 7px 9px 7px 19px;
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      position: relative; overflow: hidden; isolation: isolate;
-      background: linear-gradient(135deg, rgba(255,255,255,.79), rgba(255,255,255,.48)); border: 1px solid rgba(255,255,255,.9); border-bottom-color: rgba(0,0,0,.16);
-      border-radius: 22px; box-shadow: 0 16px 42px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.98), inset 0 -1px rgba(0,0,0,.04);
-      backdrop-filter: blur(20px) saturate(105%); -webkit-backdrop-filter: blur(20px) saturate(105%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 54px;
     }
-    .nav-inner::before { content: ""; position: absolute; z-index: -1; width: 54%; height: 120%; top: -56%; left: -12%; transform: rotate(-12deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,.8), transparent); filter: blur(6px); opacity: .72; }
-    .nav-inner::after { content: ""; position: absolute; z-index: -1; inset: 1px; border-radius: 21px; border: 1px solid rgba(255,255,255,.52); pointer-events: none; }
-    .nav-name { font-size: 15px; font-weight: 650; color: var(--ink); text-decoration: none; white-space: nowrap; letter-spacing: -.025em; }
-    .nav-links { display: flex; align-items: center; gap: 3px; list-style: none; }
-    .nav-links a { display: block; padding: 8px 11px; border-radius: 13px; font-size: 13px; font-weight: 500; color: #4e5367; text-decoration: none; transition: color .25s ease, background .25s ease, box-shadow .25s ease; }
-    .nav-links a:hover, .nav-links a:focus-visible { color: #000; background: rgba(0,0,0,.05); outline: none; }
-    .nav-links a.active-tab { color: #000; background: rgba(255,255,255,.96); box-shadow: 0 2px 9px rgba(0,0,0,.09), inset 0 1px rgba(255,255,255,.85); }
-
-    /* Home content uses opaque surfaces so the text stays calm and legible. */
-    #hero { max-width: 1080px; min-height: 514px; margin: 0 auto; padding: 137px 56px 72px; display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 54px; align-items: center; position: relative; }
-    #hero::before { content: ""; position: absolute; inset: 89px 24px 34px; z-index: -1; border-radius: 42px; background: linear-gradient(140deg, rgba(255,255,255,.82), rgba(255,255,255,.53)); border: 1px solid rgba(255,255,255,.92); box-shadow: 0 24px 60px rgba(0,0,0,.1), inset 0 1px rgba(255,255,255,.96), inset 0 -1px rgba(0,0,0,.04); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-    #hero::after { display: none; }
-    .hero-left { width: 190px; height: 190px; padding: 8px; display: grid; place-items: center; border-radius: 58px 58px 58px 18px; background: linear-gradient(135deg, rgba(255,255,255,.94), rgba(245,245,245,.52)); border: 1px solid rgba(255,255,255,.92); box-shadow: 0 17px 36px rgba(0,0,0,.15), inset 0 1px rgba(255,255,255,.98); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transform: rotate(-4deg); }
-    .hero-avatar { width: 174px; height: 174px; border-radius: 51px 51px 51px 15px; object-fit: cover; background: #f5f5f7; transform: rotate(4deg); box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); }
-    .hero-right { min-width: 0; }
-    .hero-right::before { content: "Researcher · Economic History"; display: inline-flex; align-items: center; padding: 6px 11px; margin-bottom: 16px; border-radius: 999px; color: #424245; background: #f5f5f7; border: 1px solid #dedee1; font-size: 11px; font-weight: 650; letter-spacing: .075em; text-transform: uppercase; }
-    .hero-name { max-width: 700px; font-size: clamp(43px, 6vw, 72px); font-weight: 650; line-height: .99; letter-spacing: -.06em; color: var(--ink); margin-bottom: 17px; }
-    .hero-title { max-width: 640px; font-size: clamp(18px, 2.5vw, 25px); font-weight: 450; line-height: 1.28; color: #424245; letter-spacing: -.035em; margin-bottom: 13px; }
-    .hero-bio { max-width: 650px; font-size: 15px; line-height: 1.62; color: var(--muted); letter-spacing: -.012em; }
-
-    section { padding: 64px 24px; }
-    .page:not(#page-home) section:first-child { padding-top: 92px; }
-    .section-inner { max-width: 980px; margin: 0 auto; }
-    .section-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #6e6e73; margin-bottom: 9px; }
-    .section-title { max-width: 650px; font-size: clamp(30px, 4.3vw, 48px); font-weight: 650; line-height: 1.04; letter-spacing: -.05em; color: var(--ink); margin-bottom: 33px; }
-    #research { padding-top: 20px; padding-bottom: 100px; }
-
-    /* Opaque, softly coloured research surfaces sit beneath the glass controls. */
-    .research-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; }
-    .research-card { min-height: 212px; position: relative; isolation: isolate; overflow: hidden; padding: 28px 26px; border: 1px solid rgba(255,255,255,.94); border-bottom-color: rgba(0,0,0,.14); border-radius: 27px; background: linear-gradient(135deg, rgba(255,255,255,.76), rgba(255,255,255,.37)); box-shadow: 0 15px 32px rgba(0,0,0,.1), inset 0 1px rgba(255,255,255,.98), inset 0 -1px rgba(0,0,0,.04); transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease; cursor: default; }
-    .research-card::after { content: ""; position: absolute; z-index: -1; width: 72%; height: 45%; top: -22%; left: -18%; transform: rotate(-12deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,.86), transparent); filter: blur(7px); }
-    .research-card:hover { transform: translateY(-6px); box-shadow: 0 24px 46px rgba(0,0,0,.15), inset 0 1px rgba(255,255,255,.98), inset 0 -1px rgba(0,0,0,.04); }
-    .research-card-icon { display: inline-flex; align-items: center; justify-content: center; position: relative; z-index: 1; width: 42px; height: 42px; margin-bottom: 21px; border-radius: 15px; background: #f5f5f7; color: #424245; font-size: 17px; box-shadow: inset 0 1px rgba(255,255,255,.85); }
-    .research-card:nth-child(2) .research-card-icon, .research-card:nth-child(3) .research-card-icon { background: #f5f5f7; color: #424245; }
-    .research-card h3 { position: relative; z-index: 1; font-size: 20px; font-weight: 650; line-height: 1.2; letter-spacing: -.035em; color: var(--ink); margin-bottom: 7px; }
-    .research-card p { position: relative; z-index: 1; font-size: 14px; line-height: 1.52; color: var(--muted); letter-spacing: -.01em; }
-
-    /* Publications & Working Papers (shared) */
-    .pub-list { display: flex; flex-direction: column; gap: 12px; }
-    .pub-item, .wip-card, .conf-item {
-      position: relative; isolation: isolate; overflow: hidden;
-      border: 1px solid rgba(255,255,255,.94); border-bottom-color: rgba(0,0,0,.14);
-      background: linear-gradient(135deg, rgba(255,255,255,.76), rgba(255,255,255,.37));
-      box-shadow: 0 14px 30px rgba(0,0,0,.09), inset 0 1px rgba(255,255,255,.98), inset 0 -1px rgba(0,0,0,.04);
+    .nav-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -.02em;
     }
-    .pub-item { padding: 25px 27px; border-radius: 23px; }
-    .pub-item:last-child { border-bottom: 1px solid rgba(0,0,0,.14); }
-    .pub-item::before, .wip-card::before, .conf-item::before { content: ""; position: absolute; z-index: -1; width: 66%; height: 54%; top: -31%; left: -13%; transform: rotate(-13deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,.86), transparent); filter: blur(7px); }
-    .pub-item > *, .wip-card > *, .conf-item > * { position: relative; z-index: 1; }
-    .pub-title { font-size: 19px; font-weight: 650; letter-spacing: -.03em; color: var(--ink); margin-bottom: 5px; }
-    .pub-title a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
-    .pub-title a:hover { color: var(--blue); }
-    .pub-meta { font-size: 14px; font-weight: 400; color: var(--muted); letter-spacing: -.016em; }
-    .pub-year { font-size: 13px; font-weight: 600; color: #6e6e73; margin-top: 5px; }
-
-    /* Pub links row */
-    .pub-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
-    .link-pill {
-      display: inline-flex; align-items: center; gap: 4px;
-      font-size: 12px; font-weight: 500; letter-spacing: -0.01em;
-      padding: 4px 12px; border-radius: 14px;
-      background: #fff; color: #424245; text-decoration: none;
-      border: 1px solid #d2d2d7; transition: all .2s ease;
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
     }
-    .link-pill:hover { border-color: #1d1d1f; color: #1d1d1f; background: #f5f5f7; }
-    .pub-abstract {
-      font-size: 14px; line-height: 1.55; color: var(--muted); letter-spacing: -.012em;
-      margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line);
+    .nav-links a {
+      padding: 6px 11px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .15s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--text);
+      outline: none;
+    }
+    .nav-links a.active-nav {
+      color: var(--text);
+      font-weight: 600;
     }
 
-    /* Work in Progress */
-    .wip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-    .wip-card {
-      border-radius: 23px; padding: 24px;
-      transition: box-shadow .35s ease, transform .35s ease;
+    /* ── Sections ────────────────────── */
+    section {
+      padding: 28px 0;
     }
-    .wip-card:hover { box-shadow: 0 22px 43px rgba(0,0,0,.15), inset 0 1px rgba(255,255,255,.98), inset 0 -1px rgba(0,0,0,.04); transform: translateY(-4px); }
-    .wip-card h3 { font-size: 18px; font-weight: 650; letter-spacing: -.03em; color: var(--ink); margin-bottom: 7px; }
-    .wip-card p { font-size: 13px; font-weight: 400; line-height: 1.5; color: var(--muted); letter-spacing: -.014em; margin-bottom: 10px; }
-    .status-badge {
-      display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase;
-      padding: 3px 10px; border-radius: 10px;
+    h2 {
+      font-size: 21px;
+      font-weight: 600;
+      letter-spacing: -.03em;
+      color: var(--text);
+      margin-bottom: 14px;
+      border: none;
     }
-    .status-in-progress { background: #f1f1f3; color: #424245; }
-    .status-writing     { background: #f1f1f3; color: #424245; }
-    .status-submitted   { background: #f1f1f3; color: #424245; }
 
-    /* Conferences */
-    .conf-list { display: flex; flex-direction: column; gap: 16px; }
+    /* ── Hero ────────────────────────── */
+    #hero {
+      padding-top: 56px;
+      padding-bottom: 28px;
+    }
+    .hero-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 28px;
+    }
+    .hero-photo {
+      flex-shrink: 0;
+      width: 96px;
+      height: 96px;
+    }
+    .hero-avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 6px;
+      object-fit: cover;
+      background: #f3f4f6;
+    }
+    .hero-text {
+      flex: 1;
+      min-width: 0;
+    }
+    .hero-name {
+      font-size: 36px;
+      font-weight: 650;
+      letter-spacing: -.04em;
+      color: var(--text);
+      margin-bottom: 2px;
+      line-height: 1.12;
+    }
+    .hero-title {
+      font-size: 16px;
+      font-weight: 450;
+      color: var(--text);
+      letter-spacing: -.02em;
+      margin-bottom: 0;
+    }
+    .hero-affiliation {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .hero-bio {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .hero-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .hero-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .hero-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Research Interests ──────────── */
+    #research {
+      padding-top: 14px;
+    }
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .research-card {
+      padding: 14px 16px;
+      border: 1px solid #e8e8e8;
+      border-radius: 7px;
+      background: #fff;
+      transition: border-color .15s;
+    }
+    .research-card:hover {
+      border-color: #d4d4d4;
+    }
+    .research-card-title {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text);
+      letter-spacing: -.02em;
+    }
+    .research-card-desc {
+      margin-top: 5px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    /* ── Working Papers ──────────────── */
+    #working-papers {
+      padding-top: 32px;
+      padding-bottom: 38px;
+    }
+    #working-papers h2 {
+      margin-bottom: 18px;
+    }
+    .wp-item {
+      padding: 0;
+    }
+    .wp-item + .wp-item {
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+    }
+    .wp-item:last-child {
+      border-bottom: none;
+    }
+    .wp-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .wp-title {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -.025em;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .wp-title a {
+      color: inherit;
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .wp-title a:hover {
+      color: var(--accent);
+    }
+    .wp-authors {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+    .wp-status {
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+      white-space: nowrap;
+      margin-top: 3px;
+    }
+    .wp-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .wp-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .wp-link:hover {
+      text-decoration: underline;
+    }
+    .wp-abstract-toggle {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 2px 0;
+      font-family: inherit;
+    }
+    .wp-abstract-toggle:hover {
+      text-decoration: underline;
+    }
+    .wp-abstract {
+      display: none;
+      margin-top: 8px;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    .wp-abstract.open {
+      display: block;
+    }
+
+    /* ── Publications ─────────────────── */
+    #publications {
+      padding-top: 36px;
+      padding-bottom: 28px;
+    }
+    .pub-item {
+      padding: 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .pub-item + .pub-item {
+      margin-top: 18px;
+    }
+    .pub-item .pub-title {
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -.025em;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .pub-item .pub-authors {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .pub-item .pub-authors strong {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .pub-item .pub-meta {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+    .pub-item .pub-journal {
+      font-style: italic;
+    }
+    .pub-item .pub-links {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+    .pub-item .pub-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .pub-item .pub-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Work in Progress ────────────── */
+    .wip-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 48px;
+      row-gap: 20px;
+    }
+    .wip-item-simple {
+      min-width: 0;
+    }
+    .wip-item-simple .wip-item-title {
+      font-size: 15.5px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text);
+    }
+    .wip-item-simple .wip-item-coauthors {
+      margin-top: 3px;
+      font-size: 13.5px;
+      line-height: 1.4;
+      color: var(--muted);
+    }
+
+    /* ── Conferences ─────────────────── */
+    .conf-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
     .conf-item {
-      display: grid; grid-template-columns: 1fr auto; gap: 4px 24px;
-      padding: 21px 25px; border-radius: 21px; align-items: baseline;
+      display: flex;
+      gap: 16px;
+      padding: 5px 0;
+      font-size: 14px;
+      line-height: 1.55;
     }
-    .conf-item:last-child { border-bottom: none; }
-    .conf-title { font-size: 17px; font-weight: 650; letter-spacing: -.025em; color: var(--ink); }
-    .conf-detail { font-size: 14px; font-weight: 400; color: var(--muted); letter-spacing: -.014em; }
-    .conf-type {
-      grid-row: 1 / 3; align-self: center;
-      font-size: 11px; font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase;
-      padding: 3px 10px; border-radius: 8px;
-      background: #f1f1f3; color: #424245;
+    .conf-year {
+      flex-shrink: 0;
+      width: 52px;
+      color: var(--muted);
+      font-weight: 500;
     }
-    .conf-type.type-presentation { background: #f1f1f3; color: #424245; }
-    .conf-type.type-poster       { background: #f1f1f3; color: #424245; }
-    .conf-type.type-attendee     { background: #f1f1f3; color: #424245; }
-
-    /* Education */
-    /* Academic Background retains the original, quiet timeline treatment. */
-    .edu-list { display: flex; flex-direction: column; border-left: 1px solid #d2d2d7; }
-    .edu-item { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto; gap: 0 24px; padding: 20px 0 20px 28px; position: relative; }
-    .edu-item::before { content: ""; position: absolute; left: -5px; top: 28px; width: 9px; height: 9px; border-radius: 50%; background: #d2d2d7; }
-    .edu-item:first-child::before { background: #1d1d1f; }
-    .edu-degree { font-size: 19px; font-weight: 650; letter-spacing: -.03em; color: var(--ink); }
-    .edu-school { font-size: 15px; font-weight: 400; color: var(--muted); letter-spacing: -.016em; margin-top: 2px; }
-    .edu-year { font-size: 15px; font-weight: 400; color: #86868b; letter-spacing: -.016em; text-align: right; grid-row: 1 / 3; align-self: center; }
-
-    /* Contact */
-    #contact .contact-links { display: flex; gap: 12px; flex-wrap: wrap; }
-    .contact-link { display: inline-flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 500; color: #1d1d1f; text-decoration: none; letter-spacing: -.022em; padding: 13px 17px; border-radius: 17px; background: linear-gradient(135deg, rgba(255,255,255,.8), rgba(255,255,255,.4)); border: 1px solid rgba(255,255,255,.95); border-bottom-color: rgba(0,0,0,.14); box-shadow: 0 13px 28px rgba(0,0,0,.09), inset 0 1px rgba(255,255,255,.98); transition: color .2s ease, transform .2s ease, box-shadow .2s ease; }
-    .contact-link:hover { color: #000; transform: translateY(-2px); box-shadow: 0 19px 34px rgba(0,0,0,.14), inset 0 1px rgba(255,255,255,.98); }
-    .contact-link svg { width: 22px; height: 22px; flex-shrink: 0; fill: currentColor; }
-
-    /* Footer */
-    footer { flex: none; margin: 0; padding: 28px 24px 24px; text-align: center; }
-    .footer-inner { max-width: 980px; margin: 0 auto; font-size: 13px; color: #6e6e73; letter-spacing: -.01em; }
-    .footer-inner a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
-    .footer-inner a:hover { color: #1d1d1f; }
-
-    /* A lens-like layer: moving highlights, double rims, and stronger background sampling. */
-    .liquid-glass {
-      --glass-x: 50%; --glass-y: 20%;
-      background-image:
-        radial-gradient(220px circle at var(--glass-x) var(--glass-y), rgba(255,255,255,.96), rgba(255,255,255,.34) 26%, transparent 64%),
-        linear-gradient(135deg, rgba(255,255,255,.58), rgba(255,255,255,.16) 48%, rgba(255,255,255,.46));
-      border-color: rgba(255,255,255,.98);
-      border-bottom-color: rgba(0,0,0,.17);
-      box-shadow: 0 18px 38px rgba(0,0,0,.12), inset 0 1px 1px rgba(255,255,255,1), inset 0 -1px 1px rgba(0,0,0,.08), inset 1px 0 rgba(255,255,255,.55);
-      backdrop-filter: none; -webkit-backdrop-filter: none;
+    .conf-content {
+      min-width: 0;
     }
-    .liquid-glass::after { display: none; }
-    .liquid-glass:hover { box-shadow: 0 26px 50px rgba(0,0,0,.16), inset 0 1px 1px rgba(255,255,255,1), inset 0 -1px 1px rgba(0,0,0,.08), inset 1px 0 rgba(255,255,255,.55); }
-
-    /* Page tabs */
-    .page { display: none; }
-    .page.active { display: block; animation: fadeIn .42s cubic-bezier(.2,.8,.2,1); }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-    /* Research page: a quiet stack of the journals represented in the publication list. */
-    #page-research { position: relative; isolation: isolate; overflow: hidden; }
-    #page-research > section { position: relative; z-index: 1; }
-    .journal-cover-stack { position: absolute; z-index: 0; inset: 0; overflow: hidden; pointer-events: none; }
-    .journal-cover-stack::after { display: none; }
-    .journal-cover { position: absolute; width: 300px; aspect-ratio: .7; overflow: hidden; border: 1px solid rgba(0,0,0,.13); border-radius: 8px; box-shadow: 0 28px 54px rgba(0,0,0,.17); filter: grayscale(1) contrast(.88); opacity: .42; }
-    .journal-cover-energy { top: 90px; right: -70px; transform: rotate(10deg); background: url('assets/energy-economics-cover.png') center / cover no-repeat; }
-    .journal-cover-ecological { top: 500px; left: -68px; transform: rotate(-11deg); padding: 18px; display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(140deg, #dadada, #f7f7f7 55%, #cfcfcf); font-family: Georgia, "Times New Roman", serif; color: #1d1d1f; }
-    .journal-cover-ecological::before { content: ""; position: absolute; inset: 84px 24px 88px; border: 1px solid rgba(0,0,0,.36); border-radius: 50%; background: repeating-radial-gradient(circle at 50% 48%, #cfcfcf 0 5px, #efefef 5px 13px, #bababa 13px 18px); opacity: .78; }
-    .journal-cover-kicker, .journal-cover-title, .journal-cover-subtitle { position: relative; z-index: 1; }
-    .journal-cover-kicker { font-family: "Inter", sans-serif; font-size: 7px; font-weight: 700; letter-spacing: .08em; }
-    .journal-cover-title { max-width: 130px; font-size: 28px; line-height: .92; letter-spacing: -.07em; }
-    .journal-cover-subtitle { max-width: 154px; font-family: "Inter", sans-serif; font-size: 7px; line-height: 1.3; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; }
-
-    /* Home stays within one desktop viewport; smaller screens keep the readable scroll layout. */
-    @media (min-width: 769px) {
-      #hero { min-height: 0; padding: 80px 56px 30px; }
-      #hero::before { inset: 48px 24px 14px; }
-      .hero-left { width: 144px; height: 144px; padding: 6px; border-radius: 44px 44px 44px 14px; }
-      .hero-avatar { width: 132px; height: 132px; border-radius: 37px 37px 37px 12px; }
-      .hero-right::before { margin-bottom: 10px; }
-      .hero-name { font-size: clamp(38px, 4.4vw, 56px); margin-bottom: 10px; }
-      .hero-title { font-size: clamp(17px, 1.9vw, 22px); margin-bottom: 8px; }
-      .hero-bio { font-size: 14px; line-height: 1.5; }
-      #research { padding: 14px 24px 30px; }
-      .section-label { margin-bottom: 5px; }
-      .section-title { font-size: clamp(27px, 3vw, 36px); margin-bottom: 18px; }
-      .research-card { min-height: 156px; padding: 18px 20px; }
-      .research-card-icon { width: 32px; height: 32px; margin-bottom: 10px; border-radius: 11px; font-size: 13px; }
-      .research-card h3 { font-size: 17px; line-height: 1.18; }
+    .conf-content .conf-title {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .conf-content .conf-detail {
+      color: var(--muted);
     }
 
-    /* Responsive */
+    /* ── Education ───────────────────── */
+    .edu-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .edu-item {
+      padding: 8px 0;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .edu-degree {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .edu-school {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .edu-year {
+      color: var(--muted);
+    }
+
+    /* ── Contact ─────────────────────── */
+    #contact {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    .contact-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .contact-link:hover {
+      text-decoration: underline;
+    }
+    .contact-link svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      fill: currentColor;
+    }
+
+    /* ── Footer ──────────────────────── */
+    footer {
+      padding: 22px 0 18px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: -.01em;
+    }
+
+    /* ── Responsive: ≤768px ──────────── */
     @media (max-width: 768px) {
-      nav { top: 10px; padding: 0 12px; }
-      .nav-inner { padding-left: 15px; border-radius: 18px; overflow: hidden; }
-      .nav-links { gap: 2px; overflow-x: auto; scrollbar-width: none; }
+      .container { padding: 0 18px; }
+      .research-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-inner { flex-direction: column; align-items: center; text-align: center; gap: 18px; }
+      .hero-photo { width: 80px; height: 80px; }
+      .hero-avatar { width: 80px; height: 80px; }
+      .hero-name { font-size: 30px; }
+      .nav-links { gap: 0; overflow-x: auto; scrollbar-width: none; }
       .nav-links::-webkit-scrollbar { display: none; }
-      .nav-links a { padding: 8px 9px; }
-      #hero { min-height: 0; grid-template-columns: 1fr; justify-items: center; gap: 28px; padding: 113px 38px 65px; text-align: center; }
-      #hero::before { inset: 76px 14px 22px; border-radius: 34px; }
-      .hero-left { width: 144px; height: 144px; padding: 6px; border-radius: 44px 44px 44px 14px; }
-      .hero-avatar { width: 132px; height: 132px; border-radius: 37px 37px 37px 12px; }
-      .hero-right::before { margin-bottom: 14px; }
-      .hero-name { font-size: clamp(40px, 11vw, 56px); }
-      section { padding: 52px 20px; }
-      .section-title { margin-bottom: 24px; }
-      .research-grid { grid-template-columns: 1fr; }
-      .research-card { min-height: 0; padding: 24px 22px; }
-      .wip-grid { grid-template-columns: 1fr; }
-      .conf-item { grid-template-columns: 1fr auto; }
-      .edu-item { grid-template-columns: 1fr auto; padding-left: 20px; }
-      .edu-year { font-size: 14px; }
-      #contact .contact-links { gap: 10px; }
-      .pub-title { font-size: 17px; }
-      .pub-links { gap: 6px; }
+      .nav-links a { padding: 6px 8px; font-size: 13px; }
+      .wp-header { flex-direction: column; gap: 0; }
+      .hero-links { justify-content: center; }
+      .conf-year { width: 44px; }
     }
+
+    /* ── Responsive: ≤480px ──────────── */
     @media (max-width: 480px) {
+      .container { padding: 0 16px; }
+      .research-grid { grid-template-columns: 1fr; }
+      .hero-name { font-size: 28px; }
+      .hero-photo { width: 72px; height: 72px; }
+      .hero-avatar { width: 72px; height: 72px; }
+      h2 { font-size: 19px; }
       .nav-name { font-size: 14px; }
-      .nav-links a { font-size: 12px; padding: 7px 8px; }
-      #hero { padding-left: 25px; padding-right: 25px; }
-      .hero-name { font-size: 40px; }
-      .hero-title { font-size: 17px; }
-      .conf-item { grid-template-columns: 1fr; }
-      .conf-type { grid-row: auto; justify-self: start; margin-top: 4px; }
-      .journal-cover { width: 230px; opacity: .3; }
-      .journal-cover-energy { right: -104px; }
-      .journal-cover-ecological { left: -116px; }
+      .nav-links a { font-size: 12px; padding: 6px 7px; }
+      .hero-links { flex-direction: column; gap: 6px; }
+      .conf-year { width: 40px; font-size: 13px; }
     }
+
+    @media (max-width: 650px) {
+      .wip-list {
+        grid-template-columns: 1fr;
+        row-gap: 16px;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important;
+      }
     }
   </style>
 </head>
@@ -286,140 +539,114 @@
 
   <!-- Navigation -->
   <nav>
-    <div class="nav-inner">
-      <a href="#" data-page="home" class="nav-name" id="navName">Hao Xu</a>
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-name" id="navName">Hao Xu</a>
       <ul class="nav-links">
-        <li><a href="#" data-page="home" class="active-tab" aria-current="page">Home</a></li>
-        <li><a href="#" data-page="research">Research</a></li>
-        <li><a href="#" data-page="talks">Talks</a></li>
-        <li><a href="#" data-page="education">Education</a></li>
-        <li><a href="#" data-page="contact">Contact</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#working-papers">Papers</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#conferences">Talks</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
 
   <main>
 
-    <!-- ═══ Page: Home ═══ -->
-    <div class="page active" id="page-home">
-
     <!-- Hero -->
     <section id="hero">
-      <div class="hero-left" id="heroPhotoArea"></div>
-      <div class="hero-right">
-        <h1 class="hero-name" id="heroName"></h1>
-        <p class="hero-title" id="heroTitle"></p>
-        <p class="hero-bio" id="heroBio"></p>
-      </div>
-    </section>
-
-    <!-- Research -->
-    <section id="research">
-      <div class="section-inner">
-        <p class="section-label">Research</p>
-        <h2 class="section-title">Research Interests</h2>
-        <div class="research-grid" id="researchGrid"></div>
-      </div>
-    </section>
-    </div><!-- /page-home -->
-
-    <!-- ═══ Page: Research ═══ -->
-    <div class="page" id="page-research">
-      <div class="journal-cover-stack" aria-hidden="true">
-        <div class="journal-cover journal-cover-energy"></div>
-        <div class="journal-cover journal-cover-ecological">
-          <span class="journal-cover-kicker">Elsevier · 1470–160X</span>
-          <span class="journal-cover-title">Ecological<br>Indicators</span>
-          <span class="journal-cover-subtitle">Integrating, monitoring, assessment and management</span>
+      <div class="container hero-inner">
+        <div class="hero-photo" id="heroPhotoArea"></div>
+        <div class="hero-text">
+          <h1 class="hero-name" id="heroName"></h1>
+          <p class="hero-title" id="heroTitle"></p>
+          <p class="hero-affiliation" id="heroAffiliation"></p>
+          <p class="hero-bio" id="heroBio"></p>
+          <div class="hero-links">
+            <a href="#" id="cvLink">CV</a>
+            <a href="#" id="emailLink">Email</a>
+            <a href="#" id="scholarLink">Google Scholar</a>
+          </div>
         </div>
       </div>
+    </section>
 
-    <!-- Publications -->
-    <section id="publications">
-      <div class="section-inner">
-        <p class="section-label">Publications</p>
-        <h2 class="section-title">Selected Publications</h2>
-        <div class="pub-list" id="pubList"></div>
+    <!-- Research Interests -->
+    <section id="research">
+      <div class="container">
+        <h2>Research Interests</h2>
+        <div id="researchList" class="research-grid"></div>
       </div>
     </section>
 
     <!-- Working Papers -->
-    <section id="workingPapers">
-      <div class="section-inner">
-        <p class="section-label">Working Papers</p>
-        <h2 class="section-title">Working Papers</h2>
-        <div class="pub-list" id="wpList"></div>
+    <section id="working-papers">
+      <div class="container">
+        <h2>Working Papers</h2>
+        <div id="wpList"></div>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications">
+      <div class="container">
+        <h2>Publications</h2>
+        <div id="pubList"></div>
       </div>
     </section>
 
     <!-- Work in Progress -->
-    <section id="workInProgress">
-      <div class="section-inner">
-        <p class="section-label">Work in Progress</p>
-        <h2 class="section-title">Work in Progress</h2>
-        <div class="wip-grid" id="wipGrid"></div>
+    <section id="work-in-progress">
+      <div class="container">
+        <h2>Work in Progress</h2>
+        <div class="wip-list" id="wipGrid"></div>
       </div>
     </section>
 
-    </div><!-- /page-research -->
-
-    <!-- ═══ Page: Talks ═══ -->
-    <div class="page" id="page-talks">
-    <!-- Conferences -->
+    <!-- Conferences & Talks -->
     <section id="conferences">
-      <div class="section-inner">
-        <p class="section-label">Conferences</p>
-        <h2 class="section-title">Conferences & Talks</h2>
+      <div class="container">
+        <h2>Conferences &amp; Talks</h2>
         <div class="conf-list" id="confList"></div>
       </div>
     </section>
 
-    </div><!-- /page-talks -->
-
-    <!-- ═══ Page: Education ═══ -->
-    <div class="page" id="page-education">
     <!-- Education -->
     <section id="education">
-      <div class="section-inner">
-        <p class="section-label">Education</p>
-        <h2 class="section-title">Academic Background</h2>
+      <div class="container">
+        <h2>Education</h2>
         <div class="edu-list" id="eduList"></div>
       </div>
     </section>
 
-    </div><!-- /page-education -->
-
-    <!-- ═══ Page: Contact ═══ -->
-    <div class="page" id="page-contact">
     <!-- Contact -->
     <section id="contact">
-      <div class="section-inner">
-        <p class="section-label">Contact</p>
-        <h2 class="section-title">Get in Touch</h2>
+      <div class="container">
+        <h2>Contact</h2>
         <div class="contact-links" id="contactLinks"></div>
       </div>
     </section>
-    </div><!-- /page-contact -->
 
   </main>
 
   <footer>
-    <div class="footer-inner">&copy; <span id="footerYear"></span> <span id="footerName"></span>. All rights reserved.</div>
+    <div class="container footer-inner">&copy; <span id="footerYear"></span> <span id="footerName"></span></div>
   </footer>
 
   <noscript>
     <main>
       <section>
-        <h1>Hao Xu — Economic History Researcher</h1>
+        <h1>Hao Xu — PhD Student in Economic History</h1>
         <p>Hao Xu is a PhD student in Economic History at Renmin University of China. His research examines regional economic development, migration, culture, and long-term economic performance.</p>
         <h2>Selected Publications</h2>
         <article>
           <h3>How do health shocks affect household energy poverty?</h3>
-          <p>Fan, W.; Xu, H.; Cheng, S.; Yang, F. Energy Economics, 2025. <a href="https://doi.org/10.1016/j.eneco.2025.108884">https://doi.org/10.1016/j.eneco.2025.108884</a></p>
+          <p>Fan, W.; Xu, H.; Cheng, S.; Yang, F. <i>Energy Economics</i>, 2025. <a href="https://doi.org/10.1016/j.eneco.2025.108884">https://doi.org/10.1016/j.eneco.2025.108884</a></p>
         </article>
         <article>
           <h3>Global intercountry croplands' greenhouse gas emissions differences and their potential drivers from economic levels perspective</h3>
-          <p>Gao, M.; Xu, H.; Ma, M.; Gao, G.; Chen, X.; Chen, J.; Liu, X.; Qi, L. Ecological Indicators, 2024. <a href="https://doi.org/10.1016/j.ecolind.2024.112635">https://doi.org/10.1016/j.ecolind.2024.112635</a></p>
+          <p>Gao, M.; Xu, H.; Ma, M.; Gao, G.; Chen, X.; Chen, J.; Liu, X.; Qi, L. <i>Ecological Indicators</i>, 2024. <a href="https://doi.org/10.1016/j.ecolind.2024.112635">https://doi.org/10.1016/j.ecolind.2024.112635</a></p>
         </article>
       </section>
     </main>
@@ -431,17 +658,20 @@
   <!-- Render engine -->
   <script>
   (function () {
-    var RESEARCH_ICON = '&#9679;';
-
     var data = window.loadSiteData();
 
     /* ── Nav ─────────────────────────── */
     document.getElementById('navName').textContent = data.personal.name;
-    document.title = data.personal.name + ' | Economic History Research & Publications';
+    document.title = data.personal.name + ' | Economic History Research';
 
     /* ── Hero ────────────────────────── */
     document.getElementById('heroName').textContent  = data.personal.name;
     document.getElementById('heroTitle').textContent = data.personal.title;
+    // Affiliation — derive from education data
+    var affEl = document.getElementById('heroAffiliation');
+    if (data.education.length > 0) {
+      affEl.textContent = data.education[0].school;
+    }
     document.getElementById('heroBio').textContent   = data.personal.bio;
 
     var pa = document.getElementById('heroPhotoArea');
@@ -453,42 +683,67 @@
       pa.appendChild(img);
     }
 
+    // Hero quick links — only show when data exists
+    var c = data.contact;
+    var heroLinks = document.querySelector('.hero-links');
+    var hasAnyLink = false;
+
+    // CV — hidden by default (no CV field in data yet)
+    var cvEl = document.getElementById('cvLink');
+    cvEl.style.display = 'none';
+
+    var emailEl = document.getElementById('emailLink');
+    if (c.email) {
+      emailEl.href = 'mailto:' + escAttr(c.email);
+      hasAnyLink = true;
+    } else {
+      emailEl.style.display = 'none';
+    }
+
+    var scholarEl = document.getElementById('scholarLink');
+    if (c.scholar) {
+      scholarEl.href = escAttr(c.scholar);
+      scholarEl.target = '_blank';
+      scholarEl.rel = 'noopener';
+      hasAnyLink = true;
+    } else {
+      scholarEl.style.display = 'none';
+    }
+
+    if (!hasAnyLink) {
+      heroLinks.style.display = 'none';
+    }
+
     /* ── Research ────────────────────── */
-    var grid = document.getElementById('researchGrid');
-    data.research.forEach(function (r, i) {
+    var rList = document.getElementById('researchList');
+    data.research.forEach(function (r) {
       var card = document.createElement('div');
       card.className = 'research-card';
+      var desc = r.description ? '<div class="research-card-desc">' + escHTML(r.description) + '</div>' : '';
       card.innerHTML =
-        '<div class="research-card-icon">' + RESEARCH_ICON + '</div>' +
-        '<h3>' + escHTML(r.title) + '</h3>' +
-        '<p>' + escHTML(r.description) + '</p>';
-      grid.appendChild(card);
+        '<div class="research-card-title">' + escHTML(r.title) + '</div>' + desc;
+      rList.appendChild(card);
     });
 
-    /* ── Publications ────────────────── */
-    renderPubList('publications', 'pubList', data.publications);
-
     /* ── Working Papers ──────────────── */
-    renderPubList('workingPapers', 'wpList', data.workingPapers);
+    renderWorkingPapers('wpList', data.workingPapers);
+
+    /* ── Publications ────────────────── */
+    renderPublications('pubList', data.publications);
 
     /* ── Work in Progress ────────────── */
-    var wipSection = document.getElementById('workInProgress');
+    var wipSection = document.getElementById('work-in-progress');
     var wipGrid = document.getElementById('wipGrid');
     if (data.workInProgress.length === 0) {
       wipSection.style.display = 'none';
     } else {
       data.workInProgress.forEach(function (w) {
-        var card = document.createElement('div');
-        card.className = 'wip-card';
-        var statusClass = 'status-' + w.status.toLowerCase().replace(/\s+/g, '-');
-        if (!w.status) statusClass = 'status-in-progress';
-        var co = w.coauthors ? '<p style="font-size:14px;color:#86868b;margin-top:-4px;margin-bottom:10px;">with ' + escHTML(w.coauthors) + '</p>' : '';
-        card.innerHTML =
-          '<h3>' + escHTML(w.title) + '</h3>' +
-          co +
-          '<p>' + escHTML(w.description) + '</p>' +
-          '<span class="status-badge ' + statusClass + '">' + escHTML(w.status || 'In Progress') + '</span>';
-        wipGrid.appendChild(card);
+        var div = document.createElement('div');
+        div.className = 'wip-item-simple';
+        var co = w.coauthors ? '<div class="wip-item-coauthors">with ' + escHTML(w.coauthors) + '</div>' : '';
+        div.innerHTML =
+          '<div class="wip-item-title">' + escHTML(w.title) + '</div>' + co;
+        wipGrid.appendChild(div);
       });
     }
 
@@ -498,14 +753,15 @@
     if (data.conferences.length === 0) {
       confSection.style.display = 'none';
     } else {
-      data.conferences.forEach(function (c) {
+      data.conferences.forEach(function (conf) {
         var div = document.createElement('div');
         div.className = 'conf-item';
-        var typeClass = 'type-' + (c.type || 'Presentation').toLowerCase();
         div.innerHTML =
-          '<span class="conf-title">' + escHTML(c.title) + '</span>' +
-          '<span class="conf-detail">' + escHTML(c.conference) + ', ' + escHTML(c.location) + ' &middot; ' + escHTML(c.date) + '</span>' +
-          '<span class="conf-type ' + typeClass + '">' + escHTML(c.type || 'Presentation') + '</span>';
+          '<div class="conf-year">' + escHTML(conf.date) + '</div>' +
+          '<div class="conf-content">' +
+            '<span class="conf-title">' + escHTML(conf.title) + '</span>' +
+            ' <span class="conf-detail">&mdash; ' + escHTML(conf.conference) + ', ' + escHTML(conf.location) + '</span>' +
+          '</div>';
         confList.appendChild(div);
       });
     }
@@ -516,14 +772,13 @@
       var div = document.createElement('div');
       div.className = 'edu-item';
       div.innerHTML =
-        '<span class="edu-degree">' + escHTML(e.degree) + '</span>' +
         '<span class="edu-school">' + escHTML(e.school) + '</span>' +
-        '<span class="edu-year">'  + escHTML(e.year)  + '</span>';
+        ' &mdash; <span class="edu-degree">' + escHTML(e.degree) + '</span>' +
+        ', <span class="edu-year">' + escHTML(e.year) + '</span>';
       eduList.appendChild(div);
     });
 
     /* ── Contact ─────────────────────── */
-    var c = data.contact;
     var links = document.getElementById('contactLinks');
     var linkHTML = '';
     if (c.email) {
@@ -546,69 +801,119 @@
     }
     links.innerHTML = linkHTML;
 
-    /* ── Liquid-glass surfaces ──────── */
-    document.querySelectorAll('.research-card, .pub-item, .wip-card, .conf-item, .contact-link').forEach(function (panel) {
-      panel.classList.add('liquid-glass');
-    });
-
-    /* ── Page Switching ─────────────── */
-    function showPage(page) {
-      document.querySelectorAll('.nav-links a').forEach(function (x) {
-        var selected = x.dataset.page === page;
-        x.classList.toggle('active-tab', selected);
-        if (selected) x.setAttribute('aria-current', 'page');
-        else x.removeAttribute('aria-current');
-      });
-      document.querySelectorAll('.page').forEach(function (p) { p.classList.remove('active'); });
-      var el = document.getElementById('page-' + page);
-      if (el) {
-        el.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }
-    document.querySelectorAll('[data-page]').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        e.preventDefault();
-        showPage(this.dataset.page);
-      });
-    });
-
     /* ── Footer ──────────────────────── */
     document.getElementById('footerYear').textContent = '2026';
     document.getElementById('footerName').textContent = data.personal.name;
 
-    /* ── Shared: pub list renderer ────── */
-    function renderPubList(sectionId, listId, items) {
-      var section = document.getElementById(sectionId);
+    /* ── Scroll-spy: nav active state ── */
+    (function () {
+      var sections = document.querySelectorAll('section[id]');
+      var navLinks = document.querySelectorAll('.nav-links a');
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var id = entry.target.id;
+            navLinks.forEach(function (link) {
+              var isActive = link.getAttribute('href') === '#' + id;
+              link.classList.toggle('active-nav', isActive);
+            });
+          }
+        });
+      }, { rootMargin: '-30% 0px -60% 0px' });
+
+      sections.forEach(function (sec) { observer.observe(sec); });
+    })();
+
+    /* ── Shared: Working Papers renderer ── */
+    function renderWorkingPapers(listId, items) {
       var list = document.getElementById(listId);
+      var section = document.getElementById('working-papers');
       if (items.length === 0) {
-        section.style.display = 'none';
+        if (section) section.style.display = 'none';
+        return;
+      }
+      items.forEach(function (p) {
+        var div = document.createElement('div');
+        div.className = 'wp-item';
+
+        var titleHTML = p.link
+          ? '<a href="' + escAttr(p.link) + '" target="_blank" rel="noopener">' + escHTML(p.title) + '</a>'
+          : escHTML(p.title);
+
+        var hasAbstract = p.abstract && p.abstract.trim().length > 0;
+        var hasLinks = p.link || p.ssrn || p.fullText;
+
+        var html =
+          '<div class="wp-header">' +
+            '<div>' +
+              '<div class="wp-title">' + titleHTML + '</div>' +
+              '<div class="wp-authors">' + escHTML(p.authors || '') + '</div>' +
+            '</div>' +
+            '<div class="wp-status">' + escHTML(p.year || '') + '</div>' +
+          '</div>';
+
+        if (hasLinks) {
+          var pills = '';
+          if (p.link)     pills += '<a href="' + escAttr(p.link) + '" target="_blank" rel="noopener" class="wp-link">DOI</a>';
+          if (p.ssrn)     pills += '<a href="' + escAttr(p.ssrn) + '" target="_blank" rel="noopener" class="wp-link">SSRN</a>';
+          if (p.fullText) pills += '<a href="' + escAttr(p.fullText) + '" target="_blank" rel="noopener" class="wp-link">PDF</a>';
+          html += '<div class="wp-links">' + pills + '</div>';
+        }
+
+        if (hasAbstract) {
+          html += '<button class="wp-abstract-toggle" aria-expanded="false">Abstract</button>';
+          html += '<div class="wp-abstract">' + escHTML(p.abstract) + '</div>';
+        }
+
+        div.innerHTML = html;
+
+        if (hasAbstract) {
+          var toggle = div.querySelector('.wp-abstract-toggle');
+          var abstract = div.querySelector('.wp-abstract');
+          toggle.addEventListener('click', function () {
+            var isOpen = abstract.classList.toggle('open');
+            toggle.textContent = isOpen ? 'Hide Abstract' : 'Abstract';
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          });
+        }
+
+        list.appendChild(div);
+      });
+    }
+
+    /* ── Shared: Publications renderer ── */
+    function renderPublications(listId, items) {
+      var list = document.getElementById(listId);
+      var section = document.getElementById('publications');
+      if (items.length === 0) {
+        if (section) section.style.display = 'none';
         return;
       }
       items.forEach(function (p) {
         var div = document.createElement('div');
         div.className = 'pub-item';
 
-        var titleHTML = p.link
-          ? '<a href="' + escAttr(p.link) + '" target="_blank" rel="noopener">' + escHTML(p.title) + '</a>'
-          : escHTML(p.title);
+        // Title-first hierarchy
+        var html = '<div class="pub-title">' + escHTML(p.title) + '</div>';
 
-        var html =
-          '<div class="pub-title">' + titleHTML + '</div>' +
-          '<div class="pub-meta">' + escHTML(p.authors || '') + '</div>' +
-          '<div class="pub-year">' + escHTML(p.year || '') + '</div>';
-
-        // Link pills: DOI / SSRN / Full Text
-        var pills = '';
-        if (p.link)    pills += '<a href="' + escAttr(p.link) + '" target="_blank" rel="noopener" class="link-pill">DOI</a>';
-        if (p.ssrn)    pills += '<a href="' + escAttr(p.ssrn) + '" target="_blank" rel="noopener" class="link-pill">SSRN</a>';
-        if (p.fullText) pills += '<a href="' + escAttr(p.fullText) + '" target="_blank" rel="noopener" class="link-pill">Full Text</a>';
-        if (pills) html += '<div class="pub-links">' + pills + '</div>';
-
-        // Abstract
-        if (p.abstract) {
-          html += '<div class="pub-abstract">' + escHTML(p.abstract) + '</div>';
+        if (p.authors) {
+          html += '<div class="pub-authors">' +
+            escHTML(p.authors).replace(/Xu,\s*H\./g, '<strong>Xu, H.</strong>') +
+            '</div>';
         }
+
+        // Journal, Year
+        var meta = '';
+        if (p.journal) meta += '<span class="pub-journal">' + escHTML(p.journal) + '</span>';
+        if (p.year)    meta += (meta ? ', ' : '') + escHTML(p.year);
+        if (meta) html += '<div class="pub-meta">' + meta + '</div>';
+
+        // Links: Journal · DOI · PDF
+        var links = [];
+        if (p.link)     links.push('<a href="' + escAttr(p.link) + '" target="_blank" rel="noopener" class="pub-link">DOI</a>');
+        if (p.fullText) links.push('<a href="' + escAttr(p.fullText) + '" target="_blank" rel="noopener" class="pub-link">PDF</a>');
+        if (links.length) html += '<div class="pub-links">' + links.join(' · ') + '</div>';
 
         div.innerHTML = html;
         list.appendChild(div);
