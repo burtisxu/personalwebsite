@@ -8,20 +8,25 @@
   "use strict";
 
   /*
-   * Increment DATA_VERSION whenever you make a
-   * substantial public-content update.
+   * IMPORTANT:
+   * Increment DATA_VERSION whenever the public
+   * data structure changes substantially.
    *
-   * This prevents stale LocalStorage content from
-   * overriding newly deployed defaults.
+   * v4 introduces structured author/coauthor data.
    */
-  const DATA_VERSION = "v3";
+  const DATA_VERSION = "v4";
   const STORAGE_KEY = "siteData_" + DATA_VERSION;
+
 
   /* =========================================================
      Default public content
      ========================================================= */
 
   var DEFAULTS = {
+
+    /* =======================================================
+       Personal
+       ======================================================= */
 
     personal: {
 
@@ -36,6 +41,7 @@
 
     },
 
+
     /* =======================================================
        Research Interests
        ======================================================= */
@@ -44,26 +50,179 @@
 
       {
         id: 1,
-        title: "Culture & Long-Run Development",
+
+        title:
+          "Culture & Long-Run Development",
+
         description:
           "How culture and historical exposure shape economic behavior and regional performance."
       },
 
       {
         id: 2,
-        title: "Migration & Regional Development",
+
+        title:
+          "Migration & Regional Development",
+
         description:
           "How population reallocation affects labor markets, firms, and regional economic development."
       },
 
       {
         id: 3,
-        title: "Economic History & Behavior",
+
+        title:
+          "Economic History & Behavior",
+
         description:
           "The long-run effects of historical shocks on individual behavior and social outcomes."
       }
 
     ],
+
+
+    /* =======================================================
+       Working Papers
+
+       Author structure:
+
+       {
+         name: "Author Name",
+         url: "https://homepage.com/",
+         self: false
+       }
+
+       For yourself:
+       {
+         name: "H.X.",
+         self: true
+       }
+
+       If url is empty, the author is rendered as plain text.
+       ======================================================= */
+
+    workingPapers: [
+
+      {
+        id: 1,
+
+        title: "Crime",
+
+        authors: [
+
+          {
+            name: "S.S.",
+            url: "http://econ.ruc.edu.cn/jszy/38e856abc20543fe9cf22f0699aaf73a.htm"
+          },
+
+          {
+            name: "H.X.",
+            self: true
+          }
+
+        ],
+
+        year: "2026",
+
+        abstract: "",
+
+        ssrn: "",
+
+        fullText: "",
+
+        link: ""
+      },
+
+
+      {
+        id: 2,
+
+        title: "Firm Productivity",
+
+        authors: [
+
+          {
+            name: "H.X.",
+            self: true
+          },
+
+          {
+            name: "C.C.",
+            url: "https://chenxuanchen-econ.github.io/research.html"
+          }
+
+        ],
+
+        year: "2025",
+
+        abstract: "",
+
+        ssrn: "",
+
+        fullText: "",
+
+        link: ""
+      },
+
+
+      {
+        id: 3,
+
+        title:
+          "Intergenerational Educational Mobility",
+
+        authors: [
+
+          {
+            name: "W.F.",
+            url: ""
+          },
+
+          {
+            name: "G.L.",
+            url: ""
+          },
+
+          {
+            name: "M.L.",
+            url: ""
+          },
+
+          {
+            name: "Y.S.",
+            url: ""
+          },
+
+          {
+            name: "Y.X.",
+            url: ""
+          },
+
+          {
+            name: "H.X.",
+            self: true
+          },
+
+          {
+            name: "J.W.",
+            url: ""
+          }
+
+        ],
+
+        year: "2025",
+
+        abstract: "",
+
+        ssrn: "",
+
+        fullText: "",
+
+        link: ""
+      }
+
+    ],
+
 
     /* =======================================================
        Publications
@@ -77,8 +236,29 @@
         title:
           "How do health shocks affect household energy poverty?",
 
-        authors:
-          "Fan, W.; Xu, H.; Cheng, S.; Yang, F.",
+        authors: [
+
+          {
+            name: "Fan, W.",
+            url: ""
+          },
+
+          {
+            name: "Xu, H.",
+            self: true
+          },
+
+          {
+            name: "Cheng, S.",
+            url: ""
+          },
+
+          {
+            name: "Yang, F.",
+            url: ""
+          }
+
+        ],
 
         journal:
           "Energy Economics",
@@ -90,9 +270,12 @@
           "https://doi.org/10.1016/j.eneco.2025.108884",
 
         abstract: "",
+
         ssrn: "",
+
         fullText: ""
       },
+
 
       {
         id: 2,
@@ -100,8 +283,49 @@
         title:
           "Global intercountry croplands' greenhouse gas emissions differences and their potential drivers from economic levels perspective",
 
-        authors:
-          "Gao, M.; Xu, H.; Ma, M.; Gao, G.; Chen, X.; Chen, J.; Liu, X.; Qi, L.",
+        authors: [
+
+          {
+            name: "Gao, M.",
+            url: ""
+          },
+
+          {
+            name: "Xu, H.",
+            self: true
+          },
+
+          {
+            name: "Ma, M.",
+            url: ""
+          },
+
+          {
+            name: "Gao, G.",
+            url: ""
+          },
+
+          {
+            name: "Chen, X.",
+            url: ""
+          },
+
+          {
+            name: "Chen, J.",
+            url: ""
+          },
+
+          {
+            name: "Liu, X.",
+            url: ""
+          },
+
+          {
+            name: "Qi, L.",
+            url: ""
+          }
+
+        ],
 
         journal:
           "Ecological Indicators",
@@ -113,108 +337,146 @@
           "https://doi.org/10.1016/j.ecolind.2024.112635",
 
         abstract: "",
+
         ssrn: "",
+
         fullText: ""
       }
 
     ],
 
-    /* =======================================================
-       Working Papers
-       ======================================================= */
-
-    workingPapers: [
-
-      {
-        id: 1,
-        title: "Crime",
-        authors: "S.S. & H.X.",
-        year: "2026",
-        abstract: "",
-        ssrn: "",
-        fullText: "",
-        link: ""
-      },
-
-      {
-        id: 2,
-        title: "Firm Productivity",
-        authors: "H.X. & C.C.",
-        year: "2025",
-        abstract: "",
-        ssrn: "",
-        fullText: "",
-        link: ""
-      },
-
-      {
-        id: 3,
-        title: "Intergenerational Educational Mobility",
-        authors: "W.F., G.L., M.L., Y.S., Y.X., H.X., J.W.",
-        year: "2025",
-        abstract: "",
-        ssrn: "",
-        fullText: "",
-        link: ""
-      }
-
-    ],
 
     /* =======================================================
        Work in Progress
+
+       Only coauthors are listed here because the website
+       already makes clear that these are Haolun Xu's projects.
        ======================================================= */
 
     workInProgress: [
 
       {
         id: 1,
-        title: "Innovation Characteristics of Enterprises",
+
+        title:
+          "Innovation Characteristics of Enterprises",
+
         description: "",
-        status: "In Progress",
-        coauthors: "S.S."
+
+        status:
+          "In Progress",
+
+        coauthors: [
+
+          {
+            name: "S.S.",
+            url: "http://econ.ruc.edu.cn/jszy/38e856abc20543fe9cf22f0699aaf73a.htm"
+          }
+
+        ]
       },
+
 
       {
         id: 2,
-        title: "Crime",
+
+        title:
+          "Crime",
+
         description: "",
-        status: "In Progress",
-        coauthors: "S.S. & C.Y."
+
+        status:
+          "In Progress",
+
+        coauthors: [
+
+          {
+            name: "S.S.",
+            url: "http://econ.ruc.edu.cn/jszy/38e856abc20543fe9cf22f0699aaf73a.htm"
+          },
+
+          {
+            name: "C.Y.",
+            url: ""
+          }
+
+        ]
       },
+
 
       {
         id: 3,
-        title: "Manufacturing Firm Productivity",
+
+        title:
+          "Manufacturing Firm Productivity",
+
         description: "",
-        status: "In Progress",
-        coauthors: ""
+
+        status:
+          "In Progress",
+
+        coauthors: []
       },
+
 
       {
         id: 4,
-        title: "Knowledge",
+
+        title:
+          "Knowledge",
+
         description: "",
-        status: "In Progress",
-        coauthors: ""
+
+        status:
+          "In Progress",
+
+        coauthors: []
       },
+
 
       {
         id: 5,
-        title: "Unintended Outcome of Public Policy",
+
+        title:
+          "Unintended Outcome of Public Policy",
+
         description: "",
-        status: "In Progress",
-        coauthors: "C.C. & S.F."
+
+        status:
+          "In Progress",
+
+        coauthors: [
+
+          {
+            name: "C.C.",
+            url: "https://chenxuanchen-econ.github.io/research.html"
+          },
+
+          {
+            name: "S.F.",
+            url: "https://fansiyuan.weebly.com"
+          }
+
+        ]
       },
+
 
       {
         id: 6,
-        title: "Law Economics",
+
+        title:
+          "Law and Economics",
+
         description: "",
-        status: "In Progress",
-        coauthors: ""
+
+        status:
+          "In Progress",
+
+        coauthors: []
       }
 
     ],
+
 
     /* =======================================================
        Conferences
@@ -241,6 +503,7 @@
           "Presentation"
       },
 
+
       {
         id: 2,
 
@@ -262,6 +525,7 @@
 
     ],
 
+
     /* =======================================================
        Education
        ======================================================= */
@@ -281,6 +545,7 @@
           "2025–Present"
       },
 
+
       {
         id: 2,
 
@@ -296,6 +561,7 @@
 
     ],
 
+
     /* =======================================================
        Contact
        ======================================================= */
@@ -305,18 +571,20 @@
       email:
         "haolun_xu@ruc.edu.cn",
 
-      cv:
-        "",
+      /*
+       * Example:
+       * cv: "cv.pdf"
+       */
+      cv: "",
 
-      github:
-        "",
+      github: "",
 
-      scholar:
-        ""
+      scholar: ""
 
     }
 
   };
+
 
   /* =========================================================
      Public API
@@ -344,8 +612,8 @@
     } catch (e) {
 
       /*
-       * Invalid or unavailable storage:
-       * silently fall back to deployed defaults.
+       * Corrupted or unavailable storage.
+       * Fall back to deployed defaults.
        */
 
     }
@@ -383,7 +651,11 @@
         STORAGE_KEY
       );
 
-    } catch (e) {}
+    } catch (e) {
+
+      /* Ignore storage errors */
+
+    }
 
     return deepClone(DEFAULTS);
 
@@ -415,14 +687,20 @@
     var out =
       deepClone(base);
 
-    if (!override ||
-        typeof override !== "object") {
+
+    if (
+      !override ||
+      typeof override !== "object"
+    ) {
 
       return out;
 
     }
 
-    Object.keys(override).forEach(
+
+    Object.keys(
+      override
+    ).forEach(
       function (key) {
 
         if (
@@ -436,6 +714,7 @@
 
       }
     );
+
 
     return out;
 
