@@ -2,934 +2,2463 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Hao Xu's academic website: research in economic history, regional development, migration, culture, and publications in Energy Economics and Ecological Indicators.">
+  <meta name="author" content="Hao Xu">
+  <meta name="description"
+        content="Hao Xu is a PhD student at Renmin University of China. His research lies at the intersection of development economics and economic history, with a focus on migration, culture, regional development, firms, and long-run economic performance.">
+
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="baidu-site-verification" content="codeva-lpOkKUtorW">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light">
+
   <link rel="canonical" href="https://haolunxu.xyz/">
-  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://haolunxu.xyz/sitemap.xml">
+  <link rel="sitemap"
+        type="application/xml"
+        title="Sitemap"
+        href="https://haolunxu.xyz/sitemap.xml">
+
+  <!-- Open Graph -->
   <meta property="og:type" content="profile">
-  <meta property="og:title" content="Hao Xu | Economic History Research & Publications">
-  <meta property="og:description" content="Academic research and publications by Hao Xu.">
+  <meta property="og:site_name" content="Hao Xu">
+  <meta property="og:title"
+        content="Hao Xu | Development Economics & Economic History">
+  <meta property="og:description"
+        content="Research on migration, culture, regional development, firms, and long-run economic performance.">
   <meta property="og:url" content="https://haolunxu.xyz/">
   <meta property="og:image" content="https://haolunxu.xyz/photo.jpg">
+  <meta property="og:image:alt" content="Portrait of Hao Xu">
+
+  <!-- Twitter / X -->
   <meta name="twitter:card" content="summary">
-  <meta name="theme-color" content="#ffffff">
-  <title>Hao Xu | Economic History Research & Publications</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d1d1f'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Inter,sans-serif' font-size='18' font-weight='600' fill='white'%3EH%3C/text%3E%3C/svg%3E">
+  <meta name="twitter:title"
+        content="Hao Xu | Development Economics & Economic History">
+  <meta name="twitter:description"
+        content="Research on migration, culture, regional development, firms, and long-run economic performance.">
+  <meta name="twitter:image" content="https://haolunxu.xyz/photo.jpg">
+
+  <title>Hao Xu | Development Economics & Economic History</title>
+
+  <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d1d1f'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Arial,sans-serif' font-size='18' font-weight='600' fill='white'%3EH%3C/text%3E%3C/svg%3E">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+  <!-- Structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Hao Xu",
-    "url": "https://haolunxu.xyz/",
-    "image": "https://haolunxu.xyz/photo.jpg",
-    "jobTitle": "PhD Student in Economic History",
-    "affiliation": {
-      "@type": "CollegeOrUniversity",
-      "name": "Renmin University of China"
-    },
-    "knowsAbout": ["Economic History", "Regional Economic Development", "Migration", "Culture"],
-    "mainEntityOfPage": "https://haolunxu.xyz/publications.html"
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://haolunxu.xyz/#person",
+        "name": "Hao Xu",
+        "url": "https://haolunxu.xyz/",
+        "image": "https://haolunxu.xyz/photo.jpg",
+        "jobTitle": "PhD Student in Economic History",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "Renmin University of China"
+        },
+        "knowsAbout": [
+          "Development Economics",
+          "Economic History",
+          "Regional Economic Development",
+          "Migration",
+          "Culture",
+          "Firm Productivity",
+          "Innovation"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://haolunxu.xyz/#website",
+        "url": "https://haolunxu.xyz/",
+        "name": "Hao Xu",
+        "publisher": {
+          "@id": "https://haolunxu.xyz/#person"
+        }
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": "https://haolunxu.xyz/#webpage",
+        "url": "https://haolunxu.xyz/",
+        "name": "Hao Xu | Development Economics & Economic History",
+        "isPartOf": {
+          "@id": "https://haolunxu.xyz/#website"
+        },
+        "mainEntity": {
+          "@id": "https://haolunxu.xyz/#person"
+        }
+      }
+    ]
   }
   </script>
+
   <style>
-    /* ── Variables ───────────────────── */
+    /* =========================================================
+       Variables
+       ========================================================= */
+
     :root {
-      --bg:       #ffffff;
-      --text:     #1d1f21;
-      --muted:    #666666;
-      --border:   #e5e7eb;
-      --accent:   #2563eb;
-      --max-w:    940px;
+      --bg: #ffffff;
+
+      --text: #202124;
+      --muted: #64676c;
+      --subtle: #8a8d91;
+
+      --border: #e4e6e9;
+      --border-soft: #eceef0;
+
+      --accent: #2259c7;
+      --accent-hover: #17479f;
+
+      --surface: #ffffff;
+      --surface-hover: #fafafa;
+
+      --max-w: 940px;
+      --nav-h: 54px;
     }
 
-    /* ── Reset ───────────────────────── */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-    body {
+    /* =========================================================
+       Reset
+       ========================================================= */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
       padding: 0;
-      font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      min-width: 320px;
+
+      font-family:
+        "Inter",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+      font-size: 15px;
+      line-height: 1.65;
+
       color: var(--text);
       background: var(--bg);
-      min-width: 320px;
+
+      text-rendering: optimizeLegibility;
     }
 
+    img {
+      max-width: 100%;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    ::selection {
+      background: rgba(37, 99, 235, .14);
+    }
+
+    /* =========================================================
+       Accessibility
+       ========================================================= */
+
+    .skip-link {
+      position: fixed;
+      top: 8px;
+      left: 8px;
+      z-index: 999;
+
+      padding: 8px 12px;
+
+      font-size: 13px;
+      font-weight: 600;
+
+      color: #ffffff;
+      background: var(--text);
+
+      border-radius: 5px;
+
+      transform: translateY(-150%);
+      transition: transform .15s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    /* =========================================================
+       Layout
+       ========================================================= */
+
     .container {
+      width: 100%;
       max-width: var(--max-w);
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    /* ── Nav ─────────────────────────── */
+    section[id] {
+      scroll-margin-top: 76px;
+    }
+
+    section {
+      padding: 30px 0;
+    }
+
+    h2 {
+      margin-bottom: 16px;
+
+      font-size: 21px;
+      line-height: 1.25;
+      font-weight: 600;
+
+      letter-spacing: -.025em;
+
+      color: var(--text);
+    }
+
+    /* =========================================================
+       Navigation
+       ========================================================= */
+
     nav {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255,255,255,.97);
+
+      background: rgba(255, 255, 255, .96);
       border-bottom: 1px solid var(--border);
-      -webkit-backdrop-filter: blur(6px);
-      backdrop-filter: blur(6px);
+
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
     }
+
     .nav-inner {
+      height: var(--nav-h);
+
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 54px;
+
+      gap: 20px;
     }
+
     .nav-name {
-      font-size: 16px;
+      flex: 0 0 auto;
+
+      font-size: 15px;
       font-weight: 600;
+      line-height: 1;
+
+      letter-spacing: -.015em;
+
       color: var(--text);
       text-decoration: none;
-      letter-spacing: -.02em;
     }
+
     .nav-links {
+      min-width: 0;
+
       display: flex;
       align-items: center;
-      gap: 4px;
+
+      gap: 2px;
+
       list-style: none;
+
+      overflow-x: auto;
+      scrollbar-width: none;
+
+      -webkit-overflow-scrolling: touch;
     }
+
+    .nav-links::-webkit-scrollbar {
+      display: none;
+    }
+
     .nav-links a {
-      padding: 6px 11px;
-      font-size: 14px;
+      position: relative;
+
+      display: block;
+
+      padding: 7px 10px;
+
+      font-size: 13.5px;
+      line-height: 1;
+
       font-weight: 500;
+
       color: var(--muted);
       text-decoration: none;
-      transition: color .15s;
+
       white-space: nowrap;
+
+      transition: color .15s ease;
     }
-    .nav-links a:hover,
-    .nav-links a:focus-visible {
+
+    .nav-links a:hover {
       color: var(--text);
-      outline: none;
     }
+
+    .nav-links a::after {
+      content: "";
+
+      position: absolute;
+
+      left: 10px;
+      right: 10px;
+      bottom: 0;
+
+      height: 1.5px;
+
+      background: var(--text);
+
+      transform: scaleX(0);
+      transform-origin: center;
+
+      transition: transform .15s ease;
+    }
+
     .nav-links a.active-nav {
       color: var(--text);
       font-weight: 600;
     }
 
-    /* ── Sections ────────────────────── */
-    section {
-      padding: 28px 0;
-    }
-    h2 {
-      font-size: 21px;
-      font-weight: 600;
-      letter-spacing: -.03em;
-      color: var(--text);
-      margin-bottom: 14px;
-      border: none;
+    .nav-links a.active-nav::after {
+      transform: scaleX(1);
     }
 
-    /* ── Hero ────────────────────────── */
+    /* =========================================================
+       Hero
+       ========================================================= */
+
     #hero {
-      padding-top: 56px;
+      padding-top: 54px;
       padding-bottom: 28px;
     }
+
     .hero-inner {
       display: flex;
       align-items: flex-start;
-      gap: 28px;
+
+      gap: 30px;
     }
+
     .hero-photo {
-      flex-shrink: 0;
-      width: 96px;
-      height: 96px;
+      flex: 0 0 auto;
+
+      width: 100px;
+      height: 100px;
     }
+
     .hero-avatar {
-      width: 96px;
-      height: 96px;
-      border-radius: 6px;
+      display: block;
+
+      width: 100px;
+      height: 100px;
+
       object-fit: cover;
-      background: #f3f4f6;
+
+      border-radius: 7px;
+
+      background: #f1f2f3;
     }
+
     .hero-text {
       flex: 1;
       min-width: 0;
     }
+
     .hero-name {
+      margin-bottom: 3px;
+
       font-size: 36px;
-      font-weight: 650;
+      line-height: 1.08;
+
+      font-weight: 600;
+
       letter-spacing: -.04em;
+
       color: var(--text);
-      margin-bottom: 2px;
-      line-height: 1.12;
     }
+
     .hero-title {
+      margin-bottom: 1px;
+
       font-size: 16px;
-      font-weight: 450;
+      line-height: 1.5;
+
+      font-weight: 500;
+
+      letter-spacing: -.015em;
+
       color: var(--text);
-      letter-spacing: -.02em;
-      margin-bottom: 0;
     }
+
     .hero-affiliation {
+      margin-bottom: 9px;
+
       font-size: 14px;
+
       color: var(--muted);
-      margin-bottom: 8px;
     }
+
     .hero-bio {
-      font-size: 14px;
-      line-height: 1.55;
+      max-width: 72ch;
+
+      margin-bottom: 0;
+
+      font-size: 14.5px;
+      line-height: 1.62;
+
       color: var(--muted);
-      margin-bottom: 6px;
     }
+
     .hero-links {
       display: flex;
-      gap: 14px;
+      align-items: center;
       flex-wrap: wrap;
-      margin-top: 8px;
+
+      gap: 15px;
+
+      margin-top: 10px;
     }
+
     .hero-links a {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 500;
+
       color: var(--accent);
       text-decoration: none;
     }
+
     .hero-links a:hover {
+      color: var(--accent-hover);
       text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
-    /* ── Research Interests ──────────── */
+    /* =========================================================
+       Research
+       ========================================================= */
+
     #research {
       padding-top: 14px;
+      padding-bottom: 30px;
     }
+
     .research-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+
       gap: 12px;
     }
+
     .research-card {
-      padding: 14px 16px;
-      border: 1px solid #e8e8e8;
+      min-width: 0;
+
+      padding: 15px 16px 14px;
+
+      border: 1px solid var(--border-soft);
       border-radius: 7px;
-      background: #fff;
-      transition: border-color .15s;
+
+      background: var(--surface);
+
+      transition:
+        border-color .15s ease,
+        background .15s ease;
     }
+
     .research-card:hover {
-      border-color: #d4d4d4;
+      border-color: #d8dade;
+      background: var(--surface-hover);
     }
+
     .research-card-title {
-      font-size: 15px;
-      font-weight: 600;
+      font-size: 14.5px;
       line-height: 1.4;
+
+      font-weight: 600;
+
+      letter-spacing: -.015em;
+
       color: var(--text);
-      letter-spacing: -.02em;
     }
+
     .research-card-desc {
       margin-top: 5px;
-      font-size: 13.5px;
-      line-height: 1.5;
+
+      font-size: 13px;
+      line-height: 1.55;
+
       color: var(--muted);
     }
 
-    /* ── Working Papers ──────────────── */
+    /* =========================================================
+       Working Papers
+       ========================================================= */
+
     #working-papers {
-      padding-top: 32px;
+      padding-top: 34px;
       padding-bottom: 38px;
     }
+
     #working-papers h2 {
       margin-bottom: 18px;
     }
+
     .wp-item {
-      padding: 0;
+      position: relative;
     }
+
     .wp-item + .wp-item {
-      margin-top: 22px;
-      padding-top: 22px;
+      margin-top: 23px;
+      padding-top: 23px;
+
       border-top: 1px solid var(--border);
     }
-    .wp-item:last-child {
-      border-bottom: none;
-    }
+
     .wp-header {
       display: flex;
-      align-items: baseline;
+      align-items: flex-start;
       justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
+
+      gap: 20px;
     }
+
+    .wp-main {
+      min-width: 0;
+      flex: 1;
+    }
+
     .wp-title {
-      font-size: 18px;
+      font-size: 17.5px;
+      line-height: 1.35;
+
       font-weight: 600;
-      letter-spacing: -.025em;
+
+      letter-spacing: -.022em;
+
       color: var(--text);
-      line-height: 1.3;
     }
+
     .wp-title a {
       color: inherit;
       text-decoration: none;
-      transition: color .15s;
     }
+
     .wp-title a:hover {
       color: var(--accent);
     }
+
     .wp-authors {
-      font-size: 14px;
-      color: var(--muted);
       margin-top: 3px;
+
+      font-size: 13.5px;
+      line-height: 1.5;
+
+      color: var(--muted);
     }
+
     .wp-status {
-      font-size: 13px;
-      color: var(--muted);
+      flex: 0 0 auto;
+
+      padding-top: 2px;
+
+      font-size: 12.5px;
+      line-height: 1.4;
+
       font-style: italic;
+
+      color: var(--subtle);
+
       white-space: nowrap;
-      margin-top: 3px;
     }
+
     .wp-links {
       display: flex;
-      gap: 12px;
       flex-wrap: wrap;
+
+      gap: 13px;
+
       margin-top: 8px;
     }
-    .wp-link {
-      font-size: 13px;
+
+    .wp-link,
+    .wp-abstract-toggle {
+      font-size: 12.75px;
+      line-height: 1.4;
+
       font-weight: 500;
+
       color: var(--accent);
       text-decoration: none;
     }
-    .wp-link:hover {
-      text-decoration: underline;
-    }
-    .wp-abstract-toggle {
-      display: inline-block;
-      margin-top: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--accent);
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 2px 0;
-      font-family: inherit;
-    }
+
+    .wp-link:hover,
     .wp-abstract-toggle:hover {
+      color: var(--accent-hover);
+
       text-decoration: underline;
-    }
-    .wp-abstract {
-      display: none;
-      margin-top: 8px;
-      font-size: 14px;
-      line-height: 1.55;
-      color: var(--muted);
-    }
-    .wp-abstract.open {
-      display: block;
+      text-underline-offset: 3px;
     }
 
-    /* ── Publications ─────────────────── */
+    .wp-abstract-toggle {
+      display: inline-block;
+
+      margin-top: 8px;
+      padding: 0;
+
+      border: 0;
+      background: transparent;
+
+      cursor: pointer;
+    }
+
+    .wp-abstract {
+      max-width: 78ch;
+
+      margin-top: 9px;
+
+      font-size: 13.5px;
+      line-height: 1.65;
+
+      color: var(--muted);
+    }
+
+    /* =========================================================
+       Publications
+       ========================================================= */
+
     #publications {
       padding-top: 36px;
-      padding-bottom: 28px;
+      padding-bottom: 30px;
     }
+
     .pub-item {
-      padding: 0;
       font-size: 14px;
       line-height: 1.6;
     }
+
     .pub-item + .pub-item {
-      margin-top: 18px;
+      margin-top: 20px;
     }
-    .pub-item .pub-title {
-      font-size: 17px;
+
+    .pub-title {
+      font-size: 16.5px;
+      line-height: 1.38;
+
       font-weight: 600;
-      letter-spacing: -.025em;
-      color: var(--text);
-      line-height: 1.3;
-    }
-    .pub-item .pub-authors {
-      font-size: 14px;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-    .pub-item .pub-authors strong {
-      font-weight: 600;
+
+      letter-spacing: -.02em;
+
       color: var(--text);
     }
-    .pub-item .pub-meta {
-      font-size: 14px;
+
+    .pub-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .pub-title a:hover {
+      color: var(--accent);
+    }
+
+    .pub-authors {
+      margin-top: 3px;
+
+      font-size: 13.5px;
+
       color: var(--muted);
+    }
+
+    .pub-authors strong {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .pub-meta {
       margin-top: 1px;
+
+      font-size: 13.5px;
+
+      color: var(--muted);
     }
-    .pub-item .pub-journal {
+
+    .pub-journal {
       font-style: italic;
     }
-    .pub-item .pub-links {
-      font-size: 14px;
+
+    .pub-links {
+      margin-top: 2px;
+
+      font-size: 13px;
+
       color: var(--muted);
-      margin-top: 1px;
     }
-    .pub-item .pub-link {
-      font-size: 14px;
+
+    .pub-link {
+      font-size: 13px;
       font-weight: 500;
+
       color: var(--accent);
       text-decoration: none;
     }
-    .pub-item .pub-link:hover {
+
+    .pub-link:hover {
+      color: var(--accent-hover);
+
       text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
-    /* ── Work in Progress ────────────── */
+    /* =========================================================
+       Work in Progress
+       ========================================================= */
+
+    #work-in-progress {
+      padding-top: 28px;
+      padding-bottom: 32px;
+    }
+
     .wip-list {
       display: grid;
+
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      column-gap: 48px;
-      row-gap: 20px;
+
+      column-gap: 44px;
+      row-gap: 19px;
     }
+
     .wip-item-simple {
       min-width: 0;
     }
-    .wip-item-simple .wip-item-title {
-      font-size: 15.5px;
+
+    .wip-item-title {
+      font-size: 14.5px;
+      line-height: 1.48;
+
       font-weight: 600;
-      line-height: 1.4;
+
+      letter-spacing: -.01em;
+
       color: var(--text);
     }
-    .wip-item-simple .wip-item-coauthors {
+
+    .wip-item-coauthors {
       margin-top: 3px;
-      font-size: 13.5px;
-      line-height: 1.4;
+
+      font-size: 13px;
+      line-height: 1.45;
+
       color: var(--muted);
     }
 
-    /* ── Conferences ─────────────────── */
+    /* =========================================================
+       Conferences
+       ========================================================= */
+
+    #conferences {
+      padding-top: 32px;
+      padding-bottom: 30px;
+    }
+
     .conf-list {
       display: flex;
       flex-direction: column;
-      gap: 0;
     }
+
     .conf-item {
-      display: flex;
-      gap: 16px;
+      display: grid;
+
+      grid-template-columns: 54px minmax(0, 1fr);
+
+      column-gap: 15px;
+
       padding: 5px 0;
-      font-size: 14px;
+
+      font-size: 13.5px;
       line-height: 1.55;
     }
+
     .conf-year {
-      flex-shrink: 0;
-      width: 52px;
       color: var(--muted);
       font-weight: 500;
     }
+
     .conf-content {
       min-width: 0;
     }
-    .conf-content .conf-title {
+
+    .conf-title {
       font-weight: 600;
       color: var(--text);
     }
-    .conf-content .conf-detail {
+
+    .conf-detail {
       color: var(--muted);
     }
 
-    /* ── Education ───────────────────── */
+    /* =========================================================
+       Education
+       ========================================================= */
+
+    #education {
+      padding-top: 32px;
+      padding-bottom: 27px;
+    }
+
     .edu-list {
       display: flex;
       flex-direction: column;
     }
+
     .edu-item {
-      padding: 8px 0;
-      font-size: 15px;
+      padding: 6px 0;
+
+      font-size: 14px;
       line-height: 1.55;
     }
+
+    .edu-school,
     .edu-degree {
       font-weight: 600;
+
       color: var(--text);
     }
-    .edu-school {
-      font-weight: 600;
-      color: var(--text);
-    }
+
     .edu-year {
       color: var(--muted);
     }
 
-    /* ── Contact ─────────────────────── */
+    /* =========================================================
+       Contact
+       ========================================================= */
+
     #contact {
-      padding-top: 20px;
-      padding-bottom: 20px;
+      padding-top: 27px;
+      padding-bottom: 36px;
     }
+
     .contact-links {
       display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-    .contact-link {
-      display: inline-flex;
       align-items: center;
-      gap: 6px;
-      font-size: 15px;
+      flex-wrap: wrap;
+
+      gap: 8px 18px;
+    }
+
+    .contact-link {
+      font-size: 13.5px;
       font-weight: 500;
+
       color: var(--accent);
       text-decoration: none;
     }
+
     .contact-link:hover {
+      color: var(--accent-hover);
+
       text-decoration: underline;
-    }
-    .contact-link svg {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-      fill: currentColor;
+      text-underline-offset: 3px;
     }
 
-    /* ── Footer ──────────────────────── */
+    /* =========================================================
+       Footer
+       ========================================================= */
+
     footer {
-      padding: 22px 0 18px;
-      text-align: center;
       border-top: 1px solid var(--border);
+
+      padding: 19px 0 21px;
     }
+
     .footer-inner {
-      font-size: 13px;
-      color: var(--muted);
-      letter-spacing: -.01em;
+      font-size: 12.5px;
+      line-height: 1.5;
+
+      color: var(--subtle);
+
+      text-align: center;
     }
 
-    /* ── Responsive: ≤768px ──────────── */
+    /* =========================================================
+       Tablet
+       ========================================================= */
+
     @media (max-width: 768px) {
-      .container { padding: 0 18px; }
-      .research-grid { grid-template-columns: repeat(2, 1fr); }
-      .hero-inner { flex-direction: column; align-items: center; text-align: center; gap: 18px; }
-      .hero-photo { width: 80px; height: 80px; }
-      .hero-avatar { width: 80px; height: 80px; }
-      .hero-name { font-size: 30px; }
-      .nav-links { gap: 0; overflow-x: auto; scrollbar-width: none; }
-      .nav-links::-webkit-scrollbar { display: none; }
-      .nav-links a { padding: 6px 8px; font-size: 13px; }
-      .wp-header { flex-direction: column; gap: 0; }
-      .hero-links { justify-content: center; }
-      .conf-year { width: 44px; }
-    }
 
-    /* ── Responsive: ≤480px ──────────── */
-    @media (max-width: 480px) {
-      .container { padding: 0 16px; }
-      .research-grid { grid-template-columns: 1fr; }
-      .hero-name { font-size: 28px; }
-      .hero-photo { width: 72px; height: 72px; }
-      .hero-avatar { width: 72px; height: 72px; }
-      h2 { font-size: 19px; }
-      .nav-name { font-size: 14px; }
-      .nav-links a { font-size: 12px; padding: 6px 7px; }
-      .hero-links { flex-direction: column; gap: 6px; }
-      .conf-year { width: 40px; font-size: 13px; }
-    }
+      .container {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
 
-    @media (max-width: 650px) {
-      .wip-list {
-        grid-template-columns: 1fr;
-        row-gap: 16px;
+      .nav-inner {
+        gap: 12px;
+      }
+
+      .nav-links a {
+        padding-left: 8px;
+        padding-right: 8px;
+
+        font-size: 12.5px;
+      }
+
+      .nav-links a::after {
+        left: 8px;
+        right: 8px;
+      }
+
+      #hero {
+        padding-top: 42px;
+      }
+
+      .hero-inner {
+        gap: 23px;
+      }
+
+      .hero-photo,
+      .hero-avatar {
+        width: 88px;
+        height: 88px;
+      }
+
+      .hero-name {
+        font-size: 31px;
+      }
+
+      .research-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .wp-header {
+        gap: 14px;
       }
     }
 
+    /* =========================================================
+       Small mobile
+       ========================================================= */
+
+    @media (max-width: 560px) {
+
+      .container {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      section {
+        padding-top: 25px;
+        padding-bottom: 25px;
+      }
+
+      h2 {
+        font-size: 19px;
+      }
+
+      .nav-inner {
+        height: 52px;
+      }
+
+      .nav-name {
+        font-size: 13px;
+      }
+
+      .nav-links a {
+        padding: 7px;
+
+        font-size: 11.75px;
+      }
+
+      .nav-links a::after {
+        left: 7px;
+        right: 7px;
+      }
+
+      #hero {
+        padding-top: 34px;
+        padding-bottom: 22px;
+      }
+
+      .hero-inner {
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 15px;
+      }
+
+      .hero-photo,
+      .hero-avatar {
+        width: 78px;
+        height: 78px;
+      }
+
+      .hero-name {
+        font-size: 29px;
+      }
+
+      .hero-title {
+        font-size: 15px;
+      }
+
+      .hero-bio {
+        font-size: 13.75px;
+      }
+
+      .hero-links {
+        gap: 12px;
+      }
+
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .wp-header {
+        flex-direction: column;
+
+        gap: 1px;
+      }
+
+      .wp-status {
+        padding-top: 0;
+      }
+
+      .wp-title {
+        font-size: 16.5px;
+      }
+
+      .wip-list {
+        grid-template-columns: 1fr;
+
+        row-gap: 16px;
+      }
+
+      .conf-item {
+        grid-template-columns: 43px minmax(0, 1fr);
+
+        column-gap: 10px;
+      }
+    }
+
+    /* =========================================================
+       Reduced motion
+       ========================================================= */
+
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important;
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: .01ms !important;
       }
     }
   </style>
 </head>
+
 <body>
 
-  <!-- Navigation -->
-  <nav>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- =======================================================
+       Navigation
+       ======================================================= -->
+
+  <nav aria-label="Primary navigation">
     <div class="container nav-inner">
-      <a href="#hero" class="nav-name" id="navName">Hao Xu</a>
+
+      <a href="#hero"
+         class="nav-name"
+         id="navName">
+        Hao Xu
+      </a>
+
       <ul class="nav-links">
-        <li><a href="#research">Research</a></li>
-        <li><a href="#working-papers">Papers</a></li>
-        <li><a href="#publications">Publications</a></li>
-        <li><a href="#conferences">Talks</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#contact">Contact</a></li>
+
+        <li>
+          <a href="#research">
+            Research
+          </a>
+        </li>
+
+        <li>
+          <a href="#working-papers">
+            Papers
+          </a>
+        </li>
+
+        <li>
+          <a href="#publications">
+            Publications
+          </a>
+        </li>
+
+        <li>
+          <a href="#conferences">
+            Talks
+          </a>
+        </li>
+
+        <li>
+          <a href="#education">
+            Education
+          </a>
+        </li>
+
+        <li>
+          <a href="#contact">
+            Contact
+          </a>
+        </li>
+
       </ul>
     </div>
   </nav>
 
-  <main>
+  <!-- =======================================================
+       Main
+       ======================================================= -->
+
+  <main id="main-content">
 
     <!-- Hero -->
+
     <section id="hero">
       <div class="container hero-inner">
-        <div class="hero-photo" id="heroPhotoArea"></div>
+
+        <div class="hero-photo"
+             id="heroPhotoArea">
+        </div>
+
         <div class="hero-text">
-          <h1 class="hero-name" id="heroName"></h1>
-          <p class="hero-title" id="heroTitle"></p>
-          <p class="hero-affiliation" id="heroAffiliation"></p>
-          <p class="hero-bio" id="heroBio"></p>
+
+          <h1 class="hero-name"
+              id="heroName">
+          </h1>
+
+          <p class="hero-title"
+             id="heroTitle">
+          </p>
+
+          <p class="hero-affiliation"
+             id="heroAffiliation">
+          </p>
+
+          <p class="hero-bio"
+             id="heroBio">
+          </p>
+
           <div class="hero-links">
-            <a href="#" id="cvLink">CV</a>
-            <a href="#" id="emailLink">Email</a>
-            <a href="#" id="scholarLink">Google Scholar</a>
+
+            <a href="#"
+               id="cvLink">
+              CV
+            </a>
+
+            <a href="#"
+               id="emailLink">
+              Email
+            </a>
+
+            <a href="#"
+               id="scholarLink">
+              Google Scholar
+            </a>
+
           </div>
+
         </div>
       </div>
     </section>
 
     <!-- Research Interests -->
+
     <section id="research">
       <div class="container">
+
         <h2>Research Interests</h2>
-        <div id="researchList" class="research-grid"></div>
+
+        <div id="researchList"
+             class="research-grid">
+        </div>
+
       </div>
     </section>
 
     <!-- Working Papers -->
+
     <section id="working-papers">
       <div class="container">
+
         <h2>Working Papers</h2>
-        <div id="wpList"></div>
+
+        <div id="wpList">
+        </div>
+
       </div>
     </section>
 
     <!-- Publications -->
+
     <section id="publications">
       <div class="container">
+
         <h2>Publications</h2>
-        <div id="pubList"></div>
+
+        <div id="pubList">
+        </div>
+
       </div>
     </section>
 
     <!-- Work in Progress -->
+
     <section id="work-in-progress">
       <div class="container">
+
         <h2>Work in Progress</h2>
-        <div class="wip-list" id="wipGrid"></div>
+
+        <div class="wip-list"
+             id="wipGrid">
+        </div>
+
       </div>
     </section>
 
-    <!-- Conferences & Talks -->
+    <!-- Conferences -->
+
     <section id="conferences">
       <div class="container">
+
         <h2>Conferences &amp; Talks</h2>
-        <div class="conf-list" id="confList"></div>
+
+        <div class="conf-list"
+             id="confList">
+        </div>
+
       </div>
     </section>
 
     <!-- Education -->
+
     <section id="education">
       <div class="container">
+
         <h2>Education</h2>
-        <div class="edu-list" id="eduList"></div>
+
+        <div class="edu-list"
+             id="eduList">
+        </div>
+
       </div>
     </section>
 
     <!-- Contact -->
+
     <section id="contact">
       <div class="container">
+
         <h2>Contact</h2>
-        <div class="contact-links" id="contactLinks"></div>
+
+        <div class="contact-links"
+             id="contactLinks">
+        </div>
+
       </div>
     </section>
 
   </main>
 
+  <!-- =======================================================
+       Footer
+       ======================================================= -->
+
   <footer>
-    <div class="container footer-inner">&copy; <span id="footerYear"></span> <span id="footerName"></span></div>
+    <div class="container footer-inner">
+      &copy;
+      <span id="footerYear"></span>
+      <span id="footerName"></span>
+    </div>
   </footer>
 
+  <!-- =======================================================
+       Noscript fallback
+       ======================================================= -->
+
   <noscript>
-    <main>
-      <section>
-        <h1>Hao Xu — PhD Student in Economic History</h1>
-        <p>Hao Xu is a PhD student in Economic History at Renmin University of China. His research examines regional economic development, migration, culture, and long-term economic performance.</p>
-        <h2>Selected Publications</h2>
-        <article>
-          <h3>How do health shocks affect household energy poverty?</h3>
-          <p>Fan, W.; Xu, H.; Cheng, S.; Yang, F. <i>Energy Economics</i>, 2025. <a href="https://doi.org/10.1016/j.eneco.2025.108884">https://doi.org/10.1016/j.eneco.2025.108884</a></p>
-        </article>
-        <article>
-          <h3>Global intercountry croplands' greenhouse gas emissions differences and their potential drivers from economic levels perspective</h3>
-          <p>Gao, M.; Xu, H.; Ma, M.; Gao, G.; Chen, X.; Chen, J.; Liu, X.; Qi, L. <i>Ecological Indicators</i>, 2024. <a href="https://doi.org/10.1016/j.ecolind.2024.112635">https://doi.org/10.1016/j.ecolind.2024.112635</a></p>
-        </article>
-      </section>
-    </main>
+    <section>
+      <div class="container">
+        <h2>Hao Xu</h2>
+        <p>
+          PhD student at Renmin University of China.
+          Research interests include development economics,
+          economic history, migration, culture,
+          and regional economic development.
+        </p>
+      </div>
+    </section>
   </noscript>
 
-  <!-- Data layer -->
+  <!-- =======================================================
+       Data
+       ======================================================= -->
+
   <script src="data.js"></script>
 
-  <!-- Render engine -->
+  <!-- =======================================================
+       Renderer
+       ======================================================= -->
+
   <script>
   (function () {
+
+    "use strict";
+
     var data = window.loadSiteData();
 
-    /* ── Nav ─────────────────────────── */
-    document.getElementById('navName').textContent = data.personal.name;
-    document.title = data.personal.name + ' | Economic History Research';
+    /* =======================================================
+       Helpers
+       ======================================================= */
 
-    /* ── Hero ────────────────────────── */
-    document.getElementById('heroName').textContent  = data.personal.name;
-    document.getElementById('heroTitle').textContent = data.personal.title;
-    // Affiliation — derive from education data
-    var affEl = document.getElementById('heroAffiliation');
-    if (data.education.length > 0) {
-      affEl.textContent = data.education[0].school;
+    function escHTML(value) {
+      var div = document.createElement("div");
+      div.textContent = value == null ? "" : String(value);
+      return div.innerHTML;
     }
-    document.getElementById('heroBio').textContent   = data.personal.bio;
 
-    var pa = document.getElementById('heroPhotoArea');
+    function escAttr(value) {
+      return String(value == null ? "" : value)
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+
+    function setExternalLink(el, href) {
+      el.href = href;
+      el.target = "_blank";
+      el.rel = "noopener noreferrer";
+    }
+
+    /* =======================================================
+       Navigation
+       ======================================================= */
+
+    document.getElementById("navName").textContent =
+      data.personal.name;
+
+    document.title =
+      data.personal.name +
+      " | Development Economics & Economic History";
+
+    /* =======================================================
+       Hero
+       ======================================================= */
+
+    document.getElementById("heroName").textContent =
+      data.personal.name;
+
+    document.getElementById("heroTitle").textContent =
+      data.personal.title || "";
+
+    var affEl =
+      document.getElementById("heroAffiliation");
+
+    if (data.education && data.education.length > 0) {
+      affEl.textContent =
+        data.education[0].school || "";
+    }
+
+    document.getElementById("heroBio").textContent =
+      data.personal.bio || "";
+
+    /* Photo */
+
+    var photoArea =
+      document.getElementById("heroPhotoArea");
+
     if (data.personal.avatar) {
-      var img = document.createElement('img');
-      img.className = 'hero-avatar';
-      img.src = data.personal.avatar;
-      img.alt = data.personal.name;
-      pa.appendChild(img);
-    }
 
-    // Hero quick links — only show when data exists
-    var c = data.contact;
-    var heroLinks = document.querySelector('.hero-links');
-    var hasAnyLink = false;
+      var img =
+        document.createElement("img");
 
-    // CV — hidden by default (no CV field in data yet)
-    var cvEl = document.getElementById('cvLink');
-    cvEl.style.display = 'none';
+      img.className =
+        "hero-avatar";
 
-    var emailEl = document.getElementById('emailLink');
-    if (c.email) {
-      emailEl.href = 'mailto:' + escAttr(c.email);
-      hasAnyLink = true;
+      img.src =
+        data.personal.avatar;
+
+      img.alt =
+        "Portrait of " + data.personal.name;
+
+      img.width = 100;
+      img.height = 100;
+
+      img.decoding =
+        "async";
+
+      img.fetchPriority =
+        "high";
+
+      photoArea.appendChild(img);
+
     } else {
-      emailEl.style.display = 'none';
+
+      photoArea.style.display =
+        "none";
     }
 
-    var scholarEl = document.getElementById('scholarLink');
-    if (c.scholar) {
-      scholarEl.href = escAttr(c.scholar);
-      scholarEl.target = '_blank';
-      scholarEl.rel = 'noopener';
-      hasAnyLink = true;
+    /* =======================================================
+       Hero links
+       ======================================================= */
+
+    var contact =
+      data.contact || {};
+
+    var heroLinks =
+      document.querySelector(".hero-links");
+
+    var hasHeroLink =
+      false;
+
+    var cvEl =
+      document.getElementById("cvLink");
+
+    if (contact.cv) {
+
+      setExternalLink(
+        cvEl,
+        contact.cv
+      );
+
+      hasHeroLink =
+        true;
+
     } else {
-      scholarEl.style.display = 'none';
+
+      cvEl.style.display =
+        "none";
     }
 
-    if (!hasAnyLink) {
-      heroLinks.style.display = 'none';
+    var emailEl =
+      document.getElementById("emailLink");
+
+    if (contact.email) {
+
+      emailEl.href =
+        "mailto:" + contact.email;
+
+      hasHeroLink =
+        true;
+
+    } else {
+
+      emailEl.style.display =
+        "none";
     }
 
-    /* ── Research ────────────────────── */
-    var rList = document.getElementById('researchList');
-    data.research.forEach(function (r) {
-      var card = document.createElement('div');
-      card.className = 'research-card';
-      var desc = r.description ? '<div class="research-card-desc">' + escHTML(r.description) + '</div>' : '';
+    var scholarEl =
+      document.getElementById("scholarLink");
+
+    if (contact.scholar) {
+
+      setExternalLink(
+        scholarEl,
+        contact.scholar
+      );
+
+      hasHeroLink =
+        true;
+
+    } else {
+
+      scholarEl.style.display =
+        "none";
+    }
+
+    if (!hasHeroLink) {
+      heroLinks.style.display =
+        "none";
+    }
+
+    /* =======================================================
+       Research
+       ======================================================= */
+
+    var researchList =
+      document.getElementById("researchList");
+
+    (data.research || []).forEach(function (r) {
+
+      var card =
+        document.createElement("article");
+
+      card.className =
+        "research-card";
+
+      var desc =
+        r.description
+          ? '<div class="research-card-desc">' +
+            escHTML(r.description) +
+            "</div>"
+          : "";
+
       card.innerHTML =
-        '<div class="research-card-title">' + escHTML(r.title) + '</div>' + desc;
-      rList.appendChild(card);
+        '<div class="research-card-title">' +
+        escHTML(r.title) +
+        "</div>" +
+        desc;
+
+      researchList.appendChild(card);
     });
 
-    /* ── Working Papers ──────────────── */
-    renderWorkingPapers('wpList', data.workingPapers);
+    /* =======================================================
+       Working Papers
+       ======================================================= */
 
-    /* ── Publications ────────────────── */
-    renderPublications('pubList', data.publications);
+    renderWorkingPapers(
+      "wpList",
+      data.workingPapers || []
+    );
 
-    /* ── Work in Progress ────────────── */
-    var wipSection = document.getElementById('work-in-progress');
-    var wipGrid = document.getElementById('wipGrid');
-    if (data.workInProgress.length === 0) {
-      wipSection.style.display = 'none';
+    /* =======================================================
+       Publications
+       ======================================================= */
+
+    renderPublications(
+      "pubList",
+      data.publications || []
+    );
+
+    /* =======================================================
+       Work in Progress
+       ======================================================= */
+
+    var wipSection =
+      document.getElementById("work-in-progress");
+
+    var wipGrid =
+      document.getElementById("wipGrid");
+
+    var wipItems =
+      data.workInProgress || [];
+
+    if (wipItems.length === 0) {
+
+      wipSection.style.display =
+        "none";
+
     } else {
-      data.workInProgress.forEach(function (w) {
-        var div = document.createElement('div');
-        div.className = 'wip-item-simple';
-        var co = w.coauthors ? '<div class="wip-item-coauthors">with ' + escHTML(w.coauthors) + '</div>' : '';
-        div.innerHTML =
-          '<div class="wip-item-title">' + escHTML(w.title) + '</div>' + co;
-        wipGrid.appendChild(div);
+
+      wipItems.forEach(function (w) {
+
+        var item =
+          document.createElement("article");
+
+        item.className =
+          "wip-item-simple";
+
+        var coauthors =
+          w.coauthors
+            ? '<div class="wip-item-coauthors">with ' +
+              escHTML(w.coauthors) +
+              "</div>"
+            : "";
+
+        item.innerHTML =
+          '<div class="wip-item-title">' +
+          escHTML(w.title) +
+          "</div>" +
+          coauthors;
+
+        wipGrid.appendChild(item);
       });
     }
 
-    /* ── Conferences ─────────────────── */
-    var confSection = document.getElementById('conferences');
-    var confList = document.getElementById('confList');
-    if (data.conferences.length === 0) {
-      confSection.style.display = 'none';
+    /* =======================================================
+       Conferences
+       ======================================================= */
+
+    var confSection =
+      document.getElementById("conferences");
+
+    var confList =
+      document.getElementById("confList");
+
+    var conferences =
+      data.conferences || [];
+
+    if (conferences.length === 0) {
+
+      confSection.style.display =
+        "none";
+
     } else {
-      data.conferences.forEach(function (conf) {
-        var div = document.createElement('div');
-        div.className = 'conf-item';
-        div.innerHTML =
-          '<div class="conf-year">' + escHTML(conf.date) + '</div>' +
+
+      conferences.forEach(function (conf) {
+
+        var item =
+          document.createElement("div");
+
+        item.className =
+          "conf-item";
+
+        var details =
+          [];
+
+        if (conf.conference) {
+          details.push(
+            escHTML(conf.conference)
+          );
+        }
+
+        if (conf.location) {
+          details.push(
+            escHTML(conf.location)
+          );
+        }
+
+        item.innerHTML =
+          '<div class="conf-year">' +
+          escHTML(conf.date || "") +
+          "</div>" +
+
           '<div class="conf-content">' +
-            '<span class="conf-title">' + escHTML(conf.title) + '</span>' +
-            ' <span class="conf-detail">&mdash; ' + escHTML(conf.conference) + ', ' + escHTML(conf.location) + '</span>' +
-          '</div>';
-        confList.appendChild(div);
+
+            '<span class="conf-title">' +
+            escHTML(conf.title || "") +
+            "</span>" +
+
+            (
+              details.length
+                ? ' <span class="conf-detail">&mdash; ' +
+                  details.join(", ") +
+                  "</span>"
+                : ""
+            ) +
+
+          "</div>";
+
+        confList.appendChild(item);
       });
     }
 
-    /* ── Education ───────────────────── */
-    var eduList = document.getElementById('eduList');
-    data.education.forEach(function (e) {
-      var div = document.createElement('div');
-      div.className = 'edu-item';
-      div.innerHTML =
-        '<span class="edu-school">' + escHTML(e.school) + '</span>' +
-        ' &mdash; <span class="edu-degree">' + escHTML(e.degree) + '</span>' +
-        ', <span class="edu-year">' + escHTML(e.year) + '</span>';
-      eduList.appendChild(div);
+    /* =======================================================
+       Education
+       ======================================================= */
+
+    var eduList =
+      document.getElementById("eduList");
+
+    (data.education || []).forEach(function (e) {
+
+      var item =
+        document.createElement("div");
+
+      item.className =
+        "edu-item";
+
+      item.innerHTML =
+        '<span class="edu-school">' +
+        escHTML(e.school || "") +
+        "</span>" +
+
+        " &mdash; " +
+
+        '<span class="edu-degree">' +
+        escHTML(e.degree || "") +
+        "</span>" +
+
+        (
+          e.year
+            ? ', <span class="edu-year">' +
+              escHTML(e.year) +
+              "</span>"
+            : ""
+        );
+
+      eduList.appendChild(item);
     });
 
-    /* ── Contact ─────────────────────── */
-    var links = document.getElementById('contactLinks');
-    var linkHTML = '';
-    if (c.email) {
-      linkHTML +=
-        '<a href="mailto:' + escAttr(c.email) + '" class="contact-link">' +
-        '<svg viewBox="0 0 24 24"><path d="M1.5 4.75A1.75 1.75 0 013.25 3h17.5c.966 0 1.75.784 1.75 1.75v14.5A1.75 1.75 0 0120.75 21H3.25a1.75 1.75 0 01-1.75-1.75V4.75zm1.75-.25a.25.25 0 00-.25.25v.616l8.356 7.115a1 1 0 001.288 0L21 5.366V4.75a.25.25 0 00-.25-.25H3.25zM21 6.973l-7.544 6.425a2.5 2.5 0 01-2.912 0L3 6.973v12.277c0 .138.112.25.25.25h17.5a.25.25 0 00.25-.25V6.973z"/></svg>' +
-        escHTML(c.email) + '</a>';
-    }
-    if (c.github) {
-      linkHTML +=
-        '<a href="' + escAttr(c.github) + '" target="_blank" rel="noopener" class="contact-link">' +
-        '<svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>' +
-        'GitHub</a>';
-    }
-    if (c.scholar) {
-      linkHTML +=
-        '<a href="' + escAttr(c.scholar) + '" target="_blank" rel="noopener" class="contact-link">' +
-        '<svg viewBox="0 0 24 24"><path d="M12 2L1 7l11 5 9-4.1V16h2V7l-2.5-1.1L12 2zm0 2.18l7.42 3.37L12 10.4l-7.42-3.37L12 4.18zM4 11v4.45c0 .55.28 1.05.75 1.35L12 21l7.25-4.2c.47-.3.75-.8.75-1.35V11l-2 1v3.45L12 19l-6-3.55V12l-2-1z"/></svg>' +
-        'Google Scholar</a>';
-    }
-    links.innerHTML = linkHTML;
+    /* =======================================================
+       Contact
+       ======================================================= */
 
-    /* ── Footer ──────────────────────── */
-    document.getElementById('footerYear').textContent = '2026';
-    document.getElementById('footerName').textContent = data.personal.name;
+    var contactLinks =
+      document.getElementById("contactLinks");
 
-    /* ── Scroll-spy: nav active state ── */
-    (function () {
-      var sections = document.querySelectorAll('section[id]');
-      var navLinks = document.querySelectorAll('.nav-links a');
+    if (contact.email) {
 
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            var id = entry.target.id;
-            navLinks.forEach(function (link) {
-              var isActive = link.getAttribute('href') === '#' + id;
-              link.classList.toggle('active-nav', isActive);
+      var email =
+        document.createElement("a");
+
+      email.className =
+        "contact-link";
+
+      email.href =
+        "mailto:" + contact.email;
+
+      email.textContent =
+        contact.email;
+
+      contactLinks.appendChild(email);
+    }
+
+    if (contact.github) {
+
+      var github =
+        document.createElement("a");
+
+      github.className =
+        "contact-link";
+
+      github.textContent =
+        "GitHub";
+
+      setExternalLink(
+        github,
+        contact.github
+      );
+
+      contactLinks.appendChild(github);
+    }
+
+    if (contact.scholar) {
+
+      var scholar =
+        document.createElement("a");
+
+      scholar.className =
+        "contact-link";
+
+      scholar.textContent =
+        "Google Scholar";
+
+      setExternalLink(
+        scholar,
+        contact.scholar
+      );
+
+      contactLinks.appendChild(scholar);
+    }
+
+    /* =======================================================
+       Footer
+       ======================================================= */
+
+    document.getElementById("footerYear").textContent =
+      new Date().getFullYear();
+
+    document.getElementById("footerName").textContent =
+      data.personal.name;
+
+    /* =======================================================
+       Scroll spy
+       
+       Explicit navigation regions:
+       
+       Publications includes Work in Progress.
+       
+       This avoids the problem where short sections near the
+       bottom of the document never cross a fixed observer line.
+       ======================================================= */
+
+    initScrollSpy();
+
+    function initScrollSpy() {
+
+      var navLinks =
+        Array.prototype.slice.call(
+          document.querySelectorAll(".nav-links a")
+        );
+
+      var navRegions = [
+
+        {
+          navId: "research",
+          sections: ["research"]
+        },
+
+        {
+          navId: "working-papers",
+          sections: ["working-papers"]
+        },
+
+        {
+          navId: "publications",
+          sections: [
+            "publications",
+            "work-in-progress"
+          ]
+        },
+
+        {
+          navId: "conferences",
+          sections: ["conferences"]
+        },
+
+        {
+          navId: "education",
+          sections: ["education"]
+        },
+
+        {
+          navId: "contact",
+          sections: ["contact"]
+        }
+
+      ];
+
+      var ticking =
+        false;
+
+      var currentId =
+        "";
+
+      var lastScrollY =
+        window.scrollY;
+
+      function setActive(id) {
+
+        if (!id || id === currentId) {
+          return;
+        }
+
+        currentId =
+          id;
+
+        navLinks.forEach(function (link) {
+
+          var active =
+            link.getAttribute("href") === "#" + id;
+
+          link.classList.toggle(
+            "active-nav",
+            active
+          );
+
+          if (active) {
+
+            link.setAttribute(
+              "aria-current",
+              "location"
+            );
+
+            /*
+             * Keep the active item visible on narrow screens
+             * without moving the page vertically.
+             */
+            link.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "nearest"
             });
+
+          } else {
+
+            link.removeAttribute(
+              "aria-current"
+            );
           }
         });
-      }, { rootMargin: '-30% 0px -60% 0px' });
+      }
 
-      sections.forEach(function (sec) { observer.observe(sec); });
-    })();
+      function regionMetrics(region, focusY) {
 
-    /* ── Shared: Working Papers renderer ── */
+        var top =
+          Infinity;
+
+        var bottom =
+          -Infinity;
+
+        var exists =
+          false;
+
+        region.sections.forEach(function (id) {
+
+          var section =
+            document.getElementById(id);
+
+          if (!section ||
+              section.offsetParent === null) {
+            return;
+          }
+
+          var rect =
+            section.getBoundingClientRect();
+
+          top =
+            Math.min(top, rect.top);
+
+          bottom =
+            Math.max(bottom, rect.bottom);
+
+          exists =
+            true;
+        });
+
+        if (!exists) {
+          return null;
+        }
+
+        var viewportTop =
+          parseFloat(
+            getComputedStyle(
+              document.documentElement
+            ).getPropertyValue("--nav-h")
+          ) || 54;
+
+        var viewportBottom =
+          window.innerHeight;
+
+        var visible =
+          Math.max(
+            0,
+            Math.min(bottom, viewportBottom) -
+            Math.max(top, viewportTop)
+          );
+
+        var regionHeight =
+          Math.max(
+            1,
+            bottom - top
+          );
+
+        var availableHeight =
+          Math.max(
+            1,
+            viewportBottom - viewportTop
+          );
+
+        /*
+         * Visibility ratio is capped against viewport height.
+         * This prevents a very tall section from being unfairly
+         * penalized simply because the entire section cannot fit
+         * in the viewport.
+         */
+        var visibilityRatio =
+          visible /
+          Math.min(
+            regionHeight,
+            availableHeight
+          );
+
+        var center =
+          top + regionHeight / 2;
+
+        var centerDistance =
+          Math.abs(
+            center - focusY
+          );
+
+        var proximity =
+          Math.max(
+            0,
+            1 -
+            centerDistance /
+            availableHeight
+          );
+
+        /*
+         * Visibility receives the largest weight.
+         * Proximity helps distinguish several short sections
+         * that are visible simultaneously near page bottom.
+         */
+        var score =
+          visibilityRatio * 0.70 +
+          proximity * 0.30;
+
+        return {
+          id: region.navId,
+          top: top,
+          bottom: bottom,
+          visible: visible,
+          score: score
+        };
+      }
+
+      function updateActiveNav() {
+
+        ticking =
+          false;
+
+        var navHeight =
+          document.querySelector("nav")
+            .getBoundingClientRect()
+            .height;
+
+        var usableHeight =
+          Math.max(
+            1,
+            window.innerHeight - navHeight
+          );
+
+        /*
+         * Normal focus line: 32% of usable viewport.
+         *
+         * Close to the bottom of the page, the line moves
+         * gradually downward. This gives short final sections
+         * enough room to become active without hard-forcing
+         * Contact simply because document bottom was reached.
+         */
+        var maxScroll =
+          Math.max(
+            1,
+            document.documentElement.scrollHeight -
+            window.innerHeight
+          );
+
+        var scrollProgress =
+          Math.min(
+            1,
+            window.scrollY / maxScroll
+          );
+
+        var bottomAdjustment =
+          Math.max(
+            0,
+            (scrollProgress - 0.78) / 0.22
+          );
+
+        var focusRatio =
+          0.32 +
+          bottomAdjustment * 0.28;
+
+        var focusY =
+          navHeight +
+          usableHeight * focusRatio;
+
+        var candidates =
+          navRegions
+            .map(function (region) {
+              return regionMetrics(
+                region,
+                focusY
+              );
+            })
+            .filter(function (m) {
+              return m &&
+                     m.visible > 0;
+            });
+
+        if (candidates.length === 0) {
+          return;
+        }
+
+        candidates.sort(function (a, b) {
+
+          var delta =
+            b.score - a.score;
+
+          if (Math.abs(delta) > 0.025) {
+            return delta;
+          }
+
+          /*
+           * When scores are nearly identical, use scroll
+           * direction as a natural tie-breaker.
+           */
+          var scrollingDown =
+            window.scrollY >= lastScrollY;
+
+          return scrollingDown
+            ? b.top - a.top
+            : a.top - b.top;
+        });
+
+        lastScrollY =
+          window.scrollY;
+
+        setActive(
+          candidates[0].id
+        );
+      }
+
+      function requestUpdate() {
+
+        if (!ticking) {
+
+          window.requestAnimationFrame(
+            updateActiveNav
+          );
+
+          ticking =
+            true;
+        }
+      }
+
+      window.addEventListener(
+        "scroll",
+        requestUpdate,
+        { passive: true }
+      );
+
+      window.addEventListener(
+        "resize",
+        requestUpdate,
+        { passive: true }
+      );
+
+      requestUpdate();
+    }
+
+    /* =======================================================
+       Working Papers renderer
+       ======================================================= */
+
     function renderWorkingPapers(listId, items) {
-      var list = document.getElementById(listId);
-      var section = document.getElementById('working-papers');
-      if (items.length === 0) {
-        if (section) section.style.display = 'none';
+
+      var list =
+        document.getElementById(listId);
+
+      var section =
+        document.getElementById("working-papers");
+
+      if (!items.length) {
+
+        if (section) {
+          section.style.display =
+            "none";
+        }
+
         return;
       }
-      items.forEach(function (p) {
-        var div = document.createElement('div');
-        div.className = 'wp-item';
 
-        var titleHTML = p.link
-          ? '<a href="' + escAttr(p.link) + '" target="_blank" rel="noopener">' + escHTML(p.title) + '</a>'
-          : escHTML(p.title);
+      items.forEach(function (p, index) {
 
-        var hasAbstract = p.abstract && p.abstract.trim().length > 0;
-        var hasLinks = p.link || p.ssrn || p.fullText;
+        var article =
+          document.createElement("article");
+
+        article.className =
+          "wp-item";
+
+        var titleHTML =
+          p.link
+            ? '<a href="' +
+              escAttr(p.link) +
+              '" target="_blank" rel="noopener noreferrer">' +
+              escHTML(p.title) +
+              "</a>"
+            : escHTML(p.title);
+
+        var hasAbstract =
+          p.abstract &&
+          p.abstract.trim().length > 0;
+
+        var hasLinks =
+          p.link ||
+          p.ssrn ||
+          p.fullText;
 
         var html =
           '<div class="wp-header">' +
-            '<div>' +
-              '<div class="wp-title">' + titleHTML + '</div>' +
-              '<div class="wp-authors">' + escHTML(p.authors || '') + '</div>' +
-            '</div>' +
-            '<div class="wp-status">' + escHTML(p.year || '') + '</div>' +
-          '</div>';
+
+            '<div class="wp-main">' +
+
+              '<div class="wp-title">' +
+              titleHTML +
+              "</div>" +
+
+              (
+                p.authors
+                  ? '<div class="wp-authors">' +
+                    escHTML(p.authors) +
+                    "</div>"
+                  : ""
+              ) +
+
+            "</div>" +
+
+            (
+              p.year
+                ? '<div class="wp-status">' +
+                  escHTML(p.year) +
+                  "</div>"
+                : ""
+            ) +
+
+          "</div>";
 
         if (hasLinks) {
-          var pills = '';
-          if (p.link)     pills += '<a href="' + escAttr(p.link) + '" target="_blank" rel="noopener" class="wp-link">DOI</a>';
-          if (p.ssrn)     pills += '<a href="' + escAttr(p.ssrn) + '" target="_blank" rel="noopener" class="wp-link">SSRN</a>';
-          if (p.fullText) pills += '<a href="' + escAttr(p.fullText) + '" target="_blank" rel="noopener" class="wp-link">PDF</a>';
-          html += '<div class="wp-links">' + pills + '</div>';
+
+          var links =
+            [];
+
+          if (p.link) {
+
+            links.push(
+              '<a href="' +
+              escAttr(p.link) +
+              '" target="_blank" rel="noopener noreferrer" class="wp-link">Paper</a>'
+            );
+          }
+
+          if (p.ssrn) {
+
+            links.push(
+              '<a href="' +
+              escAttr(p.ssrn) +
+              '" target="_blank" rel="noopener noreferrer" class="wp-link">SSRN</a>'
+            );
+          }
+
+          if (p.fullText) {
+
+            links.push(
+              '<a href="' +
+              escAttr(p.fullText) +
+              '" target="_blank" rel="noopener noreferrer" class="wp-link">PDF</a>'
+            );
+          }
+
+          html +=
+            '<div class="wp-links">' +
+            links.join("") +
+            "</div>";
         }
 
         if (hasAbstract) {
-          html += '<button class="wp-abstract-toggle" aria-expanded="false">Abstract</button>';
-          html += '<div class="wp-abstract">' + escHTML(p.abstract) + '</div>';
+
+          var abstractId =
+            "wp-abstract-" + index;
+
+          html +=
+
+            '<button class="wp-abstract-toggle"' +
+            ' type="button"' +
+            ' aria-expanded="false"' +
+            ' aria-controls="' +
+            abstractId +
+            '">' +
+            "Abstract" +
+            "</button>" +
+
+            '<div class="wp-abstract"' +
+            ' id="' +
+            abstractId +
+            '"' +
+            " hidden>" +
+            escHTML(p.abstract) +
+            "</div>";
         }
 
-        div.innerHTML = html;
+        article.innerHTML =
+          html;
 
         if (hasAbstract) {
-          var toggle = div.querySelector('.wp-abstract-toggle');
-          var abstract = div.querySelector('.wp-abstract');
-          toggle.addEventListener('click', function () {
-            var isOpen = abstract.classList.toggle('open');
-            toggle.textContent = isOpen ? 'Hide Abstract' : 'Abstract';
-            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-          });
+
+          var toggle =
+            article.querySelector(
+              ".wp-abstract-toggle"
+            );
+
+          var abstract =
+            article.querySelector(
+              ".wp-abstract"
+            );
+
+          toggle.addEventListener(
+            "click",
+            function () {
+
+              var open =
+                toggle.getAttribute(
+                  "aria-expanded"
+                ) === "true";
+
+              toggle.setAttribute(
+                "aria-expanded",
+                open ? "false" : "true"
+              );
+
+              toggle.textContent =
+                open
+                  ? "Abstract"
+                  : "Hide Abstract";
+
+              abstract.hidden =
+                open;
+            }
+          );
         }
 
-        list.appendChild(div);
+        list.appendChild(article);
       });
     }
 
-    /* ── Shared: Publications renderer ── */
+    /* =======================================================
+       Publications renderer
+       ======================================================= */
+
     function renderPublications(listId, items) {
-      var list = document.getElementById(listId);
-      var section = document.getElementById('publications');
-      if (items.length === 0) {
-        if (section) section.style.display = 'none';
+
+      var list =
+        document.getElementById(listId);
+
+      var section =
+        document.getElementById("publications");
+
+      if (!items.length) {
+
+        if (section) {
+          section.style.display =
+            "none";
+        }
+
         return;
       }
-      items.forEach(function (p) {
-        var div = document.createElement('div');
-        div.className = 'pub-item';
 
-        // Title-first hierarchy
-        var html = '<div class="pub-title">' + escHTML(p.title) + '</div>';
+      items.forEach(function (p) {
+
+        var article =
+          document.createElement("article");
+
+        article.className =
+          "pub-item";
+
+        var title =
+          escHTML(p.title || "");
+
+        var titleHTML =
+          p.link
+            ? '<a href="' +
+              escAttr(p.link) +
+              '" target="_blank" rel="noopener noreferrer">' +
+              title +
+              "</a>"
+            : title;
+
+        var html =
+          '<div class="pub-title">' +
+          titleHTML +
+          "</div>";
 
         if (p.authors) {
-          html += '<div class="pub-authors">' +
-            escHTML(p.authors).replace(/Xu,\s*H\./g, '<strong>Xu, H.</strong>') +
-            '</div>';
+
+          var escapedAuthors =
+            escHTML(p.authors);
+
+          /*
+           * Highlight own name after escaping,
+           * so data content remains safe.
+           */
+          escapedAuthors =
+            escapedAuthors.replace(
+              /Xu,\s*H\./g,
+              "<strong>Xu, H.</strong>"
+            );
+
+          html +=
+            '<div class="pub-authors">' +
+            escapedAuthors +
+            "</div>";
         }
 
-        // Journal, Year
-        var meta = '';
-        if (p.journal) meta += '<span class="pub-journal">' + escHTML(p.journal) + '</span>';
-        if (p.year)    meta += (meta ? ', ' : '') + escHTML(p.year);
-        if (meta) html += '<div class="pub-meta">' + meta + '</div>';
+        var meta =
+          "";
 
-        // Links: Journal · DOI · PDF
-        var links = [];
-        if (p.link)     links.push('<a href="' + escAttr(p.link) + '" target="_blank" rel="noopener" class="pub-link">DOI</a>');
-        if (p.fullText) links.push('<a href="' + escAttr(p.fullText) + '" target="_blank" rel="noopener" class="pub-link">PDF</a>');
-        if (links.length) html += '<div class="pub-links">' + links.join(' · ') + '</div>';
+        if (p.journal) {
 
-        div.innerHTML = html;
-        list.appendChild(div);
+          meta +=
+            '<span class="pub-journal">' +
+            escHTML(p.journal) +
+            "</span>";
+        }
+
+        if (p.year) {
+
+          meta +=
+            (meta ? ", " : "") +
+            escHTML(p.year);
+        }
+
+        if (meta) {
+
+          html +=
+            '<div class="pub-meta">' +
+            meta +
+            "</div>";
+        }
+
+        var links =
+          [];
+
+        if (p.link) {
+
+          links.push(
+            '<a href="' +
+            escAttr(p.link) +
+            '" target="_blank" rel="noopener noreferrer" class="pub-link">DOI</a>'
+          );
+        }
+
+        if (p.fullText) {
+
+          links.push(
+            '<a href="' +
+            escAttr(p.fullText) +
+            '" target="_blank" rel="noopener noreferrer" class="pub-link">PDF</a>'
+          );
+        }
+
+        if (links.length) {
+
+          html +=
+            '<div class="pub-links">' +
+            links.join(" · ") +
+            "</div>";
+        }
+
+        article.innerHTML =
+          html;
+
+        list.appendChild(article);
       });
     }
 
-    /* ── Helpers ─────────────────────── */
-    function escHTML(str) {
-      var div = document.createElement('div');
-      div.textContent = str;
-      return div.innerHTML;
-    }
-    function escAttr(str) {
-      return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    }
   })();
   </script>
+
 </body>
 </html>
