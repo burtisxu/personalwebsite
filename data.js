@@ -579,7 +579,9 @@
 
       github: "",
 
-      scholar: ""
+      scholar: "",
+
+      orcid:"https://orcid.org/my-orcid?orcid=0009-0003-4418-6177"
 
     }
 
