@@ -486,8 +486,28 @@
 
       {
         id: 1,
+         title:
+          "Empowering Rural Revitalization through County-Level Converged Media in the Internet Era: Mechanism Evolution, Governance Effectiveness, and Practical Pathways",
 
-        title:
+        funder:
+          "Renmin University of China “Qiushi Academic–Dongliang” Brand Research Project",
+
+        year:
+          "2026",
+
+        projectNo:
+          "",
+
+        role:
+          "Key Participant"
+        
+      },
+
+
+      {
+        id: 2,
+
+         title:
           "Theoretical Framework and Implementation Pathways for Coordinating New Industrialization, New Urbanization, and Comprehensive Rural Revitalization",
 
         funder:
@@ -505,9 +525,8 @@
 
 
       {
-        id: 2,
-
-        title:
+        id: 3,
+          title:
           "Satellite Remote Sensing for Advancing China’s Dual-Carbon Goals: Data Measurement, Spatiotemporal Differentiation, and Evolution Pathways",
 
         funder:
@@ -521,26 +540,7 @@
 
         role:
           "Participant"
-      },
-
-
-      {
-        id: 3,
-
-        title:
-          "Empowering Rural Revitalization through County-Level Converged Media in the Internet Era: Mechanism Evolution, Governance Effectiveness, and Practical Pathways",
-
-        funder:
-          "Renmin University of China “Qiushi Academic–Dongliang” Brand Research Project",
-
-        year:
-          "2026",
-
-        projectNo:
-          "",
-
-        role:
-          "Key Participant"
+        
       }
 
     ],
