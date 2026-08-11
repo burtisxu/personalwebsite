@@ -1,794 +1,4373 @@
-/* ─────────────────────────────────────────────
-   data.js
-   Shared data layer for Haolun Xu's academic site
-   ───────────────────────────────────────────── */
+<!DOCTYPE html>
+<html lang="en">
 
-(function () {
+<head>
 
-  "use strict";
+  <!-- =========================================================
+       Basic Metadata
+       ========================================================= -->
 
-  /*
-   * IMPORTANT:
-   * Increment DATA_VERSION whenever the public
-   * data structure changes substantially.
-   *
-   * v5 adds structured research-project data.
-   */
-  const DATA_VERSION = "v5";
-  const STORAGE_KEY = "siteData_" + DATA_VERSION;
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="author"
+    content="Haolun Xu"
+  >
+
+  <meta
+    name="description"
+    content="Haolun Xu is a PhD student in Economic History at Renmin University of China. His research spans development economics and economic history, focusing on migration, culture, historical shocks, firms, and regional economic development."
+  >
+
+  <meta
+    name="robots"
+    content="index, follow, max-image-preview:large"
+  >
+
+  <meta
+    name="baidu-site-verification"
+    content="codeva-lpOkKUtorW"
+  >
+
+  <meta
+    name="theme-color"
+    content="#ffffff"
+  >
+
+  <meta
+    name="color-scheme"
+    content="light"
+  >
 
 
-  /* =========================================================
-     Default public content
-     ========================================================= */
+  <!-- =========================================================
+       Canonical & Sitemap
+       ========================================================= -->
 
-  var DEFAULTS = {
+  <link
+    rel="canonical"
+    href="https://haolunxu.xyz/"
+  >
+
+  <link
+    rel="sitemap"
+    type="application/xml"
+    title="Sitemap"
+    href="https://haolunxu.xyz/sitemap.xml"
+  >
+
+
+  <!-- =========================================================
+       Open Graph
+       ========================================================= -->
+
+  <meta
+    property="og:type"
+    content="profile"
+  >
+
+  <meta
+    property="og:site_name"
+    content="Haolun Xu"
+  >
+
+  <meta
+    property="og:title"
+    content="Haolun Xu | Development Economics & Economic History"
+  >
+
+  <meta
+    property="og:description"
+    content="Research on migration, culture, historical shocks, firms, and regional economic development."
+  >
+
+  <meta
+    property="og:url"
+    content="https://haolunxu.xyz/"
+  >
+
+  <meta
+    property="og:image"
+    content="https://haolunxu.xyz/photo.jpg"
+  >
+
+  <meta
+    property="og:image:alt"
+    content="Portrait of Haolun Xu"
+  >
+
+
+  <!-- =========================================================
+       Twitter / X
+       ========================================================= -->
+
+  <meta
+    name="twitter:card"
+    content="summary"
+  >
+
+  <meta
+    name="twitter:title"
+    content="Haolun Xu | Development Economics & Economic History"
+  >
+
+  <meta
+    name="twitter:description"
+    content="Research on migration, culture, historical shocks, firms, and regional economic development."
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://haolunxu.xyz/photo.jpg"
+  >
+
+
+  <!-- =========================================================
+       Page Title
+       ========================================================= -->
+
+  <title>
+    Haolun Xu | Development Economics & Economic History
+  </title>
+
+
+  <!-- =========================================================
+       Favicon
+       ========================================================= -->
+
+  <link
+    rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d1d1f'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Arial,sans-serif' font-size='18' font-weight='600' fill='white'%3EH%3C/text%3E%3C/svg%3E"
+  >
+
+
+  <!-- =========================================================
+       Fonts
+       ========================================================= -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- =========================================================
+       Structured Data
+
+       sameAs will be automatically populated from data.js
+       using ORCID / Google Scholar / GitHub when available.
+       ========================================================= -->
+
+  <script
+    id="siteStructuredData"
+    type="application/ld+json"
+  >
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://haolunxu.xyz/#person",
+        "name": "Haolun Xu",
+        "url": "https://haolunxu.xyz/",
+        "image": "https://haolunxu.xyz/photo.jpg",
+        "jobTitle": "PhD Student in Economic History",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "Renmin University of China"
+        },
+        "knowsAbout": [
+          "Development Economics",
+          "Economic History",
+          "Regional Economic Development",
+          "Migration",
+          "Culture",
+          "Historical Shocks",
+          "Firm Productivity",
+          "Innovation"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://haolunxu.xyz/#website",
+        "url": "https://haolunxu.xyz/",
+        "name": "Haolun Xu",
+        "publisher": {
+          "@id": "https://haolunxu.xyz/#person"
+        }
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": "https://haolunxu.xyz/#webpage",
+        "url": "https://haolunxu.xyz/",
+        "name": "Haolun Xu | Development Economics & Economic History",
+        "isPartOf": {
+          "@id": "https://haolunxu.xyz/#website"
+        },
+        "mainEntity": {
+          "@id": "https://haolunxu.xyz/#person"
+        }
+      }
+    ]
+  }
+  </script>
+
+
+  <!-- =========================================================
+       Styles
+       ========================================================= -->
+
+  <style>
+
+    /* =========================================================
+       Variables
+       ========================================================= */
+
+    :root {
+
+      --bg: #ffffff;
+
+      --text: #202124;
+      --muted: #64676c;
+      --subtle: #8a8d91;
+
+      --border: #e4e6e9;
+      --border-soft: #eceef0;
+
+      --accent: #2259c7;
+      --accent-hover: #17479f;
+
+      --surface: #ffffff;
+      --surface-hover: #fafafa;
+
+      --max-w: 940px;
+      --nav-h: 54px;
+
+    }
+
+
+    /* =========================================================
+       Reset
+       ========================================================= */
+
+    *,
+    *::before,
+    *::after {
+
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+
+    }
+
+
+    html {
+
+      scroll-behavior: smooth;
+
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+
+    }
+
+
+    body {
+
+      min-width: 320px;
+
+      font-family:
+        "Inter",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+      font-size: 15px;
+      line-height: 1.65;
+
+      color: var(--text);
+      background: var(--bg);
+
+      text-rendering: optimizeLegibility;
+
+    }
+
+
+    img {
+      max-width: 100%;
+    }
+
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+
+    a {
+      color: inherit;
+    }
+
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+
+    ::selection {
+      background: rgba(37, 99, 235, .14);
+    }
+
+
+    /* =========================================================
+       Accessibility
+       ========================================================= */
+
+    .skip-link {
+
+      position: fixed;
+
+      top: 8px;
+      left: 8px;
+
+      z-index: 999;
+
+      padding: 8px 12px;
+
+      font-size: 13px;
+      font-weight: 600;
+
+      color: #ffffff;
+      background: var(--text);
+
+      border-radius: 5px;
+
+      transform: translateY(-150%);
+
+      transition: transform .15s ease;
+
+    }
+
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+
+    a:focus-visible,
+    button:focus-visible {
+
+      outline: 2px solid var(--accent);
+
+      outline-offset: 3px;
+
+      border-radius: 3px;
+
+    }
+
+
+    /* =========================================================
+       Layout
+       ========================================================= */
+
+    .container {
+
+      width: 100%;
+      max-width: var(--max-w);
+
+      margin: 0 auto;
+
+      padding-left: 24px;
+      padding-right: 24px;
+
+    }
+
+
+    section[id] {
+      scroll-margin-top: 76px;
+    }
+
+
+    section {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+
+
+    h2 {
+
+      margin-bottom: 16px;
+
+      font-size: 21px;
+      line-height: 1.25;
+
+      font-weight: 600;
+
+      letter-spacing: -.025em;
+
+      color: var(--text);
+
+    }
+
+
+    /* =========================================================
+       Navigation
+       ========================================================= */
+
+    nav {
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 100;
+
+      background: rgba(255, 255, 255, .96);
+
+      border-bottom: 1px solid var(--border);
+
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+
+    }
+
+
+    .nav-inner {
+
+      height: var(--nav-h);
+
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+    }
+
+
+    .nav-name {
+
+      flex: 0 0 auto;
+
+      font-size: 15px;
+      line-height: 1;
+
+      font-weight: 600;
+
+      letter-spacing: -.015em;
+
+      color: var(--text);
+
+      text-decoration: none;
+
+    }
+
+
+    .nav-links {
+
+      min-width: 0;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 2px;
+
+      list-style: none;
+
+      overflow-x: auto;
+
+      scrollbar-width: none;
+
+      -webkit-overflow-scrolling: touch;
+
+    }
+
+
+    .nav-links::-webkit-scrollbar {
+      display: none;
+    }
+
+
+    .nav-links a {
+
+      position: relative;
+
+      display: block;
+
+      padding: 7px 10px;
+
+      font-size: 13.5px;
+      line-height: 1;
+
+      font-weight: 500;
+
+      color: var(--muted);
+
+      text-decoration: none;
+
+      white-space: nowrap;
+
+      transition: color .15s ease;
+
+    }
+
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+
+    .nav-links a::after {
+
+      content: "";
+
+      position: absolute;
+
+      left: 10px;
+      right: 10px;
+      bottom: 0;
+
+      height: 1.5px;
+
+      background: var(--text);
+
+      transform: scaleX(0);
+      transform-origin: center;
+
+      transition: transform .15s ease;
+
+    }
+
+
+    .nav-links a.active-nav {
+
+      color: var(--text);
+
+      font-weight: 600;
+
+    }
+
+
+    .nav-links a.active-nav::after {
+      transform: scaleX(1);
+    }
+
+
+    /* =========================================================
+       Hero
+       ========================================================= */
+
+    #hero {
+
+      padding-top: 54px;
+      padding-bottom: 28px;
+
+    }
+
+
+    .hero-inner {
+
+      display: flex;
+
+      align-items: flex-start;
+
+      gap: 30px;
+
+    }
+
+
+    .hero-photo {
+
+      flex: 0 0 auto;
+
+      width: 100px;
+      height: 100px;
+
+    }
+
+
+    .hero-avatar {
+
+      display: block;
+
+      width: 100px;
+      height: 100px;
+
+      object-fit: cover;
+
+      border-radius: 7px;
+
+      background: #f1f2f3;
+
+    }
+
+
+    .hero-text {
+
+      flex: 1;
+
+      min-width: 0;
+
+    }
+
+
+    .hero-name {
+
+      margin-bottom: 3px;
+
+      font-size: 36px;
+      line-height: 1.08;
+
+      font-weight: 600;
+
+      letter-spacing: -.04em;
+
+      color: var(--text);
+
+    }
+
+
+    .hero-title {
+
+      margin-bottom: 1px;
+
+      font-size: 16px;
+      line-height: 1.5;
+
+      font-weight: 500;
+
+      letter-spacing: -.015em;
+
+      color: var(--text);
+
+    }
+
+
+    .hero-affiliation {
+
+      margin-bottom: 9px;
+
+      font-size: 14px;
+
+      color: var(--muted);
+
+    }
+
+
+    .hero-bio {
+
+      max-width: 72ch;
+
+      font-size: 14.5px;
+      line-height: 1.62;
+
+      color: var(--muted);
+
+    }
+
+
+    .hero-links {
+
+      display: flex;
+
+      align-items: center;
+
+      flex-wrap: wrap;
+
+      gap: 15px;
+
+      margin-top: 10px;
+
+    }
+
+
+    .hero-links a {
+
+      font-size: 13.5px;
+
+      font-weight: 500;
+
+      color: var(--accent);
+
+      text-decoration: none;
+
+    }
+
+
+    .hero-links a:hover {
+
+      color: var(--accent-hover);
+
+      text-decoration: underline;
+
+      text-underline-offset: 3px;
+
+    }
+
+
+    /* =========================================================
+       Author Links
+       ========================================================= */
+
+    .author-link {
+
+      color: inherit;
+
+      text-decoration-line: underline;
+      text-decoration-style: dotted;
+      text-decoration-thickness: 1px;
+      text-decoration-color: #c5c8cc;
+
+      text-underline-offset: 3px;
+
+      transition:
+        color .15s ease,
+        text-decoration-color .15s ease;
+
+    }
+
+
+    .author-link:hover {
+
+      color: var(--accent);
+
+      text-decoration-color: var(--accent);
+
+    }
+
+
+    .author-self {
+
+      font-weight: 600;
+
+      color: var(--text);
+
+    }
+
+
+    /* =========================================================
+       Research Interests
+       ========================================================= */
+
+    #research {
+
+      padding-top: 14px;
+      padding-bottom: 30px;
+
+    }
+
+
+    .research-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 12px;
+
+    }
+
+
+    .research-card {
+
+      min-width: 0;
+
+      padding: 15px 16px 14px;
+
+      border: 1px solid var(--border-soft);
+
+      border-radius: 7px;
+
+      background: var(--surface);
+
+      transition:
+        border-color .15s ease,
+        background .15s ease;
+
+    }
+
+
+    .research-card:hover {
+
+      border-color: #d8dade;
+
+      background: var(--surface-hover);
+
+    }
+
+
+    .research-card-title {
+
+      font-size: 14.5px;
+      line-height: 1.4;
+
+      font-weight: 600;
+
+      letter-spacing: -.015em;
+
+      color: var(--text);
+
+    }
+
+
+    .research-card-desc {
+
+      margin-top: 5px;
+
+      font-size: 13px;
+      line-height: 1.55;
+
+      color: var(--muted);
+
+    }
+
+
+    /* =========================================================
+       Working Papers
+       ========================================================= */
+
+    #working-papers {
+
+      padding-top: 34px;
+      padding-bottom: 38px;
+
+    }
+
+
+    #working-papers h2 {
+      margin-bottom: 18px;
+    }
+
+
+    .wp-item {
+      position: relative;
+    }
+
+
+    .wp-item + .wp-item {
+
+      margin-top: 23px;
+
+      padding-top: 23px;
+
+      border-top: 1px solid var(--border);
+
+    }
+
+
+    .wp-header {
+
+      display: flex;
+
+      align-items: flex-start;
+      justify-content: space-between;
+
+      gap: 20px;
+
+    }
+
+
+    .wp-main {
+
+      flex: 1;
+
+      min-width: 0;
+
+    }
+
+
+    .wp-title {
+
+      font-size: 17.5px;
+      line-height: 1.35;
+
+      font-weight: 600;
+
+      letter-spacing: -.022em;
+
+      color: var(--text);
+
+    }
+
+
+    .wp-title a {
+
+      color: inherit;
+
+      text-decoration: none;
+
+    }
+
+
+    .wp-title a:hover {
+      color: var(--accent);
+    }
+
+
+    .wp-authors {
+
+      margin-top: 3px;
+
+      font-size: 13.5px;
+      line-height: 1.5;
+
+      color: var(--muted);
+
+    }
+
+
+    .wp-status {
+
+      flex: 0 0 auto;
+
+      padding-top: 2px;
+
+      font-size: 12.5px;
+      line-height: 1.4;
+
+      font-style: italic;
+
+      color: var(--subtle);
+
+      white-space: nowrap;
+
+    }
+
+
+    .wp-links {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 13px;
+
+      margin-top: 8px;
+
+    }
+
+
+    .wp-link,
+    .wp-abstract-toggle {
+
+      font-size: 12.75px;
+      line-height: 1.4;
+
+      font-weight: 500;
+
+      color: var(--accent);
+
+      text-decoration: none;
+
+    }
+
+
+    .wp-link:hover,
+    .wp-abstract-toggle:hover {
+
+      color: var(--accent-hover);
+
+      text-decoration: underline;
+
+      text-underline-offset: 3px;
+
+    }
+
+
+    .wp-abstract-toggle {
+
+      display: inline-block;
+
+      margin-top: 8px;
+
+      padding: 0;
+
+      border: 0;
+
+      background: transparent;
+
+      cursor: pointer;
+
+    }
+
+
+    .wp-abstract {
+
+      max-width: 78ch;
+
+      margin-top: 9px;
+
+      font-size: 13.5px;
+      line-height: 1.65;
+
+      color: var(--muted);
+
+    }
+
+
+    /* =========================================================
+       Publications
+       ========================================================= */
+
+    #publications {
+
+      padding-top: 36px;
+      padding-bottom: 30px;
+
+    }
+
+
+    .pub-item {
+
+      font-size: 14px;
+      line-height: 1.6;
+
+    }
+
+
+    .pub-item + .pub-item {
+      margin-top: 20px;
+    }
+
+
+    .pub-title {
+
+      font-size: 16.5px;
+      line-height: 1.38;
+
+      font-weight: 600;
+
+      letter-spacing: -.02em;
+
+      color: var(--text);
+
+    }
+
+
+    .pub-title a {
+
+      color: inherit;
+
+      text-decoration: none;
+
+    }
+
+
+    .pub-title a:hover {
+      color: var(--accent);
+    }
+
+
+    .pub-authors {
+
+      margin-top: 3px;
+
+      font-size: 13.5px;
+
+      color: var(--muted);
+
+    }
+
+
+    .pub-meta {
+
+      margin-top: 1px;
+
+      font-size: 13.5px;
+
+      color: var(--muted);
+
+    }
+
+
+    .pub-journal {
+      font-style: italic;
+    }
+
+
+    .pub-links {
+
+      margin-top: 2px;
+
+      font-size: 13px;
+
+      color: var(--muted);
+
+    }
+
+
+    .pub-link {
+
+      font-size: 13px;
+
+      font-weight: 500;
+
+      color: var(--accent);
+
+      text-decoration: none;
+
+    }
+
+
+    .pub-link:hover {
+
+      color: var(--accent-hover);
+
+      text-decoration: underline;
+
+      text-underline-offset: 3px;
+
+    }
+
+
+    /* =========================================================
+       Work in Progress
+       ========================================================= */
+
+    #work-in-progress {
+
+      padding-top: 28px;
+      padding-bottom: 32px;
+
+    }
+
+
+    .wip-list {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      column-gap: 44px;
+      row-gap: 19px;
+
+    }
+
+
+    .wip-item-simple {
+      min-width: 0;
+    }
+
+
+    .wip-item-title {
+
+      font-size: 14.5px;
+      line-height: 1.48;
+
+      font-weight: 600;
+
+      letter-spacing: -.01em;
+
+      color: var(--text);
+
+    }
+
+
+    .wip-item-coauthors {
+
+      margin-top: 3px;
+
+      font-size: 13px;
+      line-height: 1.45;
+
+      color: var(--muted);
+
+    }
+
+
+    /* =========================================================
+       Conferences
+       ========================================================= */
+
+    #conferences {
+
+      padding-top: 32px;
+      padding-bottom: 30px;
+
+    }
+
+
+    .conf-list {
+
+      display: flex;
+
+      flex-direction: column;
+
+    }
+
+
+    .conf-item {
+
+      display: grid;
+
+      grid-template-columns:
+        54px minmax(0, 1fr);
+
+      column-gap: 15px;
+
+      padding-top: 5px;
+      padding-bottom: 5px;
+
+      font-size: 13.5px;
+      line-height: 1.55;
+
+    }
+
+
+    .conf-year {
+
+      color: var(--muted);
+
+      font-weight: 500;
+
+    }
+
+
+    .conf-content {
+      min-width: 0;
+    }
+
+
+    .conf-title {
+
+      font-weight: 600;
+
+      color: var(--text);
+
+    }
+
+
+    .conf-detail {
+      color: var(--muted);
+    }
+
+
+    /* =========================================================
+       Education
+       ========================================================= */
+
+    #education {
+
+      padding-top: 32px;
+      padding-bottom: 27px;
+
+    }
+
+
+    .edu-list {
+
+      display: flex;
+
+      flex-direction: column;
+
+    }
+
+
+    .edu-item {
+
+      padding-top: 6px;
+      padding-bottom: 6px;
+
+      font-size: 14px;
+      line-height: 1.55;
+
+    }
+
+
+    .edu-school,
+    .edu-degree {
+
+      font-weight: 600;
+
+      color: var(--text);
+
+    }
+
+
+    .edu-year {
+      color: var(--muted);
+    }
+
+
+    /* =========================================================
+       Contact
+       ========================================================= */
+
+    #contact {
+
+      padding-top: 27px;
+      padding-bottom: 36px;
+
+    }
+
+
+    .contact-links {
+
+      display: flex;
+
+      align-items: center;
+
+      flex-wrap: wrap;
+
+      gap: 8px 18px;
+
+    }
+
+
+    .contact-link {
+
+      font-size: 13.5px;
+
+      font-weight: 500;
+
+      color: var(--accent);
+
+      text-decoration: none;
+
+    }
+
+
+    .contact-link:hover {
+
+      color: var(--accent-hover);
+
+      text-decoration: underline;
+
+      text-underline-offset: 3px;
+
+    }
+
+
+    /* =========================================================
+       Footer
+       ========================================================= */
+
+    footer {
+
+      padding-top: 19px;
+      padding-bottom: 21px;
+
+      border-top: 1px solid var(--border);
+
+    }
+
+
+    .footer-inner {
+
+      font-size: 12.5px;
+      line-height: 1.5;
+
+      color: var(--subtle);
+
+      text-align: center;
+
+    }
+
+
+    /* =========================================================
+       Tablet
+       ========================================================= */
+
+    @media (max-width: 768px) {
+
+      .container {
+
+        padding-left: 18px;
+        padding-right: 18px;
+
+      }
+
+
+      .nav-inner {
+        gap: 12px;
+      }
+
+
+      .nav-links a {
+
+        padding-left: 8px;
+        padding-right: 8px;
+
+        font-size: 12.5px;
+
+      }
+
+
+      .nav-links a::after {
+
+        left: 8px;
+        right: 8px;
+
+      }
+
+
+      #hero {
+        padding-top: 42px;
+      }
+
+
+      .hero-inner {
+        gap: 23px;
+      }
+
+
+      .hero-photo,
+      .hero-avatar {
+
+        width: 88px;
+        height: 88px;
+
+      }
+
+
+      .hero-name {
+        font-size: 31px;
+      }
+
+
+      .research-grid {
+
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+
+      }
+
+
+      .wp-header {
+        gap: 14px;
+      }
+
+    }
+
+
+    /* =========================================================
+       Small Mobile
+       ========================================================= */
+
+    @media (max-width: 560px) {
+
+      .container {
+
+        padding-left: 16px;
+        padding-right: 16px;
+
+      }
+
+
+      section {
+
+        padding-top: 25px;
+        padding-bottom: 25px;
+
+      }
+
+
+      h2 {
+        font-size: 19px;
+      }
+
+
+      .nav-inner {
+        height: 52px;
+      }
+
+
+      .nav-name {
+        font-size: 13px;
+      }
+
+
+      .nav-links a {
+
+        padding: 7px;
+
+        font-size: 11.75px;
+
+      }
+
+
+      .nav-links a::after {
+
+        left: 7px;
+        right: 7px;
+
+      }
+
+
+      #hero {
+
+        padding-top: 34px;
+        padding-bottom: 22px;
+
+      }
+
+
+      .hero-inner {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+      }
+
+
+      .hero-photo,
+      .hero-avatar {
+
+        width: 78px;
+        height: 78px;
+
+      }
+
+
+      .hero-name {
+        font-size: 29px;
+      }
+
+
+      .hero-title {
+        font-size: 15px;
+      }
+
+
+      .hero-bio {
+        font-size: 13.75px;
+      }
+
+
+      .hero-links {
+        gap: 12px;
+      }
+
+
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .wp-header {
+
+        flex-direction: column;
+
+        gap: 1px;
+
+      }
+
+
+      .wp-status {
+        padding-top: 0;
+      }
+
+
+      .wp-title {
+        font-size: 16.5px;
+      }
+
+
+      .wip-list {
+
+        grid-template-columns: 1fr;
+
+        row-gap: 16px;
+
+      }
+
+
+      .conf-item {
+
+        grid-template-columns:
+          43px minmax(0, 1fr);
+
+        column-gap: 10px;
+
+      }
+
+    }
+
+
+    /* =========================================================
+       Reduced Motion
+       ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+
+      *,
+      *::before,
+      *::after {
+
+        scroll-behavior: auto !important;
+
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: .01ms !important;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================================================
+       Skip Link
+       ========================================================= -->
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <!-- =========================================================
+       Navigation
+       ========================================================= -->
+
+  <nav aria-label="Primary navigation">
+
+    <div class="container nav-inner">
+
+
+      <a
+        href="#hero"
+        class="nav-name"
+        id="navName"
+      >
+        Haolun Xu
+      </a>
+
+
+      <ul class="nav-links">
+
+        <li>
+          <a href="#research">
+            Research
+          </a>
+        </li>
+
+        <li>
+          <a href="#working-papers">
+            Papers
+          </a>
+        </li>
+
+        <li>
+          <a href="#publications">
+            Publications
+          </a>
+        </li>
+
+        <li>
+          <a href="#conferences">
+            Talks
+          </a>
+        </li>
+
+        <li>
+          <a href="#education">
+            Education
+          </a>
+        </li>
+
+        <li>
+          <a href="#contact">
+            Contact
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </nav>
+
+
+  <!-- =========================================================
+       Main
+       ========================================================= -->
+
+  <main id="main-content">
+
+
+    <!-- =======================================================
+         Hero
+         ======================================================= -->
+
+    <section id="hero">
+
+      <div class="container hero-inner">
+
+
+        <div class="hero-photo">
+
+          <img
+            id="heroAvatar"
+            class="hero-avatar"
+            src="photo.jpg"
+            alt="Portrait of Haolun Xu"
+            width="100"
+            height="100"
+          >
+
+        </div>
+
+
+        <div class="hero-text">
+
+
+          <h1
+            class="hero-name"
+            id="heroName"
+          >
+            Haolun Xu
+          </h1>
+
+
+          <p
+            class="hero-title"
+            id="heroTitle"
+          >
+            PhD Student in Economic History
+          </p>
+
+
+          <p
+            class="hero-affiliation"
+            id="heroAffiliation"
+          >
+            Renmin University of China
+          </p>
+
+
+          <p
+            class="hero-bio"
+            id="heroBio"
+          >
+            I am a direct-entry PhD student in Economic History at the
+            School of Economics, Renmin University of China. My research
+            lies at the intersection of development economics and economic
+            history, with a focus on how migration, culture, and historical
+            shocks shape regional development, firm performance, and
+            individual behavior over the long run.
+          </p>
+
+
+          <div class="hero-links">
+
+            <a
+              id="cvLink"
+              hidden
+            >
+              CV
+            </a>
+
+            <a
+              id="emailLink"
+              href="mailto:haolun_xu@ruc.edu.cn"
+            >
+              Email
+            </a>
+
+            <a
+              id="scholarLink"
+              hidden
+            >
+              Google Scholar
+            </a>
+
+            <!-- ORCID -->
+            <a
+              id="orcidLink"
+              hidden
+            >
+              ORCID
+            </a>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         Research Interests
+         ======================================================= -->
+
+    <section id="research">
+
+      <div class="container">
+
+        <h2>
+          Research Interests
+        </h2>
+
+        <div
+          id="researchList"
+          class="research-grid"
+        >
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         Working Papers
+         ======================================================= -->
+
+    <section id="working-papers">
+
+      <div class="container">
+
+        <h2>
+          Working Papers
+        </h2>
+
+        <div id="wpList">
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         Publications
+         ======================================================= -->
+
+    <section id="publications">
+
+      <div class="container">
+
+        <h2>
+          Publications
+        </h2>
+
+        <div id="pubList">
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         Work in Progress
+         ======================================================= -->
+
+    <section id="work-in-progress">
+
+      <div class="container">
+
+        <h2>
+          Work in Progress
+        </h2>
+
+        <div
+          class="wip-list"
+          id="wipGrid"
+        >
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         Conferences
+         ======================================================= -->
+
+    <section id="conferences">
+
+      <div class="container">
+
+        <h2>
+          Conferences &amp; Talks
+        </h2>
+
+        <div
+          class="conf-list"
+          id="confList"
+        >
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         Education
+         ======================================================= -->
+
+    <section id="education">
+
+      <div class="container">
+
+        <h2>
+          Education
+        </h2>
+
+        <div
+          class="edu-list"
+          id="eduList"
+        >
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         Contact
+         ======================================================= -->
+
+    <section id="contact">
+
+      <div class="container">
+
+        <h2>
+          Contact
+        </h2>
+
+        <div
+          class="contact-links"
+          id="contactLinks"
+        >
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- =========================================================
+       Footer
+       ========================================================= -->
+
+  <footer>
+
+    <div class="container footer-inner">
+
+      &copy;
+
+      <span id="footerYear">
+        2026
+      </span>
+
+      <span id="footerName">
+        Haolun Xu
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================================================
+       Noscript
+       ========================================================= -->
+
+  <noscript>
+
+    <section>
+
+      <div class="container">
+
+        <h2>
+          Haolun Xu
+        </h2>
+
+        <p>
+          Haolun Xu is a PhD student in Economic History at
+          Renmin University of China. His research spans development
+          economics and economic history, focusing on migration,
+          culture, historical shocks, firms, and regional economic
+          development.
+        </p>
+
+      </div>
+
+    </section>
+
+  </noscript>
+
+
+  <!-- =========================================================
+       Data Layer
+       ========================================================= -->
+
+  <script src="data.js"></script>
+
+
+  <!-- =========================================================
+       Render Engine
+       ========================================================= -->
+
+  <script>
+
+  (function () {
+
+    "use strict";
+
 
     /* =======================================================
-       Personal
+       Load Data
        ======================================================= */
 
-    personal: {
+    var data =
+      window.loadSiteData();
 
-      name: "Haolun Xu",
 
-      title: "PhD Student in Economic History",
+    /* =======================================================
+       Helpers
+       ======================================================= */
 
-      bio:
-        "I am a direct-entry PhD student in Economic History at the School of Economics, Renmin University of China. My research lies at the intersection of development economics and economic history, with a focus on how migration, culture, and historical shocks shape regional development, firm performance, and individual behavior over the long run.",
+    function escHTML(value) {
 
-      avatar: "photo.jpg"
+      var div =
+        document.createElement("div");
 
-    },
+      div.textContent =
+        value == null
+          ? ""
+          : String(value);
+
+      return div.innerHTML;
+
+    }
+
+
+    function escAttr(value) {
+
+      return String(
+        value == null
+          ? ""
+          : value
+      )
+      .replace(/&/g, "&amp;")
+      .replace(/"/g, "&quot;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+
+    }
+
+
+    function setExternalLink(
+      element,
+      href
+    ) {
+
+      element.href =
+        href;
+
+      element.target =
+        "_blank";
+
+      element.rel =
+        "noopener noreferrer";
+
+    }
+
+
+    /* =======================================================
+       Author Renderer
+       ======================================================= */
+
+    function renderAuthors(
+      authors,
+      separator
+    ) {
+
+      if (!authors) {
+        return "";
+      }
+
+
+      if (
+        typeof authors === "string"
+      ) {
+
+        return escHTML(
+          authors
+        );
+
+      }
+
+
+      if (
+        !Array.isArray(authors) ||
+        authors.length === 0
+      ) {
+
+        return "";
+
+      }
+
+
+      separator =
+        separator || " & ";
+
+
+      return authors
+        .map(
+          function (author) {
+
+
+            var name =
+              escHTML(
+                author.name || ""
+              );
+
+
+            if (
+              author.self
+            ) {
+
+              return (
+                '<strong class="author-self">' +
+                name +
+                "</strong>"
+              );
+
+            }
+
+
+            if (
+              author.url
+            ) {
+
+              return (
+                '<a href="' +
+                escAttr(author.url) +
+                '" target="_blank"' +
+                ' rel="noopener noreferrer"' +
+                ' class="author-link">' +
+                name +
+                "</a>"
+              );
+
+            }
+
+
+            return name;
+
+          }
+        )
+        .join(separator);
+
+    }
+
+
+    /* =======================================================
+       Navigation
+       ======================================================= */
+
+    document.getElementById(
+      "navName"
+    ).textContent =
+      data.personal.name;
+
+
+    /* =======================================================
+       Hero
+       ======================================================= */
+
+    document.getElementById(
+      "heroName"
+    ).textContent =
+      data.personal.name;
+
+
+    document.getElementById(
+      "heroTitle"
+    ).textContent =
+      data.personal.title || "";
+
+
+    var affiliation =
+      document.getElementById(
+        "heroAffiliation"
+      );
+
+
+    if (
+      data.education &&
+      data.education.length > 0
+    ) {
+
+      affiliation.textContent =
+        data.education[0].school || "";
+
+    }
+
+
+    document.getElementById(
+      "heroBio"
+    ).textContent =
+      data.personal.bio || "";
+
+
+    /* =======================================================
+       Hero Image
+       ======================================================= */
+
+    var heroAvatar =
+      document.getElementById(
+        "heroAvatar"
+      );
+
+
+    if (
+      data.personal.avatar
+    ) {
+
+      heroAvatar.src =
+        data.personal.avatar;
+
+      heroAvatar.alt =
+        "Portrait of " +
+        data.personal.name;
+
+    } else {
+
+      heroAvatar.parentElement.style.display =
+        "none";
+
+    }
+
+
+    /* =======================================================
+       Contact Data
+       ======================================================= */
+
+    var contact =
+      data.contact || {};
+
+
+    /* =======================================================
+       Structured Data: sameAs
+
+       Automatically adds:
+       - ORCID
+       - Google Scholar
+       - GitHub
+       ======================================================= */
+
+    updateStructuredData();
+
+
+    function updateStructuredData() {
+
+      var schemaElement =
+        document.getElementById(
+          "siteStructuredData"
+        );
+
+
+      if (!schemaElement) {
+        return;
+      }
+
+
+      try {
+
+        var schema =
+          JSON.parse(
+            schemaElement.textContent
+          );
+
+
+        var person =
+          schema["@graph"].find(
+            function (entry) {
+
+              return (
+                entry["@type"] ===
+                "Person"
+              );
+
+            }
+          );
+
+
+        if (!person) {
+          return;
+        }
+
+
+        var sameAs =
+          [];
+
+
+        if (
+          contact.orcid
+        ) {
+
+          sameAs.push(
+            contact.orcid
+          );
+
+        }
+
+
+        if (
+          contact.scholar
+        ) {
+
+          sameAs.push(
+            contact.scholar
+          );
+
+        }
+
+
+        if (
+          contact.github
+        ) {
+
+          sameAs.push(
+            contact.github
+          );
+
+        }
+
+
+        if (
+          sameAs.length > 0
+        ) {
+
+          person.sameAs =
+            sameAs;
+
+        }
+
+
+        schemaElement.textContent =
+          JSON.stringify(
+            schema
+          );
+
+
+      } catch (error) {
+
+        /*
+         * If structured data cannot be updated,
+         * leave the original schema untouched.
+         */
+
+      }
+
+    }
+
+
+    /* =======================================================
+       Hero Links
+       ======================================================= */
+
+    var heroLinks =
+      document.querySelector(
+        ".hero-links"
+      );
+
+
+    var hasHeroLink =
+      false;
+
+
+    /* CV */
+
+    var cvLink =
+      document.getElementById(
+        "cvLink"
+      );
+
+
+    if (
+      contact.cv
+    ) {
+
+      setExternalLink(
+        cvLink,
+        contact.cv
+      );
+
+      cvLink.hidden =
+        false;
+
+      hasHeroLink =
+        true;
+
+    }
+
+
+    /* Email */
+
+    var emailLink =
+      document.getElementById(
+        "emailLink"
+      );
+
+
+    if (
+      contact.email
+    ) {
+
+      emailLink.href =
+        "mailto:" +
+        contact.email;
+
+      emailLink.hidden =
+        false;
+
+      hasHeroLink =
+        true;
+
+    } else {
+
+      emailLink.hidden =
+        true;
+
+    }
+
+
+    /* Google Scholar */
+
+    var scholarLink =
+      document.getElementById(
+        "scholarLink"
+      );
+
+
+    if (
+      contact.scholar
+    ) {
+
+      setExternalLink(
+        scholarLink,
+        contact.scholar
+      );
+
+      scholarLink.hidden =
+        false;
+
+      hasHeroLink =
+        true;
+
+    }
+
+
+    /* ORCID */
+
+    var orcidLink =
+      document.getElementById(
+        "orcidLink"
+      );
+
+
+    if (
+      contact.orcid
+    ) {
+
+      setExternalLink(
+        orcidLink,
+        contact.orcid
+      );
+
+      orcidLink.hidden =
+        false;
+
+      hasHeroLink =
+        true;
+
+    }
+
+
+    if (
+      !hasHeroLink
+    ) {
+
+      heroLinks.style.display =
+        "none";
+
+    }
 
 
     /* =======================================================
        Research Interests
        ======================================================= */
 
-    research: [
+    var researchList =
+      document.getElementById(
+        "researchList"
+      );
 
-      {
-        id: 1,
 
-        title:
-          "Culture & Long-Run Development",
+    var researchItems =
+      data.research || [];
 
-        description:
-          "How culture and historical exposure shape economic behavior and regional performance."
-      },
 
-      {
-        id: 2,
+    if (
+      researchItems.length === 0
+    ) {
 
-        title:
-          "Migration & Regional Development",
+      document.getElementById(
+        "research"
+      ).style.display =
+        "none";
 
-        description:
-          "How population reallocation affects labor markets, firms, and regional economic development."
-      },
+    } else {
 
-      {
-        id: 3,
 
-        title:
-          "Economic History & Behavior",
+      researchItems.forEach(
+        function (research) {
 
-        description:
-          "The long-run effects of historical shocks on individual behavior and social outcomes."
-      }
 
-    ],
+          var card =
+            document.createElement(
+              "article"
+            );
+
+
+          card.className =
+            "research-card";
+
+
+          var title =
+            document.createElement(
+              "h3"
+            );
+
+
+          title.className =
+            "research-card-title";
+
+
+          title.textContent =
+            research.title || "";
+
+
+          card.appendChild(
+            title
+          );
+
+
+          if (
+            research.description
+          ) {
+
+
+            var description =
+              document.createElement(
+                "div"
+              );
+
+
+            description.className =
+              "research-card-desc";
+
+
+            description.textContent =
+              research.description;
+
+
+            card.appendChild(
+              description
+            );
+
+          }
+
+
+          researchList.appendChild(
+            card
+          );
+
+        }
+      );
+
+    }
 
 
     /* =======================================================
        Working Papers
-
-       Author structure:
-
-       {
-         name: "Author Name",
-         url: "https://homepage.com/",
-         self: false
-       }
-
-       For yourself:
-       {
-         name: "H.X.",
-         self: true
-       }
-
-       If url is empty, the author is rendered as plain text.
        ======================================================= */
 
-    workingPapers: [
-
-      {
-        id: 1,
-
-        title: "Crime",
-
-        authors: [
-
-          {
-            name: "S.S.",
-            url: "http://econ.ruc.edu.cn/jszy/38e856abc20543fe9cf22f0699aaf73a.htm"
-          },
-
-          {
-            name: "H.X.",
-            self: true
-          }
-
-        ],
-
-        year: "2026",
-
-        abstract: "",
-
-        ssrn: "",
-
-        fullText: "",
-
-        link: ""
-      },
-
-
-      {
-        id: 2,
-
-        title: "Firm Productivity",
-
-        authors: [
-
-          {
-            name: "H.X.",
-            self: true
-          },
-
-          {
-            name: "C.C.",
-            url: "https://chenxuanchen-econ.github.io/research.html"
-          }
-
-        ],
-
-        year: "2025",
-
-        abstract: "",
-
-        ssrn: "",
-
-        fullText: "",
-
-        link: ""
-      },
-
-
-      {
-        id: 3,
-
-        title:
-          "Intergenerational Educational Mobility",
-
-        authors: [
-
-          {
-            name: "W.F.",
-            url: ""
-          },
-
-          {
-            name: "G.L.",
-            url: ""
-          },
-
-          {
-            name: "M.L.",
-            url: ""
-          },
-
-          {
-            name: "Y.S.",
-            url: ""
-          },
-
-          {
-            name: "Y.X.",
-            url: ""
-          },
-
-          {
-            name: "H.X.",
-            self: true
-          },
-
-          {
-            name: "J.W.",
-            url: ""
-          }
-
-        ],
-
-        year: "2025",
-
-        abstract: "",
-
-        ssrn: "",
-
-        fullText: "",
-
-        link: ""
-      }
-
-    ],
+    renderWorkingPapers(
+      "wpList",
+      data.workingPapers || []
+    );
 
 
     /* =======================================================
        Publications
        ======================================================= */
 
-    publications: [
-
-      {
-        id: 1,
-
-        title:
-          "How do health shocks affect household energy poverty?",
-
-        authors: [
-
-          {
-            name: "Fan, W.",
-            url: ""
-          },
-
-          {
-            name: "Xu, H.",
-            self: true
-          },
-
-          {
-            name: "Cheng, S.",
-            url: ""
-          },
-
-          {
-            name: "Yang, F.",
-            url: ""
-          }
-
-        ],
-
-        journal:
-          "Energy Economics",
-
-        year:
-          "2025",
-
-        link:
-          "https://doi.org/10.1016/j.eneco.2025.108884",
-
-        abstract: "",
-
-        ssrn: "",
-
-        fullText: ""
-      },
-
-
-      {
-        id: 2,
-
-        title:
-          "Global intercountry croplands' greenhouse gas emissions differences and their potential drivers from economic levels perspective",
-
-        authors: [
-
-          {
-            name: "Gao, M.",
-            url: ""
-          },
-
-          {
-            name: "Xu, H.",
-            self: true
-          },
-
-          {
-            name: "Ma, M.",
-            url: ""
-          },
-
-          {
-            name: "Gao, G.",
-            url: ""
-          },
-
-          {
-            name: "Chen, X.",
-            url: ""
-          },
-
-          {
-            name: "Chen, J.",
-            url: ""
-          },
-
-          {
-            name: "Liu, X.",
-            url: ""
-          },
-
-          {
-            name: "Qi, L.",
-            url: ""
-          }
-
-        ],
-
-        journal:
-          "Ecological Indicators",
-
-        year:
-          "2024",
-
-        link:
-          "https://doi.org/10.1016/j.ecolind.2024.112635",
-
-        abstract: "",
-
-        ssrn: "",
-
-        fullText: ""
-      }
-
-    ],
+    renderPublications(
+      "pubList",
+      data.publications || []
+    );
 
 
     /* =======================================================
        Work in Progress
-
-       Only coauthors are listed here because the website
-       already makes clear that these are Haolun Xu's projects.
        ======================================================= */
 
-    workInProgress: [
+    var wipSection =
+      document.getElementById(
+        "work-in-progress"
+      );
 
-      {
-        id: 1,
 
-        title:
-          "Innovation Characteristics of Enterprises",
+    var wipGrid =
+      document.getElementById(
+        "wipGrid"
+      );
 
-        description: "",
 
-        status:
-          "In Progress",
+    var wipItems =
+      data.workInProgress || [];
 
-        coauthors: [
 
-          {
-            name: "S.S.",
-            url: "http://econ.ruc.edu.cn/jszy/38e856abc20543fe9cf22f0699aaf73a.htm"
+    if (
+      wipItems.length === 0
+    ) {
+
+      wipSection.style.display =
+        "none";
+
+    } else {
+
+
+      wipItems.forEach(
+        function (wip) {
+
+
+          var item =
+            document.createElement(
+              "article"
+            );
+
+
+          item.className =
+            "wip-item-simple";
+
+
+          var title =
+            document.createElement(
+              "h3"
+            );
+
+
+          title.className =
+            "wip-item-title";
+
+
+          title.textContent =
+            wip.title || "";
+
+
+          item.appendChild(
+            title
+          );
+
+
+          var renderedCoauthors =
+            renderAuthors(
+              wip.coauthors,
+              " & "
+            );
+
+
+          if (
+            renderedCoauthors
+          ) {
+
+
+            var coauthors =
+              document.createElement(
+                "div"
+              );
+
+
+            coauthors.className =
+              "wip-item-coauthors";
+
+
+            coauthors.innerHTML =
+              "with " +
+              renderedCoauthors;
+
+
+            item.appendChild(
+              coauthors
+            );
+
           }
 
-        ]
-      },
 
+          wipGrid.appendChild(
+            item
+          );
 
-      {
-        id: 2,
+        }
+      );
 
-        title:
-          "Crime",
-
-        description: "",
-
-        status:
-          "In Progress",
-
-        coauthors: [
-
-          {
-            name: "S.S.",
-            url: "http://econ.ruc.edu.cn/jszy/38e856abc20543fe9cf22f0699aaf73a.htm"
-          },
-
-          {
-            name: "C.Y.",
-            url: ""
-          }
-
-        ]
-      },
-
-
-      {
-        id: 3,
-
-        title:
-          "Manufacturing Firm Productivity",
-
-        description: "",
-
-        status:
-          "In Progress",
-
-        coauthors: []
-      },
-
-
-      {
-        id: 4,
-
-        title:
-          "Knowledge",
-
-        description: "",
-
-        status:
-          "In Progress",
-
-        coauthors: []
-      },
-
-
-      {
-        id: 5,
-
-        title:
-          "Unintended Outcome of Public Policy",
-
-        description: "",
-
-        status:
-          "In Progress",
-
-        coauthors: [
-
-          {
-            name: "C.C.",
-            url: "https://chenxuanchen-econ.github.io/research.html"
-          },
-
-          {
-            name: "S.F.",
-            url: "https://fansiyuan.weebly.com"
-          }
-
-        ]
-      },
-
-
-      {
-        id: 6,
-
-        title:
-          "Law and Economics",
-
-        description: "",
-
-        status:
-          "In Progress",
-
-        coauthors: []
-      }
-
-    ],
-
-
-    /* =======================================================
-       Research Projects
-       ======================================================= */
-
-    researchProjects: [
-
-      {
-        id: 1,
-
-        title:
-          "Theoretical Framework and Implementation Pathways for Coordinating New Industrialization, New Urbanization, and Comprehensive Rural Revitalization",
-
-        funder:
-          "National Social Science Fund of China, Major Special Project",
-
-        year:
-          "2025",
-
-        projectNo:
-          "24ZDA046",
-
-        role:
-          "Participant"
-      },
-
-
-      {
-        id: 2,
-
-        title:
-          "Satellite Remote Sensing for Advancing China’s Dual-Carbon Goals: Data Measurement, Spatiotemporal Differentiation, and Evolution Pathways",
-
-        funder:
-          "Humanities and Social Sciences Research Project, Ministry of Education of China",
-
-        year:
-          "2022",
-
-        projectNo:
-          "22YJC790025",
-
-        role:
-          "Participant"
-      },
-
-
-      {
-        id: 3,
-
-        title:
-          "Empowering Rural Revitalization through County-Level Converged Media in the Internet Era: Mechanism Evolution, Governance Effectiveness, and Practical Pathways",
-
-        funder:
-          "Renmin University of China “Qiushi Academic–Dongliang” Brand Research Project",
-
-        year:
-          "2026",
-
-        projectNo:
-          "",
-
-        role:
-          "Key Participant"
-      }
-
-    ],
+    }
 
 
     /* =======================================================
        Conferences
        ======================================================= */
 
-    conferences: [
-
-      {
-        id: 1,
-
-        title:
-          "Firm Productivity",
-
-        conference:
-          "The 25th China Economics Annual Conference",
-
-        location:
-          "Shanghai, China",
-
-        date:
-          "2025",
-
-        type:
-          "Presentation"
-      },
+    var confSection =
+      document.getElementById(
+        "conferences"
+      );
 
 
-      {
-        id: 2,
+    var confList =
+      document.getElementById(
+        "confList"
+      );
 
-        title:
-          "Firm Productivity",
 
-        conference:
-          "The 12th International Workshop on Regional, Urban, and Spatial Economics in China (RUSE)",
+    var conferences =
+      data.conferences || [];
 
-        location:
-          "Wuhan, China",
 
-        date:
-          "2024",
+    if (
+      conferences.length === 0
+    ) {
 
-        type:
-          "Presentation"
-      }
+      confSection.style.display =
+        "none";
 
-    ],
+    } else {
+
+
+      conferences.forEach(
+        function (conf) {
+
+
+          var item =
+            document.createElement(
+              "div"
+            );
+
+
+          item.className =
+            "conf-item";
+
+
+          var details =
+            [];
+
+
+          if (
+            conf.conference
+          ) {
+
+            details.push(
+              escHTML(
+                conf.conference
+              )
+            );
+
+          }
+
+
+          if (
+            conf.location
+          ) {
+
+            details.push(
+              escHTML(
+                conf.location
+              )
+            );
+
+          }
+
+
+          item.innerHTML =
+
+            '<div class="conf-year">' +
+
+              escHTML(
+                conf.date || ""
+              ) +
+
+            "</div>" +
+
+
+            '<div class="conf-content">' +
+
+              '<span class="conf-title">' +
+
+                escHTML(
+                  conf.title || ""
+                ) +
+
+              "</span>" +
+
+
+              (
+                details.length
+
+                  ? ' <span class="conf-detail">&mdash; ' +
+                    details.join(", ") +
+                    "</span>"
+
+                  : ""
+              ) +
+
+            "</div>";
+
+
+          confList.appendChild(
+            item
+          );
+
+        }
+      );
+
+    }
 
 
     /* =======================================================
        Education
        ======================================================= */
 
-    education: [
-
-      {
-        id: 1,
-
-        degree:
-          "Ph.D. in Economic History",
-
-        school:
-          "Renmin University of China",
-
-        year:
-          "2025–Present"
-      },
+    var educationSection =
+      document.getElementById(
+        "education"
+      );
 
 
-      {
-        id: 2,
+    var educationList =
+      document.getElementById(
+        "eduList"
+      );
 
-        degree:
-          "B.S. in Economics",
 
-        school:
-          "Southwestern University of Finance and Economics",
+    var education =
+      data.education || [];
 
-        year:
-          "2021–2025"
-      }
 
-    ],
+    if (
+      education.length === 0
+    ) {
+
+      educationSection.style.display =
+        "none";
+
+    } else {
+
+
+      education.forEach(
+        function (entry) {
+
+
+          var item =
+            document.createElement(
+              "div"
+            );
+
+
+          item.className =
+            "edu-item";
+
+
+          item.innerHTML =
+
+            '<span class="edu-school">' +
+
+              escHTML(
+                entry.school || ""
+              ) +
+
+            "</span>" +
+
+            " &mdash; " +
+
+            '<span class="edu-degree">' +
+
+              escHTML(
+                entry.degree || ""
+              ) +
+
+            "</span>" +
+
+            (
+              entry.year
+
+                ? ', <span class="edu-year">' +
+                  escHTML(
+                    entry.year
+                  ) +
+                  "</span>"
+
+                : ""
+            );
+
+
+          educationList.appendChild(
+            item
+          );
+
+        }
+      );
+
+    }
 
 
     /* =======================================================
        Contact
        ======================================================= */
 
-    contact: {
+    var contactSection =
+      document.getElementById(
+        "contact"
+      );
 
-      email:
-        "haolun_xu@ruc.edu.cn",
 
-      /*
-       * Example:
-       * cv: "cv.pdf"
-       */
-      cv: "",
+    var contactLinks =
+      document.getElementById(
+        "contactLinks"
+      );
 
-      github: "",
 
-      scholar: "",
+    var hasContact =
+      false;
 
-      orcid:
-        "https://orcid.org/my-orcid?orcid=0009-0003-4418-6177"
+
+    /* Email */
+
+    if (
+      contact.email
+    ) {
+
+
+      var email =
+        document.createElement(
+          "a"
+        );
+
+
+      email.className =
+        "contact-link";
+
+
+      email.href =
+        "mailto:" +
+        contact.email;
+
+
+      email.textContent =
+        contact.email;
+
+
+      contactLinks.appendChild(
+        email
+      );
+
+
+      hasContact =
+        true;
 
     }
 
-  };
+
+    /* GitHub */
+
+    if (
+      contact.github
+    ) {
 
 
-  /* =========================================================
-     Public API
-     ========================================================= */
+      var github =
+        document.createElement(
+          "a"
+        );
 
-  window.loadSiteData = function () {
 
-    try {
+      github.className =
+        "contact-link";
 
-      var raw =
-        localStorage.getItem(STORAGE_KEY);
 
-      if (raw) {
+      github.textContent =
+        "GitHub";
 
-        var parsed =
-          JSON.parse(raw);
 
-        return deepMerge(
-          DEFAULTS,
-          parsed
+      setExternalLink(
+        github,
+        contact.github
+      );
+
+
+      contactLinks.appendChild(
+        github
+      );
+
+
+      hasContact =
+        true;
+
+    }
+
+
+    /* Google Scholar */
+
+    if (
+      contact.scholar
+    ) {
+
+
+      var scholar =
+        document.createElement(
+          "a"
+        );
+
+
+      scholar.className =
+        "contact-link";
+
+
+      scholar.textContent =
+        "Google Scholar";
+
+
+      setExternalLink(
+        scholar,
+        contact.scholar
+      );
+
+
+      contactLinks.appendChild(
+        scholar
+      );
+
+
+      hasContact =
+        true;
+
+    }
+
+
+    /* ORCID */
+
+    if (
+      contact.orcid
+    ) {
+
+
+      var orcid =
+        document.createElement(
+          "a"
+        );
+
+
+      orcid.className =
+        "contact-link";
+
+
+      orcid.textContent =
+        "ORCID";
+
+
+      setExternalLink(
+        orcid,
+        contact.orcid
+      );
+
+
+      contactLinks.appendChild(
+        orcid
+      );
+
+
+      hasContact =
+        true;
+
+    }
+
+
+    if (
+      !hasContact
+    ) {
+
+      contactSection.style.display =
+        "none";
+
+    }
+
+
+    /* =======================================================
+       Footer
+       ======================================================= */
+
+    document.getElementById(
+      "footerYear"
+    ).textContent =
+      new Date().getFullYear();
+
+
+    document.getElementById(
+      "footerName"
+    ).textContent =
+      data.personal.name;
+
+
+    /* =======================================================
+       Scroll Spy
+       ======================================================= */
+
+    initScrollSpy();
+
+
+    function initScrollSpy() {
+
+
+      var navLinks =
+        Array.prototype.slice.call(
+          document.querySelectorAll(
+            ".nav-links a"
+          )
+        );
+
+
+      /*
+       * Work in Progress is grouped under
+       * Publications in the navigation.
+       */
+
+      var navRegions = [
+
+        {
+          navId:
+            "research",
+
+          sections: [
+            "research"
+          ]
+        },
+
+        {
+          navId:
+            "working-papers",
+
+          sections: [
+            "working-papers"
+          ]
+        },
+
+        {
+          navId:
+            "publications",
+
+          sections: [
+            "publications",
+            "work-in-progress"
+          ]
+        },
+
+        {
+          navId:
+            "conferences",
+
+          sections: [
+            "conferences"
+          ]
+        },
+
+        {
+          navId:
+            "education",
+
+          sections: [
+            "education"
+          ]
+        },
+
+        {
+          navId:
+            "contact",
+
+          sections: [
+            "contact"
+          ]
+        }
+
+      ];
+
+
+      var ticking =
+        false;
+
+
+      var currentId =
+        "";
+
+
+      var lastScrollY =
+        window.scrollY;
+
+
+      function setActive(id) {
+
+
+        if (
+          !id ||
+          id === currentId
+        ) {
+
+          return;
+
+        }
+
+
+        currentId =
+          id;
+
+
+        navLinks.forEach(
+          function (link) {
+
+
+            var active =
+              link.getAttribute(
+                "href"
+              ) === "#" + id;
+
+
+            link.classList.toggle(
+              "active-nav",
+              active
+            );
+
+
+            if (active) {
+
+
+              link.setAttribute(
+                "aria-current",
+                "location"
+              );
+
+
+              link.scrollIntoView({
+
+                behavior:
+                  "auto",
+
+                block:
+                  "nearest",
+
+                inline:
+                  "nearest"
+
+              });
+
+
+            } else {
+
+
+              link.removeAttribute(
+                "aria-current"
+              );
+
+            }
+
+          }
         );
 
       }
 
-    } catch (e) {
 
-      /*
-       * Corrupted or unavailable storage.
-       * Fall back to deployed defaults.
-       */
-
-    }
-
-    return deepClone(DEFAULTS);
-
-  };
+      function regionMetrics(
+        region,
+        focusY
+      ) {
 
 
-  window.saveSiteData = function (data) {
-
-    try {
-
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(data)
-      );
-
-      return true;
-
-    } catch (e) {
-
-      return false;
-
-    }
-
-  };
+        var top =
+          Infinity;
 
 
-  window.resetSiteData = function () {
-
-    try {
-
-      localStorage.removeItem(
-        STORAGE_KEY
-      );
-
-    } catch (e) {
-
-      /* Ignore storage errors */
-
-    }
-
-    return deepClone(DEFAULTS);
-
-  };
+        var bottom =
+          -Infinity;
 
 
-  window.getDefaults = function () {
-
-    return deepClone(DEFAULTS);
-
-  };
+        var exists =
+          false;
 
 
-  /* =========================================================
-     Helpers
-     ========================================================= */
-
-  function deepClone(obj) {
-
-    return JSON.parse(
-      JSON.stringify(obj)
-    );
-
-  }
+        region.sections.forEach(
+          function (id) {
 
 
-  function deepMerge(base, override) {
-
-    var out =
-      deepClone(base);
-
-
-    if (
-      !override ||
-      typeof override !== "object"
-    ) {
-
-      return out;
-
-    }
+            var section =
+              document.getElementById(
+                id
+              );
 
 
-    Object.keys(
-      override
-    ).forEach(
-      function (key) {
+            if (
+              !section ||
+              section.offsetParent === null
+            ) {
+
+              return;
+
+            }
+
+
+            var rect =
+              section.getBoundingClientRect();
+
+
+            top =
+              Math.min(
+                top,
+                rect.top
+              );
+
+
+            bottom =
+              Math.max(
+                bottom,
+                rect.bottom
+              );
+
+
+            exists =
+              true;
+
+          }
+        );
+
 
         if (
-          override[key] !== undefined
+          !exists
         ) {
 
-          out[key] =
-            override[key];
+          return null;
+
+        }
+
+
+        var navHeight =
+          document.querySelector(
+            "nav"
+          )
+          .getBoundingClientRect()
+          .height;
+
+
+        var viewportTop =
+          navHeight;
+
+
+        var viewportBottom =
+          window.innerHeight;
+
+
+        var visible =
+          Math.max(
+
+            0,
+
+            Math.min(
+              bottom,
+              viewportBottom
+            ) -
+
+            Math.max(
+              top,
+              viewportTop
+            )
+
+          );
+
+
+        var regionHeight =
+          Math.max(
+
+            1,
+
+            bottom -
+            top
+
+          );
+
+
+        var availableHeight =
+          Math.max(
+
+            1,
+
+            viewportBottom -
+            viewportTop
+
+          );
+
+
+        var visibilityRatio =
+
+          visible /
+
+          Math.min(
+            regionHeight,
+            availableHeight
+          );
+
+
+        var center =
+          top +
+          regionHeight / 2;
+
+
+        var centerDistance =
+          Math.abs(
+            center -
+            focusY
+          );
+
+
+        var proximity =
+          Math.max(
+
+            0,
+
+            1 -
+
+            centerDistance /
+            availableHeight
+
+          );
+
+
+        var score =
+
+          visibilityRatio *
+          0.70 +
+
+          proximity *
+          0.30;
+
+
+        return {
+
+          id:
+            region.navId,
+
+          top:
+            top,
+
+          bottom:
+            bottom,
+
+          visible:
+            visible,
+
+          score:
+            score
+
+        };
+
+      }
+
+
+      function updateActiveNav() {
+
+
+        ticking =
+          false;
+
+
+        var navHeight =
+          document.querySelector(
+            "nav"
+          )
+          .getBoundingClientRect()
+          .height;
+
+
+        var usableHeight =
+          Math.max(
+
+            1,
+
+            window.innerHeight -
+            navHeight
+
+          );
+
+
+        var maxScroll =
+          Math.max(
+
+            1,
+
+            document.documentElement
+              .scrollHeight -
+
+            window.innerHeight
+
+          );
+
+
+        var scrollProgress =
+          Math.min(
+
+            1,
+
+            window.scrollY /
+            maxScroll
+
+          );
+
+
+        var bottomAdjustment =
+          Math.max(
+
+            0,
+
+            (
+              scrollProgress -
+              0.78
+            ) /
+            0.22
+
+          );
+
+
+        var focusRatio =
+
+          0.32 +
+
+          bottomAdjustment *
+          0.28;
+
+
+        var focusY =
+
+          navHeight +
+
+          usableHeight *
+          focusRatio;
+
+
+        var candidates =
+
+          navRegions
+
+            .map(
+              function (region) {
+
+                return regionMetrics(
+                  region,
+                  focusY
+                );
+
+              }
+            )
+
+            .filter(
+              function (metrics) {
+
+                return (
+                  metrics &&
+                  metrics.visible > 0
+                );
+
+              }
+            );
+
+
+        if (
+          candidates.length === 0
+        ) {
+
+          return;
+
+        }
+
+
+        candidates.sort(
+          function (a, b) {
+
+
+            var delta =
+              b.score -
+              a.score;
+
+
+            if (
+              Math.abs(delta) >
+              0.025
+            ) {
+
+              return delta;
+
+            }
+
+
+            var scrollingDown =
+              window.scrollY >=
+              lastScrollY;
+
+
+            return scrollingDown
+
+              ? b.top - a.top
+
+              : a.top - b.top;
+
+          }
+        );
+
+
+        lastScrollY =
+          window.scrollY;
+
+
+        setActive(
+          candidates[0].id
+        );
+
+      }
+
+
+      function requestUpdate() {
+
+
+        if (
+          !ticking
+        ) {
+
+
+          window.requestAnimationFrame(
+            updateActiveNav
+          );
+
+
+          ticking =
+            true;
 
         }
 
       }
-    );
 
 
-    return out;
+      window.addEventListener(
 
-  }
+        "scroll",
 
-})();
+        requestUpdate,
+
+        {
+          passive: true
+        }
+
+      );
+
+
+      window.addEventListener(
+
+        "resize",
+
+        requestUpdate,
+
+        {
+          passive: true
+        }
+
+      );
+
+
+      requestUpdate();
+
+    }
+
+
+    /* =======================================================
+       Working Papers Renderer
+       ======================================================= */
+
+    function renderWorkingPapers(
+      listId,
+      items
+    ) {
+
+
+      var list =
+        document.getElementById(
+          listId
+        );
+
+
+      var section =
+        document.getElementById(
+          "working-papers"
+        );
+
+
+      if (
+        !items.length
+      ) {
+
+
+        if (section) {
+
+          section.style.display =
+            "none";
+
+        }
+
+
+        return;
+
+      }
+
+
+      items.forEach(
+        function (paper, index) {
+
+
+          var article =
+            document.createElement(
+              "article"
+            );
+
+
+          article.className =
+            "wp-item";
+
+
+          var titleHTML =
+
+            paper.link
+
+              ? '<a href="' +
+                escAttr(
+                  paper.link
+                ) +
+                '" target="_blank"' +
+                ' rel="noopener noreferrer">' +
+                escHTML(
+                  paper.title
+                ) +
+                "</a>"
+
+              : escHTML(
+                  paper.title
+                );
+
+
+          var renderedAuthors =
+            renderAuthors(
+              paper.authors,
+              " & "
+            );
+
+
+          var hasAbstract =
+
+            paper.abstract &&
+            paper.abstract
+              .trim()
+              .length > 0;
+
+
+          var hasLinks =
+
+            paper.link ||
+            paper.ssrn ||
+            paper.fullText;
+
+
+          var html =
+
+            '<div class="wp-header">' +
+
+              '<div class="wp-main">' +
+
+                '<h3 class="wp-title">' +
+
+                  titleHTML +
+
+                "</h3>" +
+
+                (
+                  renderedAuthors
+
+                    ? '<div class="wp-authors">' +
+                      renderedAuthors +
+                      "</div>"
+
+                    : ""
+                ) +
+
+              "</div>" +
+
+              (
+                paper.year
+
+                  ? '<div class="wp-status">' +
+                    escHTML(
+                      paper.year
+                    ) +
+                    "</div>"
+
+                  : ""
+              ) +
+
+            "</div>";
+
+
+          if (
+            hasLinks
+          ) {
+
+
+            var links =
+              [];
+
+
+            if (
+              paper.link
+            ) {
+
+
+              links.push(
+
+                '<a href="' +
+
+                escAttr(
+                  paper.link
+                ) +
+
+                '" target="_blank"' +
+
+                ' rel="noopener noreferrer"' +
+
+                ' class="wp-link">' +
+
+                "Paper" +
+
+                "</a>"
+
+              );
+
+            }
+
+
+            if (
+              paper.ssrn
+            ) {
+
+
+              links.push(
+
+                '<a href="' +
+
+                escAttr(
+                  paper.ssrn
+                ) +
+
+                '" target="_blank"' +
+
+                ' rel="noopener noreferrer"' +
+
+                ' class="wp-link">' +
+
+                "SSRN" +
+
+                "</a>"
+
+              );
+
+            }
+
+
+            if (
+              paper.fullText
+            ) {
+
+
+              links.push(
+
+                '<a href="' +
+
+                escAttr(
+                  paper.fullText
+                ) +
+
+                '" target="_blank"' +
+
+                ' rel="noopener noreferrer"' +
+
+                ' class="wp-link">' +
+
+                "PDF" +
+
+                "</a>"
+
+              );
+
+            }
+
+
+            html +=
+
+              '<div class="wp-links">' +
+
+                links.join("") +
+
+              "</div>";
+
+          }
+
+
+          if (
+            hasAbstract
+          ) {
+
+
+            var abstractId =
+              "wp-abstract-" +
+              index;
+
+
+            html +=
+
+              '<button' +
+
+                ' class="wp-abstract-toggle"' +
+
+                ' type="button"' +
+
+                ' aria-expanded="false"' +
+
+                ' aria-controls="' +
+                abstractId +
+                '">' +
+
+                "Abstract" +
+
+              "</button>" +
+
+
+              '<div' +
+
+                ' class="wp-abstract"' +
+
+                ' id="' +
+                abstractId +
+                '"' +
+
+                " hidden>" +
+
+                escHTML(
+                  paper.abstract
+                ) +
+
+              "</div>";
+
+          }
+
+
+          article.innerHTML =
+            html;
+
+
+          if (
+            hasAbstract
+          ) {
+
+
+            var toggle =
+              article.querySelector(
+                ".wp-abstract-toggle"
+              );
+
+
+            var abstract =
+              article.querySelector(
+                ".wp-abstract"
+              );
+
+
+            toggle.addEventListener(
+
+              "click",
+
+              function () {
+
+
+                var open =
+
+                  toggle.getAttribute(
+                    "aria-expanded"
+                  ) === "true";
+
+
+                toggle.setAttribute(
+
+                  "aria-expanded",
+
+                  open
+                    ? "false"
+                    : "true"
+
+                );
+
+
+                toggle.textContent =
+
+                  open
+                    ? "Abstract"
+                    : "Hide Abstract";
+
+
+                abstract.hidden =
+                  open;
+
+              }
+
+            );
+
+          }
+
+
+          list.appendChild(
+            article
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =======================================================
+       Publications Renderer
+       ======================================================= */
+
+    function renderPublications(
+      listId,
+      items
+    ) {
+
+
+      var list =
+        document.getElementById(
+          listId
+        );
+
+
+      var section =
+        document.getElementById(
+          "publications"
+        );
+
+
+      if (
+        !items.length
+      ) {
+
+
+        if (section) {
+
+          section.style.display =
+            "none";
+
+        }
+
+
+        return;
+
+      }
+
+
+      items.forEach(
+        function (publication) {
+
+
+          var article =
+            document.createElement(
+              "article"
+            );
+
+
+          article.className =
+            "pub-item";
+
+
+          var title =
+            escHTML(
+              publication.title || ""
+            );
+
+
+          var titleHTML =
+
+            publication.link
+
+              ? '<a href="' +
+
+                escAttr(
+                  publication.link
+                ) +
+
+                '" target="_blank"' +
+
+                ' rel="noopener noreferrer">' +
+
+                title +
+
+                "</a>"
+
+              : title;
+
+
+          var html =
+
+            '<h3 class="pub-title">' +
+
+              titleHTML +
+
+            "</h3>";
+
+
+          var renderedAuthors =
+            renderAuthors(
+              publication.authors,
+              "; "
+            );
+
+
+          if (
+            renderedAuthors
+          ) {
+
+
+            html +=
+
+              '<div class="pub-authors">' +
+
+                renderedAuthors +
+
+              "</div>";
+
+          }
+
+
+          var meta =
+            "";
+
+
+          if (
+            publication.journal
+          ) {
+
+
+            meta +=
+
+              '<span class="pub-journal">' +
+
+                escHTML(
+                  publication.journal
+                ) +
+
+              "</span>";
+
+          }
+
+
+          if (
+            publication.year
+          ) {
+
+
+            meta +=
+
+              (
+                meta
+                  ? ", "
+                  : ""
+              ) +
+
+              escHTML(
+                publication.year
+              );
+
+          }
+
+
+          if (
+            meta
+          ) {
+
+
+            html +=
+
+              '<div class="pub-meta">' +
+
+                meta +
+
+              "</div>";
+
+          }
+
+
+          var links =
+            [];
+
+
+          if (
+            publication.link
+          ) {
+
+
+            links.push(
+
+              '<a href="' +
+
+              escAttr(
+                publication.link
+              ) +
+
+              '" target="_blank"' +
+
+              ' rel="noopener noreferrer"' +
+
+              ' class="pub-link">' +
+
+              "DOI" +
+
+              "</a>"
+
+            );
+
+          }
+
+
+          if (
+            publication.fullText
+          ) {
+
+
+            links.push(
+
+              '<a href="' +
+
+              escAttr(
+                publication.fullText
+              ) +
+
+              '" target="_blank"' +
+
+              ' rel="noopener noreferrer"' +
+
+              ' class="pub-link">' +
+
+              "PDF" +
+
+              "</a>"
+
+            );
+
+          }
+
+
+          if (
+            links.length
+          ) {
+
+
+            html +=
+
+              '<div class="pub-links">' +
+
+                links.join(" · ") +
+
+              "</div>";
+
+          }
+
+
+          article.innerHTML =
+            html;
+
+
+          list.appendChild(
+            article
+          );
+
+        }
+      );
+
+    }
+
+
+  })();
+
+  </script>
+
+
+</body>
+
+</html>
