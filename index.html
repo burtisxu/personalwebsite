@@ -1203,6 +1203,99 @@
 
 
     /* =========================================================
+       Research Projects
+       ========================================================= */
+
+    #research-projects {
+
+      padding-top: 30px;
+      padding-bottom: 32px;
+
+    }
+
+
+    .project-list {
+
+      display: flex;
+      flex-direction: column;
+
+    }
+
+
+    .project-item {
+
+      padding-top: 16px;
+      padding-bottom: 16px;
+
+      border-top: 1px solid var(--border-soft);
+
+    }
+
+
+    .project-item:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+
+    .project-heading {
+
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+
+      gap: 18px;
+
+    }
+
+
+    .project-title {
+
+      min-width: 0;
+
+      font-size: 14.5px;
+      line-height: 1.48;
+
+      font-weight: 600;
+
+      letter-spacing: -.01em;
+
+      color: var(--text);
+
+    }
+
+
+    .project-year {
+
+      flex: 0 0 auto;
+
+      font-size: 13px;
+      font-weight: 500;
+
+      color: var(--muted);
+
+    }
+
+
+    .project-meta {
+
+      margin-top: 4px;
+
+      font-size: 13px;
+      line-height: 1.52;
+
+      color: var(--muted);
+
+    }
+
+
+    .project-role {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+
+    /* =========================================================
        Conferences
        ========================================================= */
 
@@ -1699,6 +1792,12 @@
         </li>
 
         <li>
+          <a href="#research-projects">
+            Projects
+          </a>
+        </li>
+
+        <li>
           <a href="#conferences">
             Talks
           </a>
@@ -1921,6 +2020,29 @@
 
 
     <!-- =======================================================
+         Research Projects
+         ======================================================= -->
+
+    <section id="research-projects">
+
+      <div class="container">
+
+        <h2>
+          Research Projects
+        </h2>
+
+        <div
+          class="project-list"
+          id="projectList"
+        >
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
          Conferences
          ======================================================= -->
 
@@ -2048,7 +2170,7 @@
        Data Layer
        ========================================================= -->
 
-  <script src="data.js"></script>
+  <script src="data.js?v=5"></script>
 
 
   <!-- =========================================================
@@ -2767,6 +2889,183 @@
 
 
     /* =======================================================
+       Research Projects
+       ======================================================= */
+
+    var projectSection =
+      document.getElementById(
+        "research-projects"
+      );
+
+
+    var projectList =
+      document.getElementById(
+        "projectList"
+      );
+
+
+    var researchProjects =
+      data.researchProjects || [];
+
+
+    if (
+      researchProjects.length === 0
+    ) {
+
+      projectSection.style.display =
+        "none";
+
+    } else {
+
+
+      researchProjects.forEach(
+        function (project) {
+
+
+          var item =
+            document.createElement(
+              "article"
+            );
+
+
+          item.className =
+            "project-item";
+
+
+          var heading =
+            document.createElement(
+              "div"
+            );
+
+
+          heading.className =
+            "project-heading";
+
+
+          var title =
+            document.createElement(
+              "h3"
+            );
+
+
+          title.className =
+            "project-title";
+
+
+          title.textContent =
+            project.title || "";
+
+
+          heading.appendChild(
+            title
+          );
+
+
+          if (
+            project.year
+          ) {
+
+
+            var year =
+              document.createElement(
+                "div"
+              );
+
+
+            year.className =
+              "project-year";
+
+
+            year.textContent =
+              project.year;
+
+
+            heading.appendChild(
+              year
+            );
+
+          }
+
+
+          item.appendChild(
+            heading
+          );
+
+
+          var metaParts = [];
+
+
+          if (
+            project.role
+          ) {
+
+            metaParts.push(
+              project.role
+            );
+
+          }
+
+
+          if (
+            project.funder
+          ) {
+
+            metaParts.push(
+              project.funder
+            );
+
+          }
+
+
+          if (
+            project.projectNo
+          ) {
+
+            metaParts.push(
+              "Project No. " +
+              project.projectNo
+            );
+
+          }
+
+
+          if (
+            metaParts.length
+          ) {
+
+
+            var meta =
+              document.createElement(
+                "div"
+              );
+
+
+            meta.className =
+              "project-meta";
+
+
+            meta.textContent =
+              metaParts.join(" · ");
+
+
+            item.appendChild(
+              meta
+            );
+
+          }
+
+
+          projectList.appendChild(
+            item
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =======================================================
        Conferences
        ======================================================= */
 
@@ -3219,6 +3518,15 @@
           sections: [
             "publications",
             "work-in-progress"
+          ]
+        },
+
+        {
+          navId:
+            "research-projects",
+
+          sections: [
+            "research-projects"
           ]
         },
 
