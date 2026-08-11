@@ -12,9 +12,9 @@
    * Increment DATA_VERSION whenever the public
    * data structure changes substantially.
    *
-   * v4 introduces structured author/coauthor data.
+   * v5 adds structured research-project data.
    */
-  const DATA_VERSION = "v4";
+  const DATA_VERSION = "v5";
   const STORAGE_KEY = "siteData_" + DATA_VERSION;
 
 
@@ -479,6 +479,74 @@
 
 
     /* =======================================================
+       Research Projects
+       ======================================================= */
+
+    researchProjects: [
+
+      {
+        id: 1,
+
+        title:
+          "Theoretical Framework and Implementation Pathways for Coordinating New Industrialization, New Urbanization, and Comprehensive Rural Revitalization",
+
+        funder:
+          "National Social Science Fund of China, Major Special Project",
+
+        year:
+          "2025",
+
+        projectNo:
+          "24ZDA046",
+
+        role:
+          "Participant"
+      },
+
+
+      {
+        id: 2,
+
+        title:
+          "Satellite Remote Sensing for Advancing China’s Dual-Carbon Goals: Data Measurement, Spatiotemporal Differentiation, and Evolution Pathways",
+
+        funder:
+          "Humanities and Social Sciences Research Project, Ministry of Education of China",
+
+        year:
+          "2022",
+
+        projectNo:
+          "22YJC790025",
+
+        role:
+          "Participant"
+      },
+
+
+      {
+        id: 3,
+
+        title:
+          "Empowering Rural Revitalization through County-Level Converged Media in the Internet Era: Mechanism Evolution, Governance Effectiveness, and Practical Pathways",
+
+        funder:
+          "Renmin University of China “Qiushi Academic–Dongliang” Brand Research Project",
+
+        year:
+          "2026",
+
+        projectNo:
+          "",
+
+        role:
+          "Key Participant"
+      }
+
+    ],
+
+
+    /* =======================================================
        Conferences
        ======================================================= */
 
@@ -581,7 +649,8 @@
 
       scholar: "",
 
-      orcid:"https://orcid.org/my-orcid?orcid=0009-0003-4418-6177"
+      orcid:
+        "https://orcid.org/my-orcid?orcid=0009-0003-4418-6177"
 
     }
 
