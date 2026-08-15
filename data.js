@@ -12,9 +12,9 @@
    * Increment DATA_VERSION whenever the public
    * data structure changes substantially.
    *
-   * v5 adds structured research-project data.
+   * v6 adds the downloadable CV.
    */
-  const DATA_VERSION = "v5";
+  const DATA_VERSION = "v6";
   const STORAGE_KEY = "siteData_" + DATA_VERSION;
 
 
@@ -639,11 +639,8 @@
       email:
         "haolun_xu@ruc.edu.cn",
 
-      /*
-       * Example:
-       * cv: "cv.pdf"
-       */
-      cv: "",
+      cv:
+        "cv.pdf",
 
       github: "",
 
