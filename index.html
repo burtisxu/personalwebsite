@@ -1896,9 +1896,10 @@
 
             <a
               id="cvLink"
+              download="Haolun_Xu_CV.pdf"
               hidden
             >
-              CV
+              Download CV
             </a>
 
             <a
@@ -2170,7 +2171,7 @@
        Data Layer
        ========================================================= -->
 
-  <script src="data.js?v=5"></script>
+  <script src="data.js?v=6"></script>
 
 
   <!-- =========================================================
@@ -2560,10 +2561,8 @@
       contact.cv
     ) {
 
-      setExternalLink(
-        cvLink,
-        contact.cv
-      );
+      cvLink.href =
+        contact.cv;
 
       cvLink.hidden =
         false;
