@@ -473,7 +473,26 @@
           "In Progress",
 
         coauthors: []
-      }
+      },
+
+
+      {
+        id: 7,
+
+        title:
+          "Entrepreneurship",
+
+        description: "",
+
+        status:
+          "In Progress",
+
+        coauthors: [
+
+          {
+            name: "C.C.",
+            url: "https://chenxuanchen-econ.github.io/research.html"
+          }
 
     ],
 
