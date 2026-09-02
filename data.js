@@ -494,7 +494,8 @@
             url: "https://chenxuanchen-econ.github.io/research.html"
           }
 
-    ],
+    ]
+      },
 
 
     /* =======================================================
