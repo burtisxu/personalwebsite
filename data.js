@@ -369,7 +369,7 @@
         coauthors: [
 
           {
-            name: "S.S.",
+            name: "S.S. (RUC)",
             url: "http://econ.ruc.edu.cn/jszy/38e856abc20543fe9cf22f0699aaf73a.htm"
           }
 
@@ -391,12 +391,12 @@
         coauthors: [
 
           {
-            name: "S.S.",
+            name: "S.S. (RUC)",
             url: "http://econ.ruc.edu.cn/jszy/38e856abc20543fe9cf22f0699aaf73a.htm"
           },
 
           {
-            name: "C.Y.",
+            name: "C.Y. (RUC)",
             url: ""
           }
 
@@ -448,12 +448,12 @@
         coauthors: [
 
           {
-            name: "C.C.",
+            name: "C.C. (PKU)",
             url: "https://chenxuanchen-econ.github.io/research.html"
           },
 
           {
-            name: "S.F.",
+            name: "S.F. (UCSD)",
             url: "https://fansiyuan.weebly.com"
           }
 
@@ -490,7 +490,7 @@
         coauthors: [
 
           {
-            name: "C.C.",
+            name: "C.C. (RUC)",
             url: "https://chenxuanchen-econ.github.io/research.html"
           }
 
