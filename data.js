@@ -490,7 +490,7 @@
         coauthors: [
 
           {
-            name: "C.C. (RUC)",
+            name: "C.C. (PKU)",
             url: "https://chenxuanchen-econ.github.io/research.html"
           }
 
