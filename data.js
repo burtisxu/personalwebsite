@@ -13,8 +13,10 @@
    * data structure changes substantially.
    *
    * v6 adds the downloadable CV.
+   * v7 adds optional notes to individual Working Papers
+   * and Work in Progress projects.
    */
-  const DATA_VERSION = "v6";
+  const DATA_VERSION = "v7";
   const STORAGE_KEY = "siteData_" + DATA_VERSION;
 
 
@@ -93,12 +95,27 @@
        }
 
        For yourself:
+
        {
          name: "H.X.",
          self: true
        }
 
        If url is empty, the author is rendered as plain text.
+
+       Notes structure:
+
+       notes: [
+         "First note.",
+         "Second note."
+       ]
+
+       If there are no notes:
+
+       notes: []
+
+       Notes are intentionally untyped. Each element is simply
+       a piece of text associated with the individual paper.
        ======================================================= */
 
     workingPapers: [
@@ -130,7 +147,9 @@
 
         fullText: "",
 
-        link: ""
+        link: "",
+
+        notes: []
       },
 
 
@@ -161,7 +180,9 @@
 
         fullText: "",
 
-        link: ""
+        link: "",
+
+        notes: []
       },
 
 
@@ -218,7 +239,9 @@
 
         fullText: "",
 
-        link: ""
+        link: "",
+
+        notes: []
       }
 
     ],
@@ -351,6 +374,20 @@
 
        Only coauthors are listed here because the website
        already makes clear that these are Haolun Xu's projects.
+
+       Notes structure:
+
+       notes: [
+         "First note.",
+         "Second note."
+       ]
+
+       If there are no notes:
+
+       notes: []
+
+       Notes are intentionally untyped. Each element is simply
+       a piece of text associated with the individual project.
        ======================================================= */
 
     workInProgress: [
@@ -373,7 +410,9 @@
             url: "http://econ.ruc.edu.cn/jszy/38e856abc20543fe9cf22f0699aaf73a.htm"
           }
 
-        ]
+        ],
+
+        notes: []
       },
 
 
@@ -400,7 +439,9 @@
             url: ""
           }
 
-        ]
+        ],
+
+        notes: []
       },
 
 
@@ -415,7 +456,9 @@
         status:
           "In Progress",
 
-        coauthors: []
+        coauthors: [],
+
+        notes: []
       },
 
 
@@ -430,7 +473,9 @@
         status:
           "In Progress",
 
-        coauthors: []
+        coauthors: [],
+
+        notes: []
       },
 
 
@@ -457,7 +502,9 @@
             url: "https://fansiyuan.weebly.com"
           }
 
-        ]
+        ],
+
+        notes: []
       },
 
 
@@ -472,7 +519,9 @@
         status:
           "In Progress",
 
-        coauthors: []
+        coauthors: [],
+
+        notes: []
       },
 
 
@@ -494,9 +543,12 @@
             url: "https://chenxuanchen-econ.github.io/research.html"
           }
 
-    ]
+        ],
+
+        notes: []
       }
-       ],
+
+    ],
 
 
     /* =======================================================
@@ -507,7 +559,8 @@
 
       {
         id: 1,
-         title:
+
+        title:
           "Empowering Rural Revitalization through County-Level Converged Media in the Internet Era: Mechanism Evolution, Governance Effectiveness, and Practical Pathways",
 
         funder:
@@ -521,14 +574,14 @@
 
         role:
           "Key Participant"
-        
+
       },
 
 
       {
         id: 2,
 
-         title:
+        title:
           "Theoretical Framework and Implementation Pathways for Coordinating New Industrialization, New Urbanization, and Comprehensive Rural Revitalization",
 
         funder:
@@ -547,7 +600,8 @@
 
       {
         id: 3,
-          title:
+
+        title:
           "Satellite Remote Sensing for Advancing China’s Dual-Carbon Goals: Data Measurement, Spatiotemporal Differentiation, and Evolution Pathways",
 
         funder:
@@ -561,7 +615,7 @@
 
         role:
           "Participant"
-        
+
       }
 
     ],
