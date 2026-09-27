@@ -1017,25 +1017,6 @@
     }
 
 
-    .wp-notes {
-
-      max-width: 78ch;
-
-      margin-top: 6px;
-
-      font-size: 12.75px;
-      line-height: 1.55;
-
-      color: var(--subtle);
-
-    }
-
-
-    .wp-note + .wp-note {
-      margin-top: 2px;
-    }
-
-
     .wp-abstract {
 
       max-width: 78ch;
@@ -1218,23 +1199,6 @@
 
       color: var(--muted);
 
-    }
-
-
-    .wip-item-notes {
-
-      margin-top: 4px;
-
-      font-size: 12.5px;
-      line-height: 1.5;
-
-      color: var(--subtle);
-
-    }
-
-
-    .wip-item-note + .wip-item-note {
-      margin-top: 2px;
     }
 
 
@@ -2207,7 +2171,7 @@
        Data Layer
        ========================================================= -->
 
-  <script src="data.js?v=7"></script>
+  <script src="data.js?v=6"></script>
 
 
   <!-- =========================================================
@@ -2365,114 +2329,6 @@
           }
         )
         .join(separator);
-
-    }
-
-
-    /* =======================================================
-       Notes Renderer
-
-       Supports:
-       - notes: []
-       - notes: "Single note"
-       - notes: ["First note", "Second note"]
-
-       Empty notes are ignored.
-       ======================================================= */
-
-    function normalizeNotes(notes) {
-
-      if (!notes) {
-        return [];
-      }
-
-
-      if (
-        typeof notes === "string"
-      ) {
-
-        notes =
-          [notes];
-
-      }
-
-
-      if (
-        !Array.isArray(notes)
-      ) {
-
-        return [];
-
-      }
-
-
-      return notes
-        .map(
-          function (note) {
-
-            return String(
-              note == null
-                ? ""
-                : note
-            ).trim();
-
-          }
-        )
-        .filter(
-          function (note) {
-
-            return note.length > 0;
-
-          }
-        );
-
-    }
-
-
-    function renderNotes(
-      notes,
-      containerClass,
-      noteClass
-    ) {
-
-      var normalized =
-        normalizeNotes(
-          notes
-        );
-
-
-      if (
-        normalized.length === 0
-      ) {
-
-        return "";
-
-      }
-
-
-      return (
-        '<div class="' +
-        escAttr(containerClass) +
-        '">' +
-
-        normalized
-          .map(
-            function (note) {
-
-              return (
-                '<div class="' +
-                escAttr(noteClass) +
-                '">' +
-                escHTML(note) +
-                "</div>"
-              );
-
-            }
-          )
-          .join("") +
-
-        "</div>"
-      );
 
     }
 
@@ -3016,26 +2872,6 @@
 
             item.appendChild(
               coauthors
-            );
-
-          }
-
-
-          var renderedNotes =
-            renderNotes(
-              wip.notes,
-              "wip-item-notes",
-              "wip-item-note"
-            );
-
-
-          if (
-            renderedNotes
-          ) {
-
-            item.insertAdjacentHTML(
-              "beforeend",
-              renderedNotes
             );
 
           }
@@ -4346,14 +4182,6 @@
               ) +
 
             "</div>";
-
-
-          html +=
-            renderNotes(
-              paper.notes,
-              "wp-notes",
-              "wp-note"
-            );
 
 
           if (
