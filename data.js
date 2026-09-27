@@ -177,9 +177,13 @@
 
         link: "",
 
-        notes: [
-  "Presented at the CUHK Summer School of Asia in the Global Economy, the 25th China Economics Annual Conference, and the 12th International Workshop on Regional, Urban, and Spatial Economics."
-],
+               notes: [
+          "Presented at the CUHK Summer School of Asia in the Global Economy, the 25th China Economics Annual Conference, and the 12th International Workshop on Regional, Urban, and Spatial Economics."
+        ]
+      },
+
+      {
+        id: 3,
 
 
       {
