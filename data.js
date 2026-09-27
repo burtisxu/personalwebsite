@@ -144,7 +144,7 @@
 
         link: "",
 
-        notes: ["Draft comming soon !"]
+        notes: ["Draft coming soon !"]
       },
 
 
@@ -173,7 +173,7 @@
         link: "",
 
         notes: [
-           "Draft comming soon !",
+           "Draft coming soon !",
           "Presented at the CUHK Summer School of Asia in the Global Economy, the 25th China Economics Annual Conference, and the 12th International Workshop on Regional, Urban, and Spatial Economics."
         ]
       },
@@ -188,7 +188,7 @@
         authors: [
 
           {
-            name: "W.F.",
+            name: "With W.F.",
             url: ""
           },
 
@@ -210,11 +210,6 @@
           {
             name: "Y.X.",
             url: ""
-          },
-
-          {
-            name: "H.X.",
-            self: true
           },
 
           {
