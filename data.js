@@ -742,10 +742,54 @@
         var parsed =
           JSON.parse(raw);
 
-        return deepMerge(
+        var merged = deepMerge(
           DEFAULTS,
           parsed
         );
+
+
+        /*
+         * Preserve newly added default notes for visitors who
+         * already have an older v7 working-papers array saved
+         * in localStorage. Explicitly saved notes (including an
+         * empty array) are left unchanged.
+         */
+        if (
+          Array.isArray(merged.workingPapers)
+        ) {
+
+          merged.workingPapers.forEach(
+            function (paper) {
+
+              if (
+                paper &&
+                !Object.prototype.hasOwnProperty.call(
+                  paper,
+                  "notes"
+                )
+              ) {
+
+                var defaultPaper =
+                  DEFAULTS.workingPapers.find(
+                    function (candidate) {
+                      return candidate.id === paper.id;
+                    }
+                  );
+
+                paper.notes =
+                  defaultPaper
+                    ? deepClone(defaultPaper.notes || [])
+                    : [];
+
+              }
+
+            }
+          );
+
+        }
+
+
+        return merged;
 
       }
 

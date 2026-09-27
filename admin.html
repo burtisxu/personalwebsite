@@ -324,7 +324,7 @@
   <div class="toast" id="toast"></div>
 
   <!-- Scripts -->
-  <script src="data.js"></script>
+  <script src="data.js?v=8"></script>
   <script>
   (function () {
     var PASSWORD = 'admin';
@@ -381,7 +381,8 @@
       } else if (ap === 'workingPapers') {
         collectList('workingPapers', '#wpItems .item-card', [
           { sel: '.w-title', key: 'title' }, { sel: '.w-authors', key: 'authors' }, { sel: '.w-year', key: 'year' },
-          { sel: '.w-abstract', key: 'abstract' }, { sel: '.w-ssrn', key: 'ssrn' }, { sel: '.w-fulltext', key: 'fullText' }, { sel: '.w-link', key: 'link' }
+          { sel: '.w-abstract', key: 'abstract' }, { sel: '.w-ssrn', key: 'ssrn' }, { sel: '.w-fulltext', key: 'fullText' }, { sel: '.w-link', key: 'link' },
+          { sel: '.w-notes', key: 'notes', parse: function (value) { return value.split(/\r?\n/).map(function (note) { return note.trim(); }).filter(Boolean); } }
         ]);
       } else if (ap === 'workInProgress') {
         collectList('workInProgress', '#wipItems .item-card', [
@@ -405,7 +406,11 @@
       var oldArr = data[section]; data[section] = [];
       cards.forEach(function (card, i) {
         var obj = { id: (oldArr[i] && oldArr[i].id) ? oldArr[i].id : Date.now() + i };
-        fields.forEach(function (f) { var el = card.querySelector(f.sel); obj[f.key] = el ? el.value.trim() : ''; });
+        fields.forEach(function (f) {
+          var el = card.querySelector(f.sel);
+          var value = el ? el.value.trim() : '';
+          obj[f.key] = f.parse ? f.parse(value) : value;
+        });
         data[section].push(obj);
       });
     }
@@ -487,16 +492,18 @@
     function renderWPEditor() {
       var c = document.getElementById('wpItems'); c.innerHTML = '';
       data.workingPapers.forEach(function (item, idx) {
+        var notesText = Array.isArray(item.notes) ? item.notes.join('\n') : (item.notes || '');
         var card = createCard(c, idx,
           '<div class="form-group"><label>Title</label><input type="text" class="w-title" value="' + escAttr(item.title) + '"></div>' +
           '<div class="item-card-row"><div class="form-group"><label>Authors</label><input type="text" class="w-authors" value="' + escAttr(item.authors || '') + '"></div><div class="form-group"><label>Year</label><input type="text" class="w-year" value="' + escAttr(item.year || '') + '"></div></div>' +
           '<div class="item-card-row"><div class="form-group"><label>SSRN Link</label><input type="url" class="w-ssrn" value="' + escAttr(item.ssrn || '') + '"></div><div class="form-group"><label>Full Text Link</label><input type="url" class="w-fulltext" value="' + escAttr(item.fullText || '') + '"></div></div>' +
           '<div class="form-group"><label>DOI Link</label><input type="url" class="w-link" value="' + escAttr(item.link || '') + '"></div>' +
+          '<div class="form-group"><label>Notes (optional, one per line)</label><textarea class="w-notes" style="min-height:60px">' + escHTML(notesText) + '</textarea></div>' +
           '<div class="form-group"><label>Abstract (optional)</label><textarea class="w-abstract" style="min-height:60px">' + escHTML(item.abstract || '') + '</textarea></div>');
       });
       bindRemove(c, data.workingPapers, renderWPEditor);
     }
-    document.getElementById('btnAddWP').addEventListener('click', function () { data.workingPapers.push({ id: Date.now(), title: '', authors: '', year: '', abstract: '', ssrn: '', fullText: '', link: '' }); renderWPEditor(); markDirty(); });
+    document.getElementById('btnAddWP').addEventListener('click', function () { data.workingPapers.push({ id: Date.now(), title: '', authors: '', year: '', abstract: '', ssrn: '', fullText: '', link: '', notes: [] }); renderWPEditor(); markDirty(); });
 
     /* ── Work in Progress Editor ─────── */
     function renderWIPEditor() {

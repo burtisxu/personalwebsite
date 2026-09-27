@@ -973,6 +973,26 @@
     }
 
 
+    .wp-notes {
+
+      max-width: 78ch;
+
+      margin: 8px 0 0;
+      padding-left: 18px;
+
+      font-size: 13px;
+      line-height: 1.55;
+
+      color: var(--muted);
+
+    }
+
+
+    .wp-note + .wp-note {
+      margin-top: 3px;
+    }
+
+
     .wp-link,
     .wp-abstract-toggle {
 
@@ -2171,7 +2191,7 @@
        Data Layer
        ========================================================= -->
 
-  <script src="data.js?v=7"></script>
+  <script src="data.js?v=8"></script>
 
 
   <!-- =========================================================
@@ -4145,6 +4165,44 @@
             paper.fullText;
 
 
+          var notes =
+
+            Array.isArray(
+              paper.notes
+            )
+
+              ? paper.notes
+
+              : paper.notes
+
+                ? [paper.notes]
+
+                : [];
+
+
+          notes =
+
+            notes
+              .map(
+                function (note) {
+
+                  return String(
+                    note == null
+                      ? ""
+                      : note
+                  ).trim();
+
+                }
+              )
+              .filter(
+                function (note) {
+
+                  return note.length > 0;
+
+                }
+              );
+
+
           var html =
 
             '<div class="wp-header">' +
@@ -4284,6 +4342,34 @@
                 links.join("") +
 
               "</div>";
+
+          }
+
+
+          if (
+            notes.length
+          ) {
+
+
+            html +=
+
+              '<ul class="wp-notes">' +
+
+                notes
+                  .map(
+                    function (note) {
+
+                      return (
+                        '<li class="wp-note">' +
+                          escHTML(note) +
+                        "</li>"
+                      );
+
+                    }
+                  )
+                  .join("") +
+
+              "</ul>";
 
           }
 
