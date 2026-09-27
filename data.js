@@ -128,7 +128,7 @@
         authors: [
 
           {
-            name: "S.S.",
+            name: "With S.S.",
             url: "http://econ.ruc.edu.cn/jszy/38e856abc20543fe9cf22f0699aaf73a.htm"
           },
 
@@ -161,12 +161,7 @@
         authors: [
 
           {
-            name: "H.X.",
-            self: true
-          },
-
-          {
-            name: "C.C.",
+            name: "With C.C.",
             url: "https://chenxuanchen-econ.github.io/research.html"
           }
 
@@ -182,7 +177,7 @@
 
         link: "",
 
-        notes: []
+        notes: [Presented at the CUHK Summer School of Asia in the Global Economy, the 25th China Economics Annual Conference, and the 12th International Workshop on Regional, Urban, and Spatial Economics.]
       },
 
 
