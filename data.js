@@ -130,11 +130,6 @@
           {
             name: "With S.S.",
             url: "http://econ.ruc.edu.cn/jszy/38e856abc20543fe9cf22f0699aaf73a.htm"
-          },
-
-          {
-            name: "H.X.",
-            self: true
           }
 
         ],
@@ -149,7 +144,7 @@
 
         link: "",
 
-        notes: []
+        notes: ["Draft comming soon !"]
       },
 
 
@@ -178,6 +173,7 @@
         link: "",
 
         notes: [
+           "Draft comming soon !",
           "Presented at the CUHK Summer School of Asia in the Global Economy, the 25th China Economics Annual Conference, and the 12th International Workshop on Regional, Urban, and Spatial Economics."
         ]
       },
