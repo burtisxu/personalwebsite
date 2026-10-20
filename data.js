@@ -230,6 +230,35 @@
         link: "",
 
         notes: []
+      },
+       {
+        id: 4,
+
+        title: "Entrepreneurship",
+
+        authors: [
+
+          {
+            name: "With C.C.",
+            url: "https://chenxuanchen-econ.github.io/research.html"
+          }
+
+        ],
+
+        year: "2026",
+
+        abstract: "",
+
+        ssrn: "",
+
+        fullText: "",
+
+        link: "",
+
+        notes: [
+           "Draft coming soon !",
+          "Presented at the 25th China Economics Annual Conference."
+        ]
       }
 
     ],
@@ -510,26 +539,7 @@
         coauthors: [],
 
         notes: []
-      },
-
-
-      {
-        id: 7,
-
-        title:
-          "Entrepreneurship",
-
-        description: "",
-
-        status:
-          "In Progress",
-
-        coauthors: [
-
-          {
-            name: "C.C. (PKU)",
-            url: "https://chenxuanchen-econ.github.io/research.html"
-          }
+      }
 
         ],
 
