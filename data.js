@@ -611,7 +611,7 @@
         id: 1,
 
         title:
-          "Firm Productivity",
+          "",
 
         conference:
           "The 25th China Economics Annual Conference",
@@ -631,7 +631,7 @@
         id: 2,
 
         title:
-          "Firm Productivity",
+          "",
 
         conference:
           "The 12th International Workshop on Regional, Urban, and Spatial Economics in China (RUSE)",
