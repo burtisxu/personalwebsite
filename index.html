@@ -3128,68 +3128,17 @@
             "conf-item";
 
 
-          var details =
-            [];
-
-
-          if (
-            conf.conference
-          ) {
-
-            details.push(
-              escHTML(
-                conf.conference
-              )
-            );
-
-          }
-
-
-          if (
-            conf.location
-          ) {
-
-            details.push(
-              escHTML(
-                conf.location
-              )
-            );
-
-          }
-
+          var date = String(conf.year || conf.date || "");
+          var year = date.match(/\b\d{4}\b/);
 
           item.innerHTML =
-
             '<div class="conf-year">' +
-
-              escHTML(
-                conf.date || ""
-              ) +
-
+              escHTML(year ? year[0] : "") +
             "</div>" +
-
-
             '<div class="conf-content">' +
-
               '<span class="conf-title">' +
-
-                escHTML(
-                  conf.title || ""
-                ) +
-
+                escHTML(conf.conference || "") +
               "</span>" +
-
-
-              (
-                details.length
-
-                  ? ' <span class="conf-detail">&mdash; ' +
-                    details.join(", ") +
-                    "</span>"
-
-                  : ""
-              ) +
-
             "</div>";
 
 
