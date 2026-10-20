@@ -120,149 +120,133 @@
 
     workingPapers: [
 
+  {
+    id: 1,
+
+    title: "Crime",
+
+    authors: [
       {
-        id: 1,
-
-        title: "Crime",
-
-        authors: [
-
-          {
-            name: "With S.S.",
-            url: "http://econ.ruc.edu.cn/jszy/38e856abc20543fe9cf22f0699aaf73a.htm"
-          }
-
-        ],
-
-        year: "2026",
-
-        abstract: "",
-
-        ssrn: "",
-
-        fullText: "",
-
-        link: "",
-
-        notes: ["Draft coming soon !"]
-      },
-
-
-      {
-        id: 2,
-
-        title: "Firm Productivity",
-
-        authors: [
-
-          {
-            name: "With C.C.",
-            url: "https://chenxuanchen-econ.github.io/research.html"
-          }
-
-        ],
-
-        year: "2025",
-
-        abstract: "",
-
-        ssrn: "",
-
-        fullText: "",
-
-        link: "",
-
-        notes: [
-           "Draft coming soon !",
-          "Presented at the CUHK Summer School of Asia in the Global Economy, the 25th China Economics Annual Conference, and the 12th International Workshop on Regional, Urban, and Spatial Economics."
-        ]
-      },
-
-
-      {
-        id: 3,
-
-        title:
-          "Intergenerational Educational Mobility",
-
-        authors: [
-
-          {
-            name: "With W.F.",
-            url: ""
-          },
-
-          {
-            name: "G.L.",
-            url: ""
-          },
-
-          {
-            name: "M.L.",
-            url: ""
-          },
-
-          {
-            name: "Y.S.",
-            url: ""
-          },
-
-          {
-            name: "Y.X.",
-            url: ""
-          },
-
-          {
-            name: "J.W.",
-            url: ""
-          }
-
-        ],
-
-        year: "2025",
-
-        abstract: "",
-
-        ssrn: "",
-
-        fullText: "",
-
-        link: "",
-
-        notes: []
-      },
-       
-       {
-        id: 4,
-
-        title: "Entrepreneurship",
-
-        authors: [
-
-          {
-            name: "With C.C.",
-            url: "https://chenxuanchen-econ.github.io/research.html"
-          }
-
-        ],
-
-        year: "2026",
-
-        abstract: "",
-
-        ssrn: "",
-
-        fullText: "",
-
-        link: "",
-
-        notes: [
-           "Draft coming soon !",
-          "Presented at the 25th China Economics Annual Conference."
-        ]
+        name: "With S.S.",
+        url: "http://econ.ruc.edu.cn/jszy/38e856abc20543fe9cf22f0699aaf73a.htm"
       }
-
     ],
+
+    year: "2026",
+
+    abstract: "",
+
+    ssrn: "",
+
+    fullText: "",
+
+    link: "",
+
+    notes: ["Draft coming soon !"]
+  },
+
+  {
+    id: 2,
+
+    title: "Entrepreneurship",
+
+    authors: [
+      {
+        name: "With C.C.",
+        url: "https://chenxuanchen-econ.github.io/research.html"
+      }
+    ],
+
+    year: "2026",
+
+    abstract: "",
+
+    ssrn: "",
+
+    fullText: "",
+
+    link: "",
+
+    notes: [
+      "Draft coming soon !",
+      "Presented at the 25th China Economics Annual Conference."
+    ]
+  },
+
+  {
+    id: 3,
+
+    title: "Firm Productivity",
+
+    authors: [
+      {
+        name: "With C.C.",
+        url: "https://chenxuanchen-econ.github.io/research.html"
+      }
+    ],
+
+    year: "2025",
+
+    abstract: "",
+
+    ssrn: "",
+
+    fullText: "",
+
+    link: "",
+
+    notes: [
+      "Draft coming soon !",
+      "Presented at the CUHK Summer School of Asia in the Global Economy, the 25th China Economics Annual Conference, and the 12th International Workshop on Regional, Urban, and Spatial Economics."
+    ]
+  },
+
+  {
+    id: 4,
+
+    title: "Intergenerational Educational Mobility",
+
+    authors: [
+      {
+        name: "With W.F.",
+        url: ""
+      },
+      {
+        name: "G.L.",
+        url: ""
+      },
+      {
+        name: "M.L.",
+        url: ""
+      },
+      {
+        name: "Y.S.",
+        url: ""
+      },
+      {
+        name: "Y.X.",
+        url: ""
+      },
+      {
+        name: "J.W.",
+        url: ""
+      }
+    ],
+
+    year: "2025",
+
+    abstract: "",
+
+    ssrn: "",
+
+    fullText: "",
+
+    link: "",
+
+    notes: []
+  }
+
+],
 
 
     /* =======================================================
