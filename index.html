@@ -1320,12 +1320,13 @@
        ========================================================= */
 
     #honors-awards {
-      padding-top: 28px;
+      padding-top: 30px;
       padding-bottom: 30px;
     }
 
     .honors-row {
       display: grid;
+      align-items: baseline;
       grid-template-columns: 54px minmax(0, 1fr);
       column-gap: 15px;
       padding-top: 5px;
@@ -1341,7 +1342,18 @@
 
     .honors-content {
       min-width: 0;
+      margin: 0;
+      line-height: 1.65;
       overflow-wrap: break-word;
+    }
+
+    .honors-name {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .honors-institution {
+      color: var(--muted);
     }
 
     .honors-content a {
@@ -3187,15 +3199,26 @@
         content.className = "honors-content";
 
         honorsByYear[year].forEach(function (award, index) {
-          if (index > 0) content.appendChild(document.createTextNode("; "));
-          var label = award.title + (award.institution ? ", " + award.institution : "");
-          if (/^https?:\/\//i.test(award.url || "")) {
-            var link = document.createElement("a");
-            setExternalLink(link, award.url);
-            link.textContent = label;
-            content.appendChild(link);
-          } else {
-            content.appendChild(document.createTextNode(label));
+          if (index > 0) {
+            content.appendChild(document.createTextNode(" "));
+          }
+
+          var hasLink = /^https?:\/\//i.test(award.url || "");
+          var name = document.createElement(hasLink ? "a" : "span");
+          name.className = "honors-name";
+          name.textContent = award.title;
+
+          if (hasLink) {
+            setExternalLink(name, award.url);
+          }
+
+          content.appendChild(name);
+
+          if (award.institution) {
+            var institution = document.createElement("span");
+            institution.className = "honors-institution";
+            institution.textContent = " (" + award.institution + ")";
+            content.appendChild(institution);
           }
         });
 
