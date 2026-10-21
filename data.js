@@ -602,6 +602,34 @@
 
 
     /* =======================================================
+       Honors & Awards
+       Displayed together by year on the homepage.
+       ======================================================= */
+
+    honorsAwards: [
+
+      {
+        id: 1,
+        title: "Outstanding University Graduate of Sichuan Province",
+        institution: "",
+        year: "2025",
+        url: "",
+        notes: []
+      },
+
+      {
+        id: 2,
+        title: "Outstanding Undergraduate Thesis",
+        institution: "Southwestern University of Finance and Economics",
+        year: "2025",
+        url: "",
+        notes: []
+      }
+
+    ],
+
+
+    /* =======================================================
        Conferences
        ======================================================= */
 
