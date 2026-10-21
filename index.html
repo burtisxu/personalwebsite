@@ -3164,7 +3164,7 @@
 
     /* =======================================================
        Honors & Awards
-       One row per year, with awards separated by semicolons.
+       One year label per group, with each award on its own line.
        ======================================================= */
 
     var honorsSection = document.getElementById("honors-awards");
@@ -3200,7 +3200,7 @@
 
         honorsByYear[year].forEach(function (award, index) {
           if (index > 0) {
-            content.appendChild(document.createTextNode("br"));
+            content.appendChild(document.createElement("br"));
           }
 
           var hasLink = /^https?:\/\//i.test(award.url || "");
