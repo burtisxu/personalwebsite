@@ -3200,7 +3200,7 @@
 
         honorsByYear[year].forEach(function (award, index) {
           if (index > 0) {
-            content.appendChild(document.createTextNode(" "));
+            content.appendChild(document.createTextNode("br"));
           }
 
           var hasLink = /^https?:\/\//i.test(award.url || "");
