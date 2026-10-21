@@ -1316,6 +1316,46 @@
 
 
     /* =========================================================
+       Honors & Awards
+       ========================================================= */
+
+    #honors-awards {
+      padding-top: 28px;
+      padding-bottom: 30px;
+    }
+
+    .honors-row {
+      display: grid;
+      grid-template-columns: 54px minmax(0, 1fr);
+      column-gap: 15px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+
+    .honors-year {
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .honors-content {
+      min-width: 0;
+      overflow-wrap: break-word;
+    }
+
+    .honors-content a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .honors-content a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+
+    /* =========================================================
        Conferences
        ========================================================= */
 
@@ -1818,6 +1858,12 @@
         </li>
 
         <li>
+          <a href="#honors-awards">
+            Honors &amp; Awards
+          </a>
+        </li>
+
+        <li>
           <a href="#conferences">
             Talks
           </a>
@@ -2064,6 +2110,26 @@
 
 
     <!-- =======================================================
+         Honors & Awards
+         ======================================================= -->
+
+    <section id="honors-awards" aria-labelledby="honorsHeading">
+
+      <div class="container">
+
+        <h2 id="honorsHeading">
+          Honors &amp; Awards
+        </h2>
+
+        <div id="honorsList">
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
          Conferences
          ======================================================= -->
 
@@ -2191,7 +2257,7 @@
        Data Layer
        ========================================================= -->
 
-  <script src="data.js?v=8"></script>
+  <script src="data.js?v=10"></script>
 
 
   <!-- =========================================================
@@ -3085,6 +3151,61 @@
 
 
     /* =======================================================
+       Honors & Awards
+       One row per year, with awards separated by semicolons.
+       ======================================================= */
+
+    var honorsSection = document.getElementById("honors-awards");
+    var honorsList = document.getElementById("honorsList");
+    var honorsByYear = Object.create(null);
+
+    (data.honorsAwards || []).forEach(function (award) {
+      if (!award || !String(award.title || "").trim()) return;
+      var year = String(award.year || "").trim();
+      if (!honorsByYear[year]) honorsByYear[year] = [];
+      honorsByYear[year].push(award);
+    });
+
+    var honorsYears = Object.keys(honorsByYear).sort(function (a, b) {
+      return (parseInt(b, 10) || 0) - (parseInt(a, 10) || 0);
+    });
+
+    if (honorsYears.length === 0) {
+      honorsSection.style.display = "none";
+      document.querySelector('a[href="#honors-awards"]').parentElement.hidden = true;
+    } else {
+      honorsYears.forEach(function (year) {
+        var row = document.createElement("div");
+        row.className = "honors-row";
+
+        var yearLabel = document.createElement("div");
+        yearLabel.className = "honors-year";
+        yearLabel.textContent = year ? year + ":" : "";
+        row.appendChild(yearLabel);
+
+        var content = document.createElement("p");
+        content.className = "honors-content";
+
+        honorsByYear[year].forEach(function (award, index) {
+          if (index > 0) content.appendChild(document.createTextNode("; "));
+          var label = award.title + (award.institution ? ", " + award.institution : "");
+          if (/^https?:\/\//i.test(award.url || "")) {
+            var link = document.createElement("a");
+            setExternalLink(link, award.url);
+            link.textContent = label;
+            content.appendChild(link);
+          } else {
+            content.appendChild(document.createTextNode(label));
+          }
+        });
+
+        row.appendChild(content);
+        honorsList.appendChild(row);
+      });
+    }
+
+
+    /* =======================================================
        Conferences
        ======================================================= */
 
@@ -3495,6 +3616,15 @@
 
           sections: [
             "research-projects"
+          ]
+        },
+
+        {
+          navId:
+            "honors-awards",
+
+          sections: [
+            "honors-awards"
           ]
         },
 
