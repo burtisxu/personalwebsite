@@ -672,6 +672,25 @@
 
         type:
           "Presentation"
+      },
+
+       {
+        id: 3,
+
+        title:
+          "",
+
+        conference:
+          "China Young Economists Forum",
+
+        location:
+          "Beijing, China",
+
+        date:
+          "2026",
+
+        type:
+          "Presentation"
       }
 
     ],
