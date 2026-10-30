@@ -642,6 +642,25 @@
           "",
 
         conference:
+          "China Young Economists Forum",
+
+        location:
+          "Beijing, China",
+
+        date:
+          "2026",
+
+        type:
+          "Presentation"
+      },
+       
+       {
+        id: 2,
+
+        title:
+          "",
+
+        conference:
           "The 25th China Economics Annual Conference",
 
         location:
@@ -656,7 +675,7 @@
 
 
       {
-        id: 2,
+        id: 3,
 
         title:
           "",
@@ -669,25 +688,6 @@
 
         date:
           "2024",
-
-        type:
-          "Presentation"
-      },
-
-       {
-        id: 3,
-
-        title:
-          "",
-
-        conference:
-          "China Young Economists Forum",
-
-        location:
-          "Beijing, China",
-
-        date:
-          "2026",
 
         type:
           "Presentation"
