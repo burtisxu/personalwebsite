@@ -605,8 +605,8 @@
 
       flex: 0 0 auto;
 
-      width: 100px;
-      height: 100px;
+      width: 150px;
+      height: 150px;
 
     }
 
@@ -615,8 +615,8 @@
 
       display: block;
 
-      width: 100px;
-      height: 100px;
+      width: 150px;
+      height: 150px;
 
       object-fit: cover;
 
@@ -845,6 +845,212 @@
 
       color: var(--muted);
 
+    }
+
+
+    /* =========================================================
+       PhD Dissertation
+       ========================================================= */
+
+    .dissertation-heading,
+    .dissertation-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+    }
+
+    .dissertation-heading {
+      margin-bottom: 14px;
+    }
+
+    .dissertation-heading h2 {
+      margin-bottom: 0;
+    }
+
+    .dissertation-aside {
+      font-size: 12px;
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .dissertation-panel {
+      padding: 18px 20px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: #fafbfc;
+    }
+
+    .dissertation-panel [hidden] {
+      display: none;
+    }
+
+    .dissertation-title {
+      min-width: 0;
+      font-size: 16.5px;
+      line-height: 1.4;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      overflow-wrap: anywhere;
+    }
+
+    .dissertation-title.is-placeholder {
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .dissertation-status {
+      flex: 0 0 auto;
+      max-width: 100%;
+      padding: 2px 8px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 11.5px;
+      line-height: 1.5;
+      color: var(--muted);
+      background: var(--surface);
+      overflow-wrap: anywhere;
+    }
+
+    .dissertation-summary {
+      margin-top: 7px;
+      font-size: 13.5px;
+      color: var(--muted);
+      white-space: pre-line;
+      overflow-wrap: anywhere;
+    }
+
+    .dissertation-milestones {
+      display: grid;
+      grid-template-columns: repeat(var(--milestone-count, 5), minmax(0, 1fr));
+      margin-top: 20px;
+      list-style: none;
+    }
+
+    .dissertation-step {
+      position: relative;
+      min-width: 0;
+      padding: 0 4px;
+      text-align: center;
+    }
+
+    .dissertation-step:not(:last-child)::before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      width: 100%;
+      border-top: 1px solid var(--border);
+    }
+
+    .dissertation-step-index {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 25px;
+      height: 25px;
+      border: 1px solid #d2d6dc;
+      border-radius: 50%;
+      font-size: 11px;
+      color: var(--muted);
+      background: #fafbfc;
+    }
+
+    .dissertation-step-label {
+      display: block;
+      margin-top: 5px;
+      font-size: 11.5px;
+      line-height: 1.4;
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .dissertation-step.is-done .dissertation-step-index {
+      color: #fff;
+      border-color: var(--accent);
+      background: var(--accent);
+    }
+
+    .dissertation-step.is-current .dissertation-step-index {
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 0 3px rgba(34, 89, 199, .09);
+      font-weight: 600;
+    }
+
+    .dissertation-step.is-current .dissertation-step-label {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .dissertation-chapters {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .dissertation-chapters summary {
+      width: fit-content;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .dissertation-chapters summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    .dissertation-chapters ol {
+      margin: 8px 0 0 20px;
+    }
+
+    .dissertation-chapters li {
+      padding: 3px 0 3px 3px;
+      overflow-wrap: anywhere;
+    }
+
+    .dissertation-chapter-status {
+      margin-left: 8px;
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    .dissertation-update {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+      white-space: pre-line;
+      overflow-wrap: anywhere;
+    }
+
+    .dissertation-link {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 12.5px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .dissertation-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 560px) {
+      .dissertation-panel {
+        padding: 15px 12px;
+      }
+
+      .dissertation-title {
+        font-size: 15px;
+      }
+
+      .dissertation-step-label {
+        font-size: 10.5px;
+      }
     }
 
 
@@ -1606,8 +1812,8 @@
       .hero-photo,
       .hero-avatar {
 
-        width: 88px;
-        height: 88px;
+        width: 128px;
+        height: 128px;
 
       }
 
@@ -1708,8 +1914,8 @@
       .hero-photo,
       .hero-avatar {
 
-        width: 78px;
-        height: 78px;
+        width: 112px;
+        height: 112px;
 
       }
 
@@ -1852,6 +2058,12 @@
         </li>
 
         <li>
+          <a href="#dissertation">
+            Dissertation
+          </a>
+        </li>
+
+        <li>
           <a href="#working-papers">
             Papers
           </a>
@@ -1923,8 +2135,8 @@
             class="hero-avatar"
             src="photo.jpg"
             alt="Portrait of Haolun Xu"
-            width="100"
-            height="100"
+            width="150"
+            height="150"
           >
 
         </div>
@@ -2028,6 +2240,55 @@
           id="researchList"
           class="research-grid"
         >
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         PhD Dissertation
+         ======================================================= -->
+
+    <section id="dissertation" aria-labelledby="dissertationHeading">
+
+      <div class="container">
+
+        <div class="dissertation-heading">
+          <h2 id="dissertationHeading">PhD Dissertation</h2>
+          <span class="dissertation-aside">One chapter at a time.</span>
+        </div>
+
+        <div class="dissertation-panel">
+          <div class="dissertation-header">
+            <h3 id="dissertationTopic" class="dissertation-title">
+              Topic: History of the People's Republic of China
+            </h3>
+            <span id="dissertationStatus" class="dissertation-status">
+              Topic selection
+            </span>
+          </div>
+
+          <p id="dissertationSummary" class="dissertation-summary" hidden></p>
+
+          <ol
+            id="dissertationMilestones"
+            class="dissertation-milestones"
+            aria-label="Dissertation milestones"
+            hidden
+          ></ol>
+
+          <details id="dissertationChapters" class="dissertation-chapters" hidden>
+            <summary id="dissertationChaptersLabel">Chapters</summary>
+            <ol id="dissertationChapterList"></ol>
+          </details>
+
+          <p id="dissertationUpdate" class="dissertation-update" hidden></p>
+
+          <a id="dissertationLink" class="dissertation-link" hidden>
+            Read dissertation <span aria-hidden="true">↗</span>
+          </a>
         </div>
 
       </div>
@@ -2269,7 +2530,7 @@
        Data Layer
        ========================================================= -->
 
-  <script src="data.js?v=10"></script>
+  <script src="data.js?v=12"></script>
 
 
   <!-- =========================================================
@@ -2856,6 +3117,119 @@
       );
 
     }
+
+
+    /* =======================================================
+       PhD Dissertation
+       ======================================================= */
+
+    var dissertation = data.dissertation || {};
+
+    function dissertationText(value) {
+      return String(value == null ? "" : value).trim();
+    }
+
+    function dissertationURL(value) {
+      var href = dissertationText(value);
+      if (!href) return "";
+
+      try {
+        var url = new URL(href, window.location.href);
+        return /^(https?:|file:)$/.test(url.protocol) ? url.href : "";
+      } catch (e) {
+        return "";
+      }
+    }
+
+    var dissertationTopic = document.getElementById("dissertationTopic");
+    var dissertationTopicText = dissertationText(dissertation.topic || dissertation.title);
+    dissertationTopic.textContent = dissertationTopicText
+      ? "Topic: " + dissertationTopicText : "Topic to come";
+    dissertationTopic.classList.toggle("is-placeholder", !dissertationTopicText);
+
+    document.getElementById("dissertationStatus").textContent =
+      dissertationText(dissertation.status) || "Details to come";
+
+    var dissertationSummary = document.getElementById("dissertationSummary");
+    dissertationSummary.textContent = dissertationText(dissertation.summary);
+    dissertationSummary.hidden = !dissertationSummary.textContent;
+
+    var milestoneList = document.getElementById("dissertationMilestones");
+    var milestones = Array.isArray(dissertation.milestones)
+      ? dissertation.milestones.filter(function (step) {
+          return step && dissertationText(step.label);
+        })
+      : [];
+
+    milestoneList.hidden = !milestones.length;
+    milestoneList.style.setProperty("--milestone-count", milestones.length || 5);
+
+    milestones.forEach(function (step, index) {
+      var item = document.createElement("li");
+      var state = step.status === "done" || step.status === "current" || step.status === "pending"
+        ? step.status : "";
+      var label = dissertationText(step.label);
+      var stateLabel = state === "done" ? "Completed"
+        : state === "current" ? "In progress"
+        : state === "pending" ? "Not completed" : "Not yet updated";
+
+      item.className = "dissertation-step" + (state ? " is-" + state : "");
+      item.setAttribute("aria-label", label + ": " + stateLabel);
+      item.title = label + ": " + stateLabel;
+      item.innerHTML =
+        '<span class="dissertation-step-index" aria-hidden="true">' +
+          (state === "done" ? "&#10003;" : index + 1) +
+        '</span><span class="dissertation-step-label">' +
+          escHTML(label) +
+        '</span>';
+      milestoneList.appendChild(item);
+    });
+
+    var chapters = Array.isArray(dissertation.chapters)
+      ? dissertation.chapters.filter(function (chapter) {
+          return chapter && dissertationText(chapter.title);
+        })
+      : [];
+
+    var chapterDetails = document.getElementById("dissertationChapters");
+    chapterDetails.hidden = !chapters.length;
+    document.getElementById("dissertationChaptersLabel").textContent =
+      "Chapters (" + chapters.length + ")";
+
+    chapters.forEach(function (chapter) {
+      var item = document.createElement("li");
+      var href = dissertationURL(chapter.link);
+      var title = document.createElement(href ? "a" : "span");
+      title.textContent = dissertationText(chapter.title);
+      if (href) setExternalLink(title, href);
+      item.appendChild(title);
+
+      if (dissertationText(chapter.status)) {
+        var status = document.createElement("span");
+        status.className = "dissertation-chapter-status";
+        status.textContent = dissertationText(chapter.status);
+        item.appendChild(status);
+      }
+
+      document.getElementById("dissertationChapterList").appendChild(item);
+    });
+
+    var updateParts = [];
+    if (dissertationText(dissertation.updated)) {
+      updateParts.push("Updated " + dissertationText(dissertation.updated));
+    }
+    if (dissertationText(dissertation.latestUpdate)) {
+      updateParts.push(dissertationText(dissertation.latestUpdate));
+    }
+
+    var dissertationUpdate = document.getElementById("dissertationUpdate");
+    dissertationUpdate.textContent = updateParts.join(" · ");
+    dissertationUpdate.hidden = !updateParts.length;
+
+    var dissertationLink = document.getElementById("dissertationLink");
+    var dissertationHref = dissertationURL(dissertation.link);
+    dissertationLink.hidden = !dissertationHref;
+    if (dissertationHref) setExternalLink(dissertationLink, dissertationHref);
 
 
     /* =======================================================
@@ -3611,6 +3985,15 @@
 
           sections: [
             "research"
+          ]
+        },
+
+        {
+          navId:
+            "dissertation",
+
+          sections: [
+            "dissertation"
           ]
         },
 

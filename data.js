@@ -84,6 +84,56 @@
 
 
     /* =======================================================
+       PhD Dissertation / 博士毕业论文
+
+       在下面集中填写；空字符串会显示占位或自动隐藏。
+       topic: 研究主题；summary: 可选简介（留空不显示）。
+       status: 自定义总体状态。
+       milestones: 可修改阶段名称；每个阶段的 status 可填：
+         "done"    = 已完成
+         "current" = 正在进行
+         "pending" = 未完成
+         ""        = 暂未填写（不会推断其他阶段已完成）
+       latestUpdate: 最近进展；updated: 更新日期（如 2026-11）。
+       link: 论文链接或 PDF 相对路径；留空则不显示按钮。
+       chapters: 可选章节列表，将 [] 改为例如：
+         [
+           { title: "章节标题", status: "进行中", link: "" }
+         ]
+       可继续添加章节；空标题不会显示。
+
+       This is an additive field. Keep the v7 storage key so
+       existing saved information remains available.
+       ======================================================= */
+
+    dissertation: {
+
+      topic: "History of the People's Republic of China",
+
+      summary: "",
+
+      status: "Topic selection",
+
+      milestones: [
+        { label: "Topic", status: "current" },
+        { label: "Data", status: "pending" },
+        { label: "Analysis", status: "pending" },
+        { label: "Writing", status: "pending" },
+        { label: "Defense", status: "pending" }
+      ],
+
+      latestUpdate: "",
+
+      updated: "",
+
+      link: "",
+
+      chapters: []
+
+    },
+
+
+    /* =======================================================
        Working Papers
 
        Author structure:
@@ -776,6 +826,27 @@
           DEFAULTS,
           parsed
         );
+
+
+        /* Replace a saved, untouched dissertation placeholder
+         * with the published topic, preserving all other data. */
+        var savedDissertation = parsed.dissertation;
+        if (
+          savedDissertation &&
+          !Object.prototype.hasOwnProperty.call(savedDissertation, "topic") &&
+          ["title", "summary", "status", "latestUpdate", "updated", "link"].every(
+            function (key) {
+              return !String(savedDissertation[key] || "").trim();
+            }
+          ) &&
+          (!Array.isArray(savedDissertation.chapters) || !savedDissertation.chapters.length) &&
+          (!Array.isArray(savedDissertation.milestones) ||
+            savedDissertation.milestones.every(function (step) {
+              return !step || !step.status;
+            }))
+        ) {
+          merged.dissertation = deepClone(DEFAULTS.dissertation);
+        }
 
 
         /*
