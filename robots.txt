@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://haolunxu.xyz/sitemap.xml
+Sitemap: https://www.haolunxu.xyz/sitemap.xml
