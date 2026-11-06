@@ -32,7 +32,7 @@
 
     personal: {
 
-      name: "Haolun Xu(徐浩伦)",
+      name: "Haolun Xu",
 
       title: "PhD Student in Economic History",
 
