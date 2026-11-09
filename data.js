@@ -501,7 +501,7 @@
         id: 3,
 
         title:
-          "Manufacturing Firm Productivity",
+          "China's Economic Structural Transformation",
 
         description: "",
 
