@@ -173,7 +173,7 @@
   {
     id: 1,
 
-    title: "Crime",
+    title: "Information Environments and Long-Run Social Outcomes",
 
     authors: [
       {
@@ -198,7 +198,7 @@
   {
     id: 2,
 
-    title: "Entrepreneurship",
+    title: "Family Structure and Economic Behavior",
 
     authors: [
       {
@@ -226,7 +226,7 @@
   {
     id: 3,
 
-    title: "Firm Productivity",
+    title: "Labor Mobility and Economic Development",
 
     authors: [
       {
