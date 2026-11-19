@@ -108,7 +108,7 @@
 
     dissertation: {
 
-      topic: "History of the People's Republic of China",
+      topic: "China’s Structural Transformation in the 20th and 21st Centuries",
 
       summary: "",
 
