@@ -1033,28 +1033,45 @@
     overflow-wrap: anywhere;
   }
 
+  #dissertation .phd-disclosure-summary {
+    display: block;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  #dissertation .phd-disclosure-summary::-webkit-details-marker { display: none; }
+  #dissertation .phd-disclosure-summary::marker { content: ""; }
+  #dissertation .phd-disclosure-summary:focus-visible {
+    outline: 2px solid var(--phd-accent);
+    outline-offset: 6px;
+    border-radius: 6px;
+  }
+
+  #dissertation .phd-disclosure-caption {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 400;
+  }
+
+  #dissertation .phd-disclosure[open] > .phd-disclosure-summary .phd-chevron {
+    transform: rotate(225deg);
+  }
+
+  #dissertation .phd-disclosure:not([open]) > .phd-papers { display: none; }
+
   #dissertation .phd-papers {
     display: grid;
     gap: 10px;
     margin-top: 14px;
   }
 
-  #dissertation .phd-paper-summary {
+  #dissertation .phd-paper-header {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto 12px;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     gap: 12px;
     padding: 16px 18px;
-    cursor: pointer;
-    list-style: none;
-  }
-
-  #dissertation .phd-paper-summary::-webkit-details-marker { display: none; }
-  #dissertation .phd-paper-summary::marker { content: ""; }
-  #dissertation .phd-paper-summary:focus-visible {
-    outline: 2px solid var(--phd-accent);
-    outline-offset: 3px;
-    border-radius: 6px;
   }
 
   #dissertation .phd-paper-heading { min-width: 0; }
@@ -1085,7 +1102,6 @@
     transition: transform .15s ease;
   }
 
-  #dissertation .phd-paper[open] .phd-chevron { transform: rotate(225deg); }
   #dissertation .phd-paper-body {
     margin: 0 18px;
     padding: 0 0 18px;
@@ -1093,8 +1109,8 @@
   }
 
   #dissertation .phd-paper-body .phd-stages {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px 24px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px 12px;
   }
 
   #dissertation .phd-link {
@@ -1108,22 +1124,26 @@
   #dissertation .phd-link:hover { text-decoration: underline; }
   #dissertation .phd-update { margin: 14px 0 0; }
 
-  @media (max-width: 760px) {
-    #dissertation .phd-stages { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  }
-
   @media (max-width: 480px) {
     #dissertation .phd-card { padding: 16px; }
-    #dissertation .phd-stages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    #dissertation .phd-paper-summary {
-      grid-template-columns: minmax(0, 1fr) 12px;
+    #dissertation .phd-stages,
+    #dissertation .phd-paper-body .phd-stages {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px 5px;
+    }
+    #dissertation .phd-stage {
+      display: block;
+      text-align: center;
+    }
+    #dissertation .phd-stage-label { font-size: 10.5px; }
+    #dissertation .phd-stage-marker { margin-bottom: 3px; }
+    #dissertation .phd-paper-header {
+      grid-template-columns: minmax(0, 1fr);
       gap: 8px 12px;
       padding: 14px;
     }
-    #dissertation .phd-paper-summary > .phd-status { justify-self: start; }
-    #dissertation .phd-chevron { grid-column: 2; grid-row: 1 / 3; }
+    #dissertation .phd-paper-header > .phd-status { justify-self: start; }
     #dissertation .phd-paper-body { margin: 0 14px; }
-    #dissertation .phd-paper-body .phd-stages { grid-template-columns: 1fr; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -3168,29 +3188,19 @@
   "use strict";
 
   const OVERALL_STAGES = [
-    ["topic", "Topic selection", "Define the dissertation theme and central research questions."],
-    ["proposal", "Proposal preparation", "Develop the research framework and a three-paper plan."],
-    ["proposal_defense", "Proposal defense", "Present the proposal and incorporate committee feedback."],
-    ["research", "Three-paper research", "Develop the data, identification, and empirical results."],
-    ["midterm", "Midterm review", "Review research progress and refine the completion plan."],
-    ["integration", "Dissertation integration", "Integrate the three papers, introduction, and conclusion."],
-    ["pre_defense", "Pre-defense", "Present the full dissertation and complete required revisions."],
-    ["external_review", "External review", "Submit the dissertation for review and address comments."],
-    ["defense", "Final defense", "Defend the dissertation before the committee."],
-    ["submission", "Final submission", "Complete final revisions, formatting, and submission."]
+    ["topic", "Topic", "Define the dissertation theme and research questions."],
+    ["proposal", "Proposal", "Prepare and defend the dissertation proposal."],
+    ["midterm", "Midterm", "Develop the three papers and complete the midterm review."],
+    ["review", "Review", "Integrate the dissertation, complete pre-defense and external review."],
+    ["defense", "Defense", "Complete the final defense, revisions, and submission."]
   ];
 
   const PAPER_STAGES = [
-    ["topic", "Topic & question", "Define the research question, hypotheses, and contribution."],
-    ["literature", "Literature & framework", "Review related work and develop the conceptual framework."],
-    ["data", "Data construction", "Collect, clean, match, and validate the data and variables."],
-    ["design", "Identification & design", "Develop the identification strategy and empirical specification."],
-    ["empirical", "Empirical analysis", "Estimate baseline effects and assess the main findings."],
-    ["robustness", "Robustness & validation", "Check alternative measures, specifications, and assumptions."],
-    ["extensions", "Mechanisms & extensions", "Examine mechanisms, heterogeneity, and further implications."],
-    ["writing", "Manuscript writing", "Prepare a complete draft, tables, figures, and appendix."],
-    ["revision", "Feedback & revisions", "Incorporate feedback and refine the analysis and exposition."],
-    ["complete", "Final manuscript", "Complete proofreading, references, and the final manuscript."]
+    ["topic", "Topic", "Define the research question and contribution."],
+    ["data", "Data", "Collect, clean, match, and validate the data."],
+    ["analysis", "Analysis", "Complete empirical analysis, robustness, and mechanisms."],
+    ["writing", "Writing / revision", "Write the manuscript and incorporate feedback."],
+    ["complete", "Complete", "Finalize the manuscript, tables, figures, and references."]
   ];
 
   const text = value => String(value ?? "").trim();
@@ -3219,26 +3229,13 @@
     );
 
     /*
-     * 在这里修改主题、三篇论文的标题及进度。
-     *
-     * progress 使用上方阶段的 id：
-     *   "done"    = 已完成
-     *   "current" = 正在进行，可同时有多个阶段
-     *   "pending" = 尚未开始
-     *
-     * {} 表示尚未更新实际进度。
-     * 填写任一阶段后，其余未填写阶段显示 Pending；
-     * 不会自动把当前阶段之前的阶段标记为已完成。
-     *
-     * 示例：
-     * progress: {
-     *   topic: "done",
-     *   literature: "done",
-     *   data: "current",
-     *   design: "current"
-     * }
-     *
-     * 总进度独立记录，不使用三篇论文的平均值代替。
+     * 在 CONFIG 中修改主题、论文标题及进度。
+     * 总进度：topic → proposal → midterm → review → defense。
+     * 单篇论文：topic → data → analysis → writing → complete。
+     * writing 包含写作与修改。
+     * 状态：done = 已完成；current = 正在进行；pending = 尚未开始。
+     * {} 表示待更新，不会推断尚未填写的实际进度。
+     * 第一篇已设为 Topic 完成、Data 进行中。
      */
     const CONFIG = {
       topic: existing.topic || existing.title || "Dissertation topic to be confirmed",
@@ -3253,7 +3250,13 @@
         {
           title: savedPaper(0).title || "",
           summary: savedPaper(0).summary || "",
-          progress: savedPaper(0).progress || {},
+          progress: {
+            topic: "done",
+            data: "current",
+            analysis: "pending",
+            writing: "pending",
+            complete: "pending"
+          },
           updated: savedPaper(0).updated || "",
           note: savedPaper(0).note || "",
           link: savedPaper(0).link || ""
@@ -3344,15 +3347,13 @@
         const row = element("li", "phd-stage");
         row.dataset.state = item.state;
         row.title = item.description;
+        row.setAttribute("aria-label", item.label + ": " + states[item.state]);
         if (item.state === "current") row.setAttribute("aria-current", "step");
 
         const marker = element("span", "phd-stage-marker", item.state === "done" ? "✓" : index + 1);
         marker.setAttribute("aria-hidden", "true");
         const copy = element("span");
-        copy.append(
-          element("span", "phd-stage-label", item.label),
-          element("span", "phd-stage-state", states[item.state])
-        );
+        copy.append(element("span", "phd-stage-label", item.label));
         if (detailed) copy.append(element("span", "phd-stage-detail", item.description));
         row.append(marker, copy);
         list.append(row);
@@ -3380,11 +3381,19 @@
     }
 
     const root = element("div", "phd-tracker");
+    const disclosure = element("details", "phd-disclosure");
+    disclosure.id = "dissertationDisclosure";
+    const totalSummary = element("summary", "phd-disclosure-summary");
+    totalSummary.title = "Show or hide the three papers";
     const heading = element("div", "phd-heading");
     const h2 = element("h2", "", "PhD Dissertation");
     h2.id = "dissertationHeading";
-    heading.append(h2, element("span", "phd-caption", "Three papers, one dissertation."));
-    root.append(heading);
+    const caption = element("span", "phd-caption phd-disclosure-caption", "Three papers, one dissertation.");
+    const disclosureChevron = element("span", "phd-chevron");
+    disclosureChevron.setAttribute("aria-hidden", "true");
+    caption.append(disclosureChevron);
+    heading.append(h2, caption);
+    totalSummary.append(heading);
 
     const overall = model(OVERALL_STAGES, CONFIG.overall.progress);
     const overallCard = element("div", "phd-card");
@@ -3396,30 +3405,30 @@
     if (text(CONFIG.summary)) overallCard.append(element("p", "phd-description", CONFIG.summary));
     overallCard.append(progressBar(overall, "Dissertation"), stageList(overall, false));
     appendFooter(overallCard, CONFIG.overall, "Read dissertation ↗");
-    root.append(overallCard);
+    totalSummary.append(overallCard);
 
     const papers = element("div", "phd-papers");
     CONFIG.papers.forEach((paper, index) => {
       const progress = model(PAPER_STAGES, paper.progress);
-      const details = element("details", "phd-paper");
-      const summary = element("summary", "phd-paper-summary");
+      const card = element("article", "phd-paper");
+      card.setAttribute("aria-label", "Paper " + (index + 1));
+      const paperHeader = element("div", "phd-paper-header");
       const title = element("span", "phd-paper-heading");
       title.append(
         element("span", "phd-paper-number", "Paper " + (index + 1)),
         element("span", "phd-paper-title", paper.title || "Title to be confirmed")
       );
-      const chevron = element("span", "phd-chevron");
-      chevron.setAttribute("aria-hidden", "true");
-      summary.append(title, badge(progress), chevron);
+      paperHeader.append(title, badge(progress));
 
       const body = element("div", "phd-paper-body");
       if (text(paper.summary)) body.append(element("p", "phd-description", paper.summary));
-      body.append(progressBar(progress, "Paper " + (index + 1)), stageList(progress, true));
+      body.append(progressBar(progress, "Paper " + (index + 1)), stageList(progress, false));
       appendFooter(body, paper, "Read paper ↗");
-      details.append(summary, body);
-      papers.append(details);
+      card.append(paperHeader, body);
+      papers.append(card);
     });
-    root.append(papers);
+    disclosure.append(totalSummary, papers);
+    root.append(disclosure);
 
     section.setAttribute("aria-labelledby", h2.id);
     const container = section.querySelector(".container") || section;
