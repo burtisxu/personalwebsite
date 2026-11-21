@@ -540,120 +540,149 @@
     }
 
     if (document.getElementById("dissertation")) {
-      document.getElementById("dissertationMilestones").replaceChildren();
-      document.getElementById("dissertationChapterList").replaceChildren();
-    /* =======================================================
-       PhD Dissertation
-       ======================================================= */
-
-    var dissertation = data.dissertation || {};
-
-    function dissertationText(value) {
-      return String(value == null ? "" : value).trim();
-    }
-
-    function dissertationURL(value) {
-      var href = dissertationText(value);
-      if (!href) return "";
-
-      try {
-        var url = new URL(href, window.location.href);
-        return /^(https?:|file:)$/.test(url.protocol) ? url.href : "";
-      } catch (e) {
-        return "";
+      /* Keep dissertation progress inside the original Research page. */
+      var dissertation = data.dissertation || {};
+      var dissertationOverallStages = [
+        { id: "topic", label: "Topic" },
+        { id: "proposal", label: "Proposal" },
+        { id: "midterm", label: "Midterm" },
+        { id: "review", label: "Review" },
+        { id: "defense", label: "Defense" }
+      ];
+      var dissertationPaperStages = [
+        { id: "topic", label: "Topic" },
+        { id: "data", label: "Data" },
+        { id: "analysis", label: "Analysis" },
+        { id: "writing", label: "Writing" },
+        { id: "complete", label: "Complete" }
+      ];
+      var dissertationStateLabels = {
+        done: "Completed", current: "In progress", pending: "Pending", unknown: "Not updated"
+      };
+      function dissertationText(value) {
+        return String(value == null ? "" : value).trim();
       }
-    }
-
-    var dissertationTopic = document.getElementById("dissertationTopic");
-    var dissertationTopicText = dissertationText(dissertation.topic || dissertation.title);
-    dissertationTopic.textContent = dissertationTopicText
-      ? "Topic: " + dissertationTopicText : "Topic to come";
-    dissertationTopic.classList.toggle("is-placeholder", !dissertationTopicText);
-
-    document.getElementById("dissertationStatus").textContent =
-      dissertationText(dissertation.status) || "Details to come";
-
-    var dissertationSummary = document.getElementById("dissertationSummary");
-    dissertationSummary.textContent = dissertationText(dissertation.summary);
-    dissertationSummary.hidden = !dissertationSummary.textContent;
-
-    var milestoneList = document.getElementById("dissertationMilestones");
-    var milestones = Array.isArray(dissertation.milestones)
-      ? dissertation.milestones.filter(function (step) {
-          return step && dissertationText(step.label);
-        })
-      : [];
-
-    milestoneList.hidden = !milestones.length;
-    milestoneList.style.setProperty("--milestone-count", milestones.length || 5);
-
-    milestones.forEach(function (step, index) {
-      var item = document.createElement("li");
-      var state = step.status === "done" || step.status === "current" || step.status === "pending"
-        ? step.status : "";
-      var label = dissertationText(step.label);
-      var stateLabel = state === "done" ? "Completed"
-        : state === "current" ? "In progress"
-        : state === "pending" ? "Not completed" : "Not yet updated";
-
-      item.className = "dissertation-step" + (state ? " is-" + state : "");
-      item.setAttribute("aria-label", label + ": " + stateLabel);
-      item.title = label + ": " + stateLabel;
-      item.innerHTML =
-        '<span class="dissertation-step-index" aria-hidden="true">' +
-          (state === "done" ? "&#10003;" : index + 1) +
-        '</span><span class="dissertation-step-label">' +
-          escHTML(label) +
-        '</span>';
-      milestoneList.appendChild(item);
-    });
-
-    var chapters = Array.isArray(dissertation.chapters)
-      ? dissertation.chapters.filter(function (chapter) {
-          return chapter && dissertationText(chapter.title);
-        })
-      : [];
-
-    var chapterDetails = document.getElementById("dissertationChapters");
-    chapterDetails.hidden = !chapters.length;
-    document.getElementById("dissertationChaptersLabel").textContent =
-      "Chapters (" + chapters.length + ")";
-
-    chapters.forEach(function (chapter) {
-      var item = document.createElement("li");
-      var href = dissertationURL(chapter.link);
-      var title = document.createElement(href ? "a" : "span");
-      title.textContent = dissertationText(chapter.title);
-      if (href) setExternalLink(title, href);
-      item.appendChild(title);
-
-      if (dissertationText(chapter.status)) {
-        var status = document.createElement("span");
-        status.className = "dissertation-chapter-status";
-        status.textContent = dissertationText(chapter.status);
-        item.appendChild(status);
+      function dissertationNode(tag, className, value) {
+        var node = document.createElement(tag);
+        if (className) node.className = className;
+        if (value !== undefined) node.textContent = dissertationText(value);
+        return node;
+      }
+      function dissertationURL(value) {
+        var href = dissertationText(value);
+        if (!href) return "";
+        try {
+          var url = new URL(href, window.location.href);
+          return /^(https?:|file:)$/.test(url.protocol) ? url.href : "";
+        } catch (error) {
+          return "";
+        }
+      }
+      function dissertationModel(stages, progress) {
+        progress = progress || {};
+        var valid = ["done", "current", "pending"];
+        var reported = stages.some(function (stage) {
+          return valid.indexOf(progress[stage.id]) !== -1;
+        });
+        return stages.map(function (stage) {
+          return {
+            label: stage.label,
+            id: stage.id,
+            state: valid.indexOf(progress[stage.id]) !== -1
+              ? progress[stage.id] : reported ? "pending" : "unknown"
+          };
+        });
       }
 
-      document.getElementById("dissertationChapterList").appendChild(item);
-    });
+      /* Five overall stages; paper Writing includes writing and revision.
+       * Progress states: done / current / pending; {} means not yet updated.
+       * Paper 1 is currently at Data. Edit titles or progress here as needed. */
+      var dissertationSavedPapers = Array.isArray(dissertation.papers)
+        ? dissertation.papers : Array.isArray(dissertation.chapters) ? dissertation.chapters : [];
+      var dissertationPapers = [0, 1, 2].map(function (index) {
+        var saved = dissertationSavedPapers[index] || {};
+        return {
+          title: dissertationText(saved.title) || "Paper " + (index + 1),
+          link: saved.link || "",
+          progress: index === 0
+            ? { topic: "done", data: "current", analysis: "pending", writing: "pending", complete: "pending" }
+            : saved.progress || {}
+        };
+      });
+      var dissertationOverallProgress = Object.assign({}, dissertation.overall && dissertation.overall.progress);
+      (Array.isArray(dissertation.milestones) ? dissertation.milestones : []).forEach(function (step) {
+        if (!step) return;
+        var id = dissertationText(step.label).toLowerCase();
+        if (id === "topic selection") id = "topic";
+        if (!Object.prototype.hasOwnProperty.call(dissertationOverallProgress, id)) {
+          dissertationOverallProgress[id] = step.status;
+        }
+      });
+      var dissertationTopic = document.getElementById("dissertationTopic");
+      var dissertationTopicText = dissertationText(dissertation.topic || dissertation.title);
+      dissertationTopic.textContent = dissertationTopicText ? "Topic: " + dissertationTopicText : "Topic to come";
+      dissertationTopic.classList.toggle("is-placeholder", !dissertationTopicText);
+      document.getElementById("dissertationStatus").textContent = dissertationText(dissertation.status) || "Not updated";
+      var dissertationSummary = document.getElementById("dissertationSummary");
+      dissertationSummary.textContent = dissertationText(dissertation.summary);
+      dissertationSummary.hidden = !dissertationSummary.textContent;
 
-    var updateParts = [];
-    if (dissertationText(dissertation.updated)) {
-      updateParts.push("Updated " + dissertationText(dissertation.updated));
-    }
-    if (dissertationText(dissertation.latestUpdate)) {
-      updateParts.push(dissertationText(dissertation.latestUpdate));
-    }
+      var dissertationMilestones = document.getElementById("dissertationMilestones");
+      dissertationMilestones.replaceChildren();
+      dissertationMilestones.hidden = false;
+      dissertationMilestones.style.setProperty("--milestone-count", "5");
+      dissertationModel(dissertationOverallStages, dissertationOverallProgress).forEach(function (step, index) {
+        var item = dissertationNode("li", "dissertation-step is-" + step.state);
+        item.setAttribute("aria-label", step.label + ": " + dissertationStateLabels[step.state]);
+        item.title = step.label + ": " + dissertationStateLabels[step.state];
+        if (step.state === "current") item.setAttribute("aria-current", "step");
+        var marker = dissertationNode("span", "dissertation-step-index", step.state === "done" ? "✓" : index + 1);
+        marker.setAttribute("aria-hidden", "true");
+        item.appendChild(marker);
+        item.appendChild(dissertationNode("span", "dissertation-step-label", step.label));
+        dissertationMilestones.appendChild(item);
+      });
 
-    var dissertationUpdate = document.getElementById("dissertationUpdate");
-    dissertationUpdate.textContent = updateParts.join(" · ");
-    dissertationUpdate.hidden = !updateParts.length;
-
-    var dissertationLink = document.getElementById("dissertationLink");
-    var dissertationHref = dissertationURL(dissertation.link);
-    dissertationLink.hidden = !dissertationHref;
-    if (dissertationHref) setExternalLink(dissertationLink, dissertationHref);
-
+      var dissertationPaperList = document.getElementById("dissertationPaperList");
+      dissertationPaperList.replaceChildren();
+      dissertationPapers.forEach(function (paper) {
+        var row = dissertationNode("li", "dissertation-paper-row");
+        var href = dissertationURL(paper.link);
+        var title = dissertationNode(href ? "a" : "span", "dissertation-paper-title", paper.title);
+        if (href) setExternalLink(title, href);
+        row.appendChild(title);
+        var progress = dissertationNode("ol", "dissertation-paper-progress");
+        var stages = dissertationModel(dissertationPaperStages, paper.progress);
+        var active = stages.filter(function (step) { return step.state === "current"; });
+        var completed = stages.every(function (step) { return step.state === "done"; });
+        var reported = stages.some(function (step) { return step.state !== "unknown"; });
+        var doneCount = stages.filter(function (step) { return step.state === "done"; }).length;
+        var progressLabel = completed ? "Completed"
+          : active.length ? active.map(function (step) { return step.label; }).join(", ")
+          : !reported ? "Not updated"
+          : doneCount ? doneCount + " of 5 stages completed" : "Not started";
+        progress.setAttribute("aria-label", paper.title + ": " + progressLabel);
+        stages.forEach(function (step) {
+          var item = dissertationNode("li", "dissertation-paper-stage is-" + step.state, step.label);
+          var label = step.label === "Writing" ? "Writing and revision" : step.label;
+          item.title = label + ": " + dissertationStateLabels[step.state];
+          item.setAttribute("aria-label", label + ": " + dissertationStateLabels[step.state]);
+          if (step.state === "current") item.setAttribute("aria-current", "step");
+          progress.appendChild(item);
+        });
+        row.appendChild(progress);
+        dissertationPaperList.appendChild(row);
+      });
+      var dissertationUpdates = [];
+      if (dissertationText(dissertation.updated)) dissertationUpdates.push("Updated " + dissertationText(dissertation.updated));
+      if (dissertationText(dissertation.latestUpdate)) dissertationUpdates.push(dissertationText(dissertation.latestUpdate));
+      var dissertationUpdate = document.getElementById("dissertationUpdate");
+      dissertationUpdate.textContent = dissertationUpdates.join(" · ");
+      dissertationUpdate.hidden = !dissertationUpdates.length;
+      var dissertationLink = document.getElementById("dissertationLink");
+      var dissertationHref = dissertationURL(dissertation.link);
+      dissertationLink.hidden = !dissertationHref;
+      if (dissertationHref) setExternalLink(dissertationLink, dissertationHref);
     }
 
     if (document.getElementById("working-papers")) {

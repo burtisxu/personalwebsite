@@ -769,6 +769,96 @@
       }
     }
 
+
+    /* Compact dissertation disclosure on the Research page. */
+    #dissertation .dissertation-toggle {
+      display: block;
+      cursor: pointer;
+      list-style: none;
+    }
+    #dissertation .dissertation-toggle::-webkit-details-marker { display: none; }
+    #dissertation .dissertation-toggle::marker { content: ""; }
+    #dissertation .dissertation-toggle:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 5px;
+      border-radius: 6px;
+    }
+    #dissertation .dissertation-aside {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    #dissertation .dissertation-caret {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(45deg);
+    }
+    #dissertation .dissertation-accordion[open] > .dissertation-toggle .dissertation-caret {
+      transform: rotate(225deg);
+    }
+    #dissertation .dissertation-accordion:not([open]) > .dissertation-paper-list { display: none; }
+    #dissertation .dissertation-paper-list {
+      margin: 12px 0 0;
+      padding: 0 2px;
+      list-style: none;
+    }
+    #dissertation .dissertation-paper-row {
+      display: grid;
+      grid-template-columns: minmax(110px, 1fr) auto;
+      align-items: center;
+      gap: 8px 20px;
+      padding: 9px 0;
+    }
+    #dissertation .dissertation-paper-row + .dissertation-paper-row {
+      border-top: 1px solid var(--border-soft, var(--border));
+    }
+    #dissertation .dissertation-paper-title {
+      min-width: 0;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+    #dissertation a.dissertation-paper-title { text-decoration: none; }
+    #dissertation a.dissertation-paper-title:hover { text-decoration: underline; }
+    #dissertation .dissertation-paper-progress {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 5px 12px;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 11.5px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+    #dissertation .dissertation-paper-stage { white-space: nowrap; }
+    #dissertation .dissertation-paper-stage.is-done { color: var(--accent); }
+    #dissertation .dissertation-paper-stage.is-done::before { content: "✓ "; }
+    #dissertation .dissertation-paper-stage.is-current {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    @media (max-width: 560px) {
+      #dissertation .dissertation-paper-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 3px;
+        padding: 8px 0;
+      }
+      #dissertation .dissertation-paper-progress {
+        justify-content: flex-start;
+        column-gap: 9px;
+      }
+    }
+
     /* =========================================================
        Working Papers
        ========================================================= */
